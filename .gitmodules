@@ -4,3 +4,9 @@
 [submodule "haskell-mode"]
 	path = haskell-mode
 	url = http://github.com/jwiegley/haskell-mode.git
+[submodule "magit"]
+	path = magit
+	url = http://github.com/philjackson/magit.git
+[submodule "icicles"]
+	path = icicles
+	url = http://github.com/emacsmirror/icicles.git
