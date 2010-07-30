@@ -2,7 +2,6 @@
 
 ;; Copyright (C) 2010 Paul C. Mantz, all rights reserved
 
-
 ;;
 ;; elisp mode configuration
 ;;
@@ -10,11 +9,15 @@
 ;; yaml-mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
 (setq yaml-indent-offset 4)
 
 ;; haskell-mode
 (require 'haskell-mode)
+
+;; magit
+(require 'magit)
 
 ;; icicles
 (require 'icicles)
@@ -42,3 +45,10 @@
     (define-key map "\C-t" 'perltidy-dwim)
     map)
   "*Keymap for perltidy commands.")
+
+;; yasnippet
+(require 'yasnippet)
+(yas/initialize)
+
+(yas/load-directory "~/elisp/yasnippet/snippets")
+(yas/load-directory "~/elisp/snippets")
