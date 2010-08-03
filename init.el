@@ -49,6 +49,6 @@
 ;; yasnippet
 (require 'yasnippet)
 (yas/initialize)
-
 (yas/load-directory "~/elisp/yasnippet/snippets")
 (yas/load-directory "~/elisp/snippets")
+(setq yas/global-mode t)
