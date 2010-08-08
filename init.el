@@ -52,3 +52,8 @@
 (yas/load-directory "~/elisp/yasnippet/snippets")
 (yas/load-directory "~/elisp/snippets")
 (setq yas/global-mode t)
+
+;; rnc-mode
+(require 'rnc-mode)
+(setq auto-mode-alist
+      (cons '("\\.rnc\\'" . rnc-mode) auto-mode-alist))
