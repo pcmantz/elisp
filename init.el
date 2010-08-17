@@ -19,6 +19,8 @@
 ;; magit
 (require 'magit)
 
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; icicles
 (require 'icicles)
 (icy-mode t)
