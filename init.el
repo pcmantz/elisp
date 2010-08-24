@@ -59,3 +59,7 @@
 (require 'rnc-mode)
 (setq auto-mode-alist
       (cons '("\\.rnc\\'" . rnc-mode) auto-mode-alist))
+
+;; ibuffer-git (not yet customized)
+(require 'ibuffer-git)
+
