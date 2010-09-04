@@ -1,7 +1,5 @@
 ;;; init.el --- config script for elisp packages
 
-;; Copyright (C) 2010 Paul C. Mantz, all rights reserved
-
 ;;
 ;; elisp mode configuration
 ;;
