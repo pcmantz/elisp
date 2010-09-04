@@ -1,0 +1,11 @@
+
+This repository is a collection of various package configurations meant as a
+drop-in customization for emacs.  Almost everything here's been purloined from
+repositories elsewhere.
+
+Unless explicitly noted, all files are copyright of the original author.
+Please feel free to email me with questions, comments, patches, flames or
+other such communication.
+
+Cheers!
+Paul Mantz
