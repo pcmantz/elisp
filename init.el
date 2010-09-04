@@ -42,19 +42,7 @@
 ;; http://search.cpan.org/~yewenbin/Emacs-PDE-0.2.16/
 (require 'perltidy)
 
-(defcustom pde-perltidy-prefix "\C-c\C-t"
-  "*prefix key for perltidy commands"
-  :type 'string
-  :group 'pde)
-
-(defvar pde-perltidy-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map "\C-r" 'perltidy-region)
-    (define-key map "\C-b" 'perltidy-buffer)
-    (define-key map "\C-s" 'perltidy-subroutine)
-    (define-key map "\C-t" 'perltidy-dwim)
-    map)
-  "*Keymap for perltidy commands.")
+(define-key cperl-mode-map (kbd "C-M-\\") 'perltidy-region)
 
 ;; yasnippet
 (require 'yasnippet)
