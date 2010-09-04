@@ -1,5 +1,7 @@
 ;;; init.el --- config script for elisp packages
 
+(require 'cl)
+
 ;;
 ;; elisp mode configuration
 ;;
