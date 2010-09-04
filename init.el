@@ -96,3 +96,7 @@
   "Determine if this project should use MooseX::Declare class definitions."
   (ignore-errors
     (eproject-attribute :is-mxdeclare-project)))
+
+;; browse-kill-ring
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
