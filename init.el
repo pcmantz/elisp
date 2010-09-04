@@ -51,6 +51,17 @@
 (yas/load-directory "~/elisp/snippets")
 (setq yas/global-mode t)
 
+;; hippie-expand
+(require 'hippie-exp)
+
+(setq hippie-expand-try-functions-list
+      '(yas/hippie-try-expand
+        try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name
+        try-complete-lisp-symbol))
+
 ;; rnc-mode
 (require 'rnc-mode)
 (setq auto-mode-alist
