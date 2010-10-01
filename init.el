@@ -67,6 +67,8 @@
         try-complete-file-name
         try-complete-lisp-symbol))
 
+(global-set-key (kbd "M-/") 'hippie-expand)
+
 ;; rnc-mode
 (require 'rnc-mode)
 (setq auto-mode-alist
