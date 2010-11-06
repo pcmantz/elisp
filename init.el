@@ -6,6 +6,10 @@
 ;; elisp mode configuration
 ;;
 
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t) ;; enable fuzzy matching
+
 ;; yaml-mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
@@ -32,11 +36,6 @@
   '(progn
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")))
-
-
-;; icicles
-(require 'icicles)
-(icy-mode t)
 
 ;; multi-term
 (require 'multi-term)
