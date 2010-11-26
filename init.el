@@ -35,6 +35,10 @@
 (autoload 'turn-on-haskell-doc-mode "haskell-doc" nil t)
 (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode))
 
+;; sql-indent
+(eval-after-load "sql"
+  '(load-library "sql-indent"))
+
 ;; magit
 (require 'magit)
 
