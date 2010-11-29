@@ -35,6 +35,16 @@
 (autoload 'turn-on-haskell-doc-mode "haskell-doc" nil t)
 (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode))
 
+;; clojure-mode
+(require 'clojure-mode)
+
+;; slime
+(eval-after-load "slime"
+  '(progn (slime-setup '(slime-repl))))
+
+(require 'slime)
+(slime-setup)
+
 ;; sql-indent
 (eval-after-load "sql"
   '(load-library "sql-indent"))
