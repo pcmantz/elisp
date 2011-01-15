@@ -1,7 +1,8 @@
 ;; my-bindings.el
 
-(define-key global-map (kbd "C-z") nil)   ;; don't accidentally stop emacs
-(define-key global-map (kbd "C-x r") 'revert-buffer)
+(define-key global-map (kbd "<f5>") 'revert-buffer)
+
+(define-key global-map (kbd "C-z") nil)   ;; stopping emacs is useless
 
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'rr 'replace-regexp)
