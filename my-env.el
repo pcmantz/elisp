@@ -24,6 +24,9 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+(setq x-select-enable-clipboard t
+      interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
 ;; colors! the colors!
 
 (require 'font-lock)
