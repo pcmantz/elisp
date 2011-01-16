@@ -12,8 +12,8 @@
 ;; yasnippet
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory "~/elisp/yasnippet/snippets")
-(yas/load-directory "~/elisp/snippets")
+(yas/load-directory (concat elisp-dir "/yasnippet/snippets"))
+(yas/load-directory (concat elisp-dir "/snippets"))
 (setq yas/global-mode t)
 
 ;; hippie-expand
