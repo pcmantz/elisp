@@ -8,4 +8,8 @@
 (defun untabify-buffer () (interactive)
   (untabify (point-min) (point-max)))
 
+(defun fullscreen () (interactive)
+  (set-frame-parameter nil 'fullscreen
+                       (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+
 (provide 'my-defuns)

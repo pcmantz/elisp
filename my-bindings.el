@@ -1,6 +1,7 @@
 ;; my-bindings.el
 
-(define-key global-map (kbd "<f5>") 'revert-buffer)
+(define-key global-map (kbd "<f5>")  'revert-buffer)
+(define-key global-map (kbd "<f11>") 'fullscreen)
 
 (define-key global-map (kbd "C-z") nil)   ;; stopping emacs is useless
 
