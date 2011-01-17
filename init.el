@@ -25,6 +25,17 @@
       (byte-recompile-directory my-lisp-dir 0)))
 
 ;;
+;; emacs package manager
+;;
+
+(require 'package)
+(dolist (source '(("technomancy" . "http://repo.technomancy.us/emacs/")
+                  ("elpa" . "http://tromey.com/elpa/")
+                  ("marmalade" . "http://marmalade-repo.org/packages/")))
+  (add-to-list 'package-archives source t))
+(package-initialize)
+
+;;
 ;; load the various modules
 ;;
 
@@ -47,3 +58,5 @@
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message ";; Scratch Buffer")
+
+;; end init.el
