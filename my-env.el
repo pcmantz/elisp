@@ -65,8 +65,8 @@
 
 ;; text display config
 
-(setq show-paren-mode t
-      transient-mark-mode t)
+(show-paren-mode t)
+(transient-mark-mode t)
 
 (setq-default fill-column 78
               indent-tabs-mode nil)
@@ -82,3 +82,4 @@
 (setq ibuffer-view-ibuffer t)
 
 (provide 'my-env)
+;; end my-env.el
