@@ -9,11 +9,17 @@
        (setcdr pair 'cperl-mode)))
  (append auto-mode-alist interpreter-mode-alist))
 
-(setq cperl-electric-keywords nil)
-(setq cperl-auto-newline nil)
-(setq cperl-indent-parens-as-block t
-      cperl-indent-level           tab-width
-      cperl-close-paren-offset     (- tab-width))
+;; turn on cperl-hairy
+(setq cperl-hairy t)
+
+;; configure to taste
+(setq 
+ cperl-electric-keywords      nil
+ cperl-electric-parens        nil
+ cperl-auto-newline           nil
+ cperl-indent-parens-as-block t
+ cperl-indent-level           tab-width
+ cperl-close-paren-offset     (- tab-width))
 
 ;; perltidy
 ;; code copied from Emacs::PDE
@@ -23,4 +29,4 @@
 (define-key cperl-mode-map (kbd "C-M-\\") 'perltidy-region)
 
 (provide'my-perl)
-
+;; end my-perl.el

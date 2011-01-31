@@ -34,3 +34,6 @@
 [submodule "slime"]
 	path = slime
 	url = http://github.com/nablaone/slime.git
+[submodule "elscreen"]
+	path = elscreen
+	url = http://github.com/emacsmirror/elscreen.git
