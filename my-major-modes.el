@@ -11,11 +11,10 @@
      (set-face-foreground 'diff-removed "red3")))
 
 ;; yaml-mode
+(add-to-list 'auto-mode-alist '("\\.yml$"  . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (eval-after-load 'yaml-mode
-  '(progn
-     (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-     (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
-     (setq yaml-indent-offset 'tab-width)))
+  (setq yaml-indent-offset 'tab-width))
 
 ;; sql-indent
 (eval-after-load "sql"
@@ -56,3 +55,4 @@
 (browse-kill-ring-default-keybindings)
 
 (provide 'my-major-modes)
+;; end init.el
