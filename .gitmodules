@@ -49,3 +49,6 @@
 [submodule "git/eproject"]
 	path = git/eproject
 	url = http://github.com/jrockway/eproject.git
+[submodule "git/org-mode"]
+	path = git/org-mode
+	url = git://orgmode.org/org-mode.git
