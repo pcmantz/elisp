@@ -14,7 +14,6 @@
  cperl-electric-keywords      nil
  cperl-electric-parens        nil
  cperl-auto-newline           nil
- cperl-faces-init             t
  cperl-indent-parens-as-block t
  cperl-indent-level           tab-width
  cperl-close-paren-offset     (- tab-width))
