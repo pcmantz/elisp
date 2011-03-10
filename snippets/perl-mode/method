@@ -1,0 +1,9 @@
+# name : method ... ( ... ) { ... }
+# key : method
+# contributor : Paul C. Mantz <pcmantz@gmail.com>
+# expand-env : ((yas/indent-line 'fixed))
+# --
+method ${1:method_name} ($2) {
+
+    $0
+}

@@ -11,23 +11,12 @@
 (defalias 'tail-mode 'auto-revert-tail-mode)
 
 ;; yasnippet
+
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory (concat elisp-dir "/git/yasnippet/snippets"))
 (yas/load-directory (concat elisp-dir "/snippets"))
-(setq yas/global-mode t)
-
-;; hippie-expand
-(require 'hippie-exp)
-
-(setq hippie-expand-try-functions-list
-      '(yas/hippie-try-expand
-        try-expand-dabbrev
-        try-expand-dabbrev-all-buffers
-        try-expand-dabbrev-from-kill
-        try-complete-file-name
-        try-complete-lisp-symbol))
-
-(global-set-key (kbd "M-/") 'hippie-expand)
 
 (provide 'my-bindings)
+
+;; end my-bindings.el

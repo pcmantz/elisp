@@ -1,0 +1,11 @@
+# name : has '...' => ( ... );
+# key : has
+# contributor : Paul C. Mantz <pcmantz@gmail.com>
+# expand-env : ((yas/indent-line 'fixed))
+# --
+has '${1:attribute}' => (
+    is         => '${2:$$(yas/choose-value '("ro" "rw"))}',
+    ${3:$$(yas/choose-value '("isa "  "does"))}       => '${4:type}',
+    ${5:$$(yas/choose-value '("required  "  "lazy_build"))} => ${6:$$(yas/choose-value '("0" "1"))},
+);
+$0

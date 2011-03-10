@@ -1,0 +1,10 @@
+# name : sub ... { my ( ... ) = @_; ... }
+# key : sub
+# contributor : Paul C. Mantz <pcmantz@gmail.com>
+# expand-env : ((yas/indent-line 'fixed))
+# --
+sub ${1:sub_name} {
+    my ($${2:arg}) = @_;
+
+    $0
+}

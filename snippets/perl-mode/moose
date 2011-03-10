@@ -1,0 +1,19 @@
+# name : moose (module template)
+# key : moose
+# contributor : Paul C. Mantz <pcmantz@gmail.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+use strict;
+use warnings;
+use feature ':5.10';
+
+use Moose;
+
+package ${1:Package::Name};
+
+$0
+
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
+1;
