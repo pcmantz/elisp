@@ -1,0 +1,18 @@
+# name : test
+# key : test
+# keybinding : keybinding
+# expand-env : ((yas/indent-mode 'fixed))
+# contributor : Paul C. Mantz <pcmantz@gmail.com>
+# --
+use strict;
+use warnings;
+use feature ':5.10';
+
+use Test::More;
+use Test::Exception;
+
+use_ok('${1:Package::Name}');
+
+$0
+
+done_testing;

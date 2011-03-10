@@ -1,0 +1,13 @@
+# name : script
+# key : script
+# keybinding : keybinding
+# expand-env : ((yas/indent-mode 'fixed))
+# contributor : Paul C. Mantz <pcmantz@gmail.com>
+# --
+use strict;
+use warnings;
+use feature ':5.10';
+
+$0
+
+exit 0;
