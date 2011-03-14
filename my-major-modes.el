@@ -4,7 +4,7 @@
 ;; (yet)
 
 ;; diff-mode 
-(setq diff-switches "-c -w")
+(setq diff-switches "-u")
 (eval-after-load 'diff-mode
   '(progn
      (set-face-foreground 'diff-added "green4")
@@ -55,4 +55,4 @@
 (browse-kill-ring-default-keybindings)
 
 (provide 'my-major-modes)
-;; end init.el
+;; end my-major-modes.el
