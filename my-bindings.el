@@ -16,6 +16,7 @@
 (yas/initialize)
 (yas/load-directory (concat elisp-dir "/git/yasnippet/snippets"))
 (yas/load-directory (concat elisp-dir "/snippets"))
+(setq yas/prompt-functions '(yas/ido-prompt yas/completing-prompt))
 
 (provide 'my-bindings)
 
