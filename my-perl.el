@@ -10,13 +10,16 @@
  (append auto-mode-alist interpreter-mode-alist))
 
 ;; configure to taste
-(setq 
- cperl-electric-keywords      nil
- cperl-electric-parens        nil
- cperl-auto-newline           nil
- cperl-indent-parens-as-block t
- cperl-indent-level           tab-width
- cperl-close-paren-offset     (- tab-width))
+(eval-after-load 'cperl-mode
+  '(progn
+     ((setq
+       cperl-electric-keywords      nil
+       cperl-electric-parens        nil
+       cperl-auto-newline           nil
+       cperl-indent-parens-as-block t
+       cperl-indent-level           tab-width
+       cperl-close-paren-offset     (- tab-width))
+      (if (fboundp cperl-init-faces) (cperl-init-faces)))))
 
 ;; perltidy
 ;; code copied from Emacs::PDE
