@@ -34,6 +34,5 @@
      (define-key org-agenda-mode-map "\C-p" 'previous-line)
      (define-key org-agenda-keymap "\C-p" 'previous-line)))
 
-
-
 (provide 'my-org)
+;; end my-org.el

@@ -3,7 +3,7 @@
 ;; grab bag file for major modes that don't warrant their own config file
 ;; (yet)
 
-;; diff-mode 
+;; diff-mode
 (setq diff-switches "-u")
 (eval-after-load 'diff-mode
   '(progn
@@ -11,6 +11,7 @@
      (set-face-foreground 'diff-removed "red3")))
 
 ;; yaml-mode
+(require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$"  . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (eval-after-load 'yaml-mode
@@ -21,6 +22,7 @@
   '(load-library "sql-indent"))
 
 ;; clojure-mode
+;; (will-finish-later)
 
 ;; slime
 (require 'slime)
@@ -42,8 +44,7 @@
 (setq multi-term-program "/bin/bash")
 
 ;; rnc-mode
-(setq auto-mode-alist
-      (cons '("\\.rnc\\'" . rnc-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.rnc\\'" . rnc-mode))
 
 ;; csv-mode
 (add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode))
