@@ -11,15 +11,14 @@
 
 ;; configure to taste
 (eval-after-load 'cperl-mode
-  '(progn
-     ((setq
-       cperl-electric-keywords      nil
-       cperl-electric-parens        nil
-       cperl-auto-newline           nil
-       cperl-indent-parens-as-block t
-       cperl-indent-level           tab-width
-       cperl-close-paren-offset     (- tab-width))
-      (if (fboundp cperl-init-faces) (cperl-init-faces)))))
+  (if (fboundp 'cperl-init-faces) (cperl-init-faces)))
+(setq
+ cperl-electric-keywords      nil
+ cperl-electric-parens        nil
+ cperl-auto-newline           nil
+ cperl-indent-parens-as-block t
+ cperl-indent-level           tab-width
+ cperl-close-paren-offset     (- tab-width))
 
 ;; perltidy
 ;; code copied from Emacs::PDE
@@ -27,6 +26,7 @@
 (require 'perltidy)
 
 (define-key cperl-mode-map (kbd "C-M-\\") 'perltidy-region)
+(define-key cperl-mode-map (kbd "C-c C-q") 'perltidy-subroutine)
 
-(provide'my-perl)
+(provide 'my-perl)
 ;; end my-perl.el
