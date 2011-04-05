@@ -5,6 +5,8 @@
 
 (define-key global-map (kbd "C-z") nil)   ;; stopping emacs is useless
 
+(defalias 'qr 'query-replace)
+(defalias 'rs 'replace-string)
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'rr 'replace-regexp)
 
