@@ -5,3 +5,4 @@
 (require 'eproject-extras)
 
 (provide 'my-eproject)
+;; end my-eproject.el

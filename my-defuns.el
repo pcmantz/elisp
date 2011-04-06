@@ -13,3 +13,4 @@
                        (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
 
 (provide 'my-defuns)
+;; end my-defuns.el

@@ -43,3 +43,4 @@
  '(remember-handler-functions (quote (org-remember-handler))))
 
 (provide 'my-remember)
+;; end my-remember.el

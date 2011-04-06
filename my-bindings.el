@@ -21,5 +21,4 @@
 (setq yas/prompt-functions '(yas/ido-prompt yas/completing-prompt))
 
 (provide 'my-bindings)
-
 ;; end my-bindings.el

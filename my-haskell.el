@@ -11,3 +11,4 @@
 (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode))
 
 (provide 'my-haskell)
+;; end my-haskell.el
