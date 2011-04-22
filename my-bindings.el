@@ -12,6 +12,9 @@
 
 (defalias 'tail-mode 'auto-revert-tail-mode)
 
+;; enable default disabled bindings
+(put 'set-goal-column 'disabled nil)
+
 ;; yasnippet
 
 (require 'yasnippet)
