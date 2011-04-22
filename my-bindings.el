@@ -23,5 +23,11 @@
 (yas/load-directory (concat elisp-dir "/snippets"))
 (setq yas/prompt-functions '(yas/ido-prompt yas/completing-prompt))
 
+(set-default 'yas/dont-activate
+             #'(lambda ()
+                 (or buffer-read-only
+                     (and yas/root-directory
+                          (null (yas/get-snippet-tables))))))
+
 (provide 'my-bindings)
 ;; end my-bindings.el
