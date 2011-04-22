@@ -33,7 +33,7 @@
 ;; magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
-(setq magit-diff-options "-w")
+(setq magit-diff-options '("-w"))
 (eval-after-load 'magit
   '(progn
      (set-face-foreground 'magit-diff-add "green3")
