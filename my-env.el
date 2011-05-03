@@ -76,7 +76,7 @@
 ;; buffer listing
 
 (require 'ibuffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer-other-window)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-default-sorting-mode 'major-mode)
 (setq ibuffer-always-show-last-buffer t)
 (setq ibuffer-view-ibuffer t)
