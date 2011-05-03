@@ -15,6 +15,10 @@
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
 
+;; windmove for navigating buffers
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 ;; yasnippet
 
 (require 'yasnippet)
