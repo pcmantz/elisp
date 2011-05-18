@@ -19,8 +19,14 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-;; yasnippet
+;; escreen
+(require 'escreen)
+(escreen-install)
+(setq escreen-prefix-char (kbd "C-z"))
+(global-set-key escreen-prefix-char 'escreen-prefix) 
+(add-to-list 'same-window-buffer-names "*Escreen List*")
 
+;; yasnippet
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory (concat elisp-dir "/git/yasnippet/snippets"))
