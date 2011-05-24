@@ -25,6 +25,8 @@
 (setq escreen-prefix-char (kbd "C-z"))
 (global-set-key escreen-prefix-char 'escreen-prefix) 
 (add-to-list 'same-window-buffer-names "*Escreen List*")
+(add-hook 'escreen-goto-screen-hook
+          'escreen-enable-number-mode-if-more-than-one-screen)
 
 ;; yasnippet
 (require 'yasnippet)
