@@ -33,11 +33,15 @@
 ;; magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
-(setq magit-diff-options '("-w"))
 (eval-after-load 'magit
   '(progn
      (set-face-foreground 'magit-diff-add "green3")
-     (set-face-foreground 'magit-diff-del "red3")))
+     (set-face-foreground 'magit-diff-del "red3")
+     (if (fboundp 'magit-completing-read-function) 
+         (setq magit-completing-read-function 'ido-completing-read))))
+
+;; note: may have to amend for unicode project names
+(add-to-list 'same-window-regexps "\\*magit: [[:ascii:]]\\*")
 
 ;; multi-term
 (require 'multi-term)
