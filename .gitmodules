@@ -1,6 +1,6 @@
 [submodule "git/magit"]
 	path = git/magit
-	url = http://github.com/philjackson/magit.git
+	url = http://github.com/magit/magit.git
 [submodule "git/csv-mode"]
 	path = git/csv-mode
 	url = http://github.com/emacsmirror/csv-mode.git
