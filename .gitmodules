@@ -25,3 +25,6 @@
 [submodule "git/org-mode"]
 	path = git/org-mode
 	url = git://orgmode.org/org-mode.git
+[submodule "git/cperl-mode"]
+	path = git/cperl-mode
+	url = http://github.com/jrockway/cperl-mode.git
