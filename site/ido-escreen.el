@@ -2,10 +2,11 @@
 
 (defun ido-escreen-goto-screen ()
   (interactive)
-  (let ((number (ido-completing-read
-                "Go to escreen number: "
-                (mapcar 'number-to-string screen-list)
-                nil t)))
+  (let ((number 
+         (string-to-number (ido-completing-read
+                            "Go to escreen number: "
+                            (mapcar 'number-to-string screen-list)
+                            nil t))))
     (escreen-goto-screen number)))
 
 (provide 'ido-escreen)

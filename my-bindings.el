@@ -28,6 +28,7 @@
 (add-to-list 'same-window-buffer-names "*Escreen List*")
 (add-hook 'escreen-goto-screen-hook
           'escreen-enable-number-mode-if-more-than-one-screen)
+(define-key escreen-map (kbd "C-z g") 'ido-escreen-goto-screen)
 
 ;; yasnippet
 (require 'yasnippet)
