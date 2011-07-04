@@ -28,7 +28,6 @@
 (add-to-list 'same-window-buffer-names "*Escreen List*")
 (add-hook 'escreen-goto-screen-hook
           'escreen-enable-number-mode-if-more-than-one-screen)
-(defalias 'escreen-goto-screen 'ido-escreen-goto-screen)
 
 ;; yasnippet
 (require 'yasnippet)
