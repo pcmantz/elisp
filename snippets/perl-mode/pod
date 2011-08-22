@@ -1,0 +1,23 @@
+# name : =head1 NAME ... =cut
+# key : pod
+# contributor : Paul C. Mantz <pcmantz@gmail.com>
+# expand-env : ((yas/indent-line 'fixed))
+# --
+=head1 NAME
+
+${1:Package::Name} - ${2:do some stuff}
+
+=head1 SYNOPSIS
+
+    ${$3:my $foo = $bar->baz("quux");}
+
+=head1 DESCRIPTION
+
+${4}
+
+=head1 AUTHOR
+
+${5}
+
+=cut
+
