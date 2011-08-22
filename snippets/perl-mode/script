@@ -6,7 +6,7 @@
 # --
 use strict;
 use warnings;
-use feature ':5.10';
+use 5.010;
 
 $0
 

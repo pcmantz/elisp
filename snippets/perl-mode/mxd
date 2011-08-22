@@ -3,11 +3,8 @@
 # contributor : Paul C. Mantz <pcmantz@gmail.com>
 # expand-env : ((yas/indent-line 'fixed))
 # --
-use strict;
-use warnings;
-use feature ':5.10';
-
 use MooseX::Declare;
+use 5.010;
 
 class ${1:Package::Name} with (${2:Role::Name}){
 

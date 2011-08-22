@@ -3,13 +3,11 @@
 # contributor : Paul C. Mantz <pcmantz@gmail.com>
 # expand-env: ((yas/indent-line 'fixed))
 # --
-use strict;
-use warnings;
-use feature ':5.10';
+package ${1:Package::Name};
 
 use Moose;
-
-package ${1:Package::Name};
+use 5.010;
+use namespace::autoclean;
 
 $0
 
