@@ -36,25 +36,31 @@
 (package-initialize)
 
 ;;
-;; load the various modules
+;; load custom modules
 ;;
 
+;; global scope modules
 (require 'my-env)
-
-(require 'my-perl)
-(require 'my-haskell)
-(require 'my-major-modes)
-
-(require 'my-eproject)
-(require 'my-org)
-(require 'my-remember)
-
 (require 'my-bindings) 
 (require 'my-defuns)
+
+(require 'my-eproject)
+(require 'my-remember)
+
+;; major modes
+(require 'my-perl)
+(require 'my-haskell)
+(require 'my-cc)
+(require 'my-js)
+(require 'my-org)
+(require 'my-major-modes)
 
 ;;
 ;; startup preferences
 ;;
+
+;; avoid recursive loads by loading tramp right here and now
+(require 'tramp)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message ";; Scratch Buffer")
