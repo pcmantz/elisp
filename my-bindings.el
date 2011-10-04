@@ -10,7 +10,13 @@
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'rr 'replace-regexp)
 
+(defalias 'lf 'load-file)
+(defalias 'll 'load-library)
+
 (defalias 'tail-mode 'auto-revert-tail-mode)
+
+(defun add-to-load-path (path)
+  (add-to-list 'load-path path))
 
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
@@ -18,6 +24,9 @@
 ;; windmove for navigating buffers
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
+;; winner-mode for window undo/redo
+(winner-mode t)
 
 ;; escreen
 (require 'escreen)
@@ -28,7 +37,8 @@
 (add-to-list 'same-window-buffer-names "*Escreen List*")
 (add-hook 'escreen-goto-screen-hook
           'escreen-enable-number-mode-if-more-than-one-screen)
-(define-key escreen-map (kbd "C-z g") 'ido-escreen-goto-screen)
+
+(define-key escreen-map (kbd "<backspace>") 'escreen-goto-previous-screen)
 
 ;; yasnippet
 (require 'yasnippet)
