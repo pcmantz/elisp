@@ -1,7 +1,10 @@
 ;; my-perl.el
 
-;; cperl-mode
+;; load my cperl-mode
+(load-library (concat elisp-dir "git/cperl-mode/cperl-mode.elc"))
 (require 'cperl-mode)
+
+;; cperl-mode
 (add-to-list 'auto-mode-alist '("\\.t$" . cperl-mode))
 (mapc
  (lambda (pair)
