@@ -49,6 +49,11 @@
 
 ;; rnc-mode
 (add-to-list 'auto-mode-alist '("\\.rnc\\'" . rnc-mode))
+(autoload 'rnc-mode "rnc-mode"
+  "Major mode for editing Relax NG Compact schema files." t)
+(eval-after-load 'rnc-mode
+  '(progn (setq rnc-indent-level 'tab-width)))
+
 
 ;; csv-mode
 (add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode))
