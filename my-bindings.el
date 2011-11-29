@@ -38,7 +38,7 @@
 (add-hook 'escreen-goto-screen-hook
           'escreen-enable-number-mode-if-more-than-one-screen)
 
-(define-key escreen-map (kbd "<backspace>") 'escreen-goto-previous-screen)
+(define-key escreen-map (kbd "<backspace>") 'escreen-goto-prev-screen)
 
 ;; yasnippet
 (require 'yasnippet)
