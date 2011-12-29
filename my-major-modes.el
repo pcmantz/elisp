@@ -52,7 +52,9 @@
 (autoload 'rnc-mode "rnc-mode"
   "Major mode for editing Relax NG Compact schema files." t)
 (eval-after-load 'rnc-mode
-  '(progn (setq rnc-indent-level 'tab-width)))
+  '(progn (setq rnc-indent-level 'tab-width)
+          (setq rnc-mode-map (make-sparse-keymap))
+          (define-key rnc-mode-map "\C-c\C-c" 'comment-region)))
 
 
 ;; csv-mode
