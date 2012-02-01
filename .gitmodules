@@ -22,3 +22,6 @@
 [submodule "git/cperl-mode"]
 	path = git/cperl-mode
 	url = http://github.com/jrockway/cperl-mode.git
+[submodule "git/yasnippet"]
+	path = git/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
