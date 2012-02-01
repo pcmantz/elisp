@@ -13,18 +13,12 @@
 [submodule "git/yaml-mode"]
 	path = git/yaml-mode
 	url = http://github.com/yoshiki/yaml-mode.git
-[submodule "git/yasnippet"]
-	path = git/yasnippet
-	url = http://github.com/emacsmirror/yasnippet.git
 [submodule "git/slime"]
 	path = git/slime
 	url = http://github.com/nablaone/slime.git
 [submodule "git/eproject"]
 	path = git/eproject
 	url = http://github.com/jrockway/eproject.git
-[submodule "git/org-mode"]
-	path = git/org-mode
-	url = git://orgmode.org/org-mode.git
 [submodule "git/cperl-mode"]
 	path = git/cperl-mode
 	url = http://github.com/jrockway/cperl-mode.git
