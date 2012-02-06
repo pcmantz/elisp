@@ -47,13 +47,16 @@
 (require 'my-eproject)
 (require 'my-remember)
 
+;; minor modes
+(require 'my-minor-modes)
+
 ;; major modes
+(require 'my-major-modes)
 (require 'my-perl)
 (require 'my-haskell)
 (require 'my-cc)
 (require 'my-js)
 (require 'my-org)
-(require 'my-major-modes)
 
 ;;
 ;; startup preferences

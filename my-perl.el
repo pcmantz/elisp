@@ -14,14 +14,17 @@
 
 ;; configure to taste
 (eval-after-load 'cperl-mode
-  (if (fboundp 'cperl-init-faces) (cperl-init-faces)))
-(setq
- cperl-electric-keywords      nil
- cperl-electric-parens        nil
- cperl-auto-newline           nil
- cperl-indent-parens-as-block t
- cperl-indent-level           tab-width
- cperl-close-paren-offset     (- tab-width))
+  (progn
+    (outline-minor-mode)
+    (if (fboundp 'cperl-init-faces) (cperl-init-faces))
+    (setq
+       cperl-electric-keywords      nil
+       cperl-electric-parens        nil
+       cperl-auto-newline           nil
+       cperl-indent-parens-as-block t
+       cperl-indent-level           tab-width
+       cperl-close-paren-offset     (- tab-width))))
+
 
 ;; perltidy
 ;; code copied from Emacs::PDE
