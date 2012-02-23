@@ -24,9 +24,6 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
-(setq x-select-enable-clipboard t
-      interprogram-paste-function 'x-cut-buffer-or-selection-value)
-
 ;; colors! the colors!
 
 (require 'font-lock)
@@ -36,18 +33,24 @@
 
 ;; graphical config
 
-(when window-system
-  (mouse-wheel-mode t)
-  (blink-cursor-mode -1)
+(when (display-graphic-p)
   (tooltip-mode -1)
+  (blink-cursor-mode -1)
+  (mouse-wheel-mode t)
   (xterm-mouse-mode t)
   (set-foreground-color "white")
   (set-background-color "black")
   (set-cursor-color "green")
-  (cond ((string= window-system "x") ;; X window system
-         (set-face-attribute 'default nil :font "Inconsolata-9"))
-        (t  ;; terminal mode
-         nil)))
+  (cond ((string= window-system "x")   ;; X11 window system
+         (set-face-attribute 'default nil :font "Inconsolata-9")
+         (setq 
+          x-select-enable-clipboard t
+          interprogram-paste-function 'x-cut-buffer-or-selection-value))
+        ((string= window-system "ns")  ;; Apple OS X
+         (set-face-attribute 'default nil :font "Inconsolata-11"))
+        ((string= window-system "w32") ;; MS-Windows
+         (set-face-attribute 'default nil :font "Consolas-9"))
+        (t nil)))
 
 ;; frame config
 
