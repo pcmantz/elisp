@@ -41,7 +41,7 @@
 
 ;; global scope modules
 (require 'my-env)
-(require 'my-bindings) 
+(require 'my-bindings)
 (require 'my-defuns)
 
 (require 'my-eproject)
@@ -56,6 +56,8 @@
 (require 'my-haskell)
 (require 'my-cc)
 (require 'my-js)
+(require 'my-php)
+(require 'my-ruby)
 (require 'my-org)
 
 ;;
