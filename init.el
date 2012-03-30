@@ -44,7 +44,6 @@
 (require 'my-bindings)
 (require 'my-defuns)
 
-(require 'my-eproject)
 (require 'my-remember)
 
 ;; minor modes

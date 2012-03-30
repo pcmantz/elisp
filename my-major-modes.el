@@ -21,15 +21,6 @@
 (eval-after-load "sql"
   '(load-library "sql-indent"))
 
-;; clojure-mode
-;; (will-finish-later)
-
-;; slime
-(require 'slime)
-(slime-setup)
-(eval-after-load "slime"
-  '(progn (slime-setup '(slime-repl))))
-
 ;; magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)

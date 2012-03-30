@@ -4,21 +4,12 @@
 [submodule "git/csv-mode"]
 	path = git/csv-mode
 	url = http://github.com/emacsmirror/csv-mode.git
-[submodule "git/clojure-mode"]
-	path = git/clojure-mode
-	url = http://github.com/technomancy/clojure-mode.git
 [submodule "git/smex"]
 	path = git/smex
 	url = http://github.com/nonsequitur/smex.git
 [submodule "git/yaml-mode"]
 	path = git/yaml-mode
 	url = http://github.com/yoshiki/yaml-mode.git
-[submodule "git/slime"]
-	path = git/slime
-	url = http://github.com/nablaone/slime.git
-[submodule "git/eproject"]
-	path = git/eproject
-	url = http://github.com/jrockway/eproject.git
 [submodule "git/cperl-mode"]
 	path = git/cperl-mode
 	url = http://github.com/jrockway/cperl-mode.git
