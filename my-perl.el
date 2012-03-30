@@ -25,6 +25,12 @@
        cperl-indent-level           tab-width
        cperl-close-paren-offset     (- tab-width))))
 
+(add-hook 'cperl-mode-hook
+          (lambda ()
+            (add-hook 'local-write-file-hooks
+                      '(lambda()
+                         (save-excursion
+                           (delete-trailing-whitespace))))))
 
 ;; perltidy
 ;; code copied from Emacs::PDE
