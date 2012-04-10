@@ -66,6 +66,7 @@
 ;; avoid recursive loads by loading tramp right here and now
 (require 'tramp)
 
+;; startup stuff
 (setq inhibit-startup-message t)
 (setq initial-scratch-message ";; Scratch Buffer")
 

@@ -2,37 +2,57 @@
 
 ;; miscellaneous environment variables and global scope modes
 
+;;
 ;; encoding
+;;
 
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;;
+;; configuration
+;;
+
+;; keep local customizations out of this file
+(setq custom-file (concat elisp-dir "custom.el"))
+(load custom-file)
+
+;;
 ;; interaction
+;;
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; ido for files
 (require 'ido)
 (eval-after-load 'ido
   '(progn
     (ido-mode t)
-    (setq ido-enable-flex-matching t)));; enable fuzzy matching
+    (setq
+     ido-everywhere t
+     ido-enable-flex-matching t)));; enable fuzzy matching
 
+;; smex for menus
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
-;; colors! the colors!
+;;
+;; display
+;;
 
+;; colors! the colors!
 (require 'font-lock)
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
-(ansi-color-for-comint-mode-on)
+(eval-after-load 'font-lock
+  '(progn
+     (global-font-lock-mode t)
+     (setq font-lock-maximum-decoration t)
+     (ansi-color-for-comint-mode-on)))
 
 ;; graphical config
-
 (when (display-graphic-p)
   (tooltip-mode -1)
   (blink-cursor-mode -1)
@@ -43,7 +63,7 @@
   (set-cursor-color "green")
   (cond ((string= window-system "x")   ;; X11 window system
          (set-face-attribute 'default nil :font "Inconsolata-9")
-         (setq 
+         (setq
           x-select-enable-clipboard t
           interprogram-paste-function 'x-cut-buffer-or-selection-value))
         ((string= window-system "ns")  ;; Apple OS X
@@ -51,11 +71,6 @@
         ((string= window-system "w32") ;; MS-Windows
          (set-face-attribute 'default nil :font "Consolas-9"))
         (t nil)))
-
-;; frame config
-
-(line-number-mode t)
-(column-number-mode t)
 
 ;; uniquify: unique buffer names
 (require 'uniquify)
@@ -66,23 +81,27 @@
          uniquify-after-kill-buffer-p t
          uniquify-ignore-buffers-re "^\\*")))
 
-;; text display config
-
-(show-paren-mode t)
-(transient-mark-mode t)
-
-(setq-default fill-column 78
-              indent-tabs-mode nil)
-
-(setq-default tab-width 4)
-
 ;; buffer listing
-
 (require 'ibuffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(setq ibuffer-default-sorting-mode 'major-mode)
-(setq ibuffer-always-show-last-buffer t)
-(setq ibuffer-view-ibuffer t)
+(eval-after-load 'ibuffer
+    '(progn
+       (global-set-key (kbd "C-x C-b") 'ibuffer)
+       (setq
+        ibuffer-default-sorting-mode 'major-mode
+        ibuffer-always-show-last-buffer t
+        ibuffer-view-ibuffer t)))
+
+;; frame config
+(line-number-mode t)
+(column-number-mode t)
+
+;; text display config
+(show-paren-mode t)
+(transient-mark-mode
+(setq-default
+ fill-column 78
+ tab-width 4
+ indent-tabs-mode nil)
 
 (provide 'my-env)
 ;; end my-env.el
