@@ -97,7 +97,7 @@
 
 ;; text display config
 (show-paren-mode t)
-(transient-mark-mode
+(transient-mark-mode)
 (setq-default
  fill-column 78
  tab-width 4
