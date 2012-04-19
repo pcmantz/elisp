@@ -1,22 +1,17 @@
 ;; my-bindings.el
 
+;;
+;; Emacs Core Bindings
+;;
+
 (define-key global-map (kbd "<f5>")  'revert-buffer)
 (define-key global-map (kbd "<f11>") 'fullscreen)
 
-(define-key global-map (kbd "C-z") nil)   ;; stopping emacs is useless
+(define-key global-map (kbd "C-z") nil)     ;; stopping emacs is useless
+(define-key global-map (kbd "C-x C-c") nil) ;; don't make it easy to kill emacs
 
-(defalias 'qr 'query-replace)
-(defalias 'rs 'replace-string)
-(defalias 'qrr 'query-replace-regexp)
-(defalias 'rr 'replace-regexp)
-
-(defalias 'lf 'load-file)
-(defalias 'll 'load-library)
-
-(defalias 'tail-mode 'auto-revert-tail-mode)
-
-(defun add-to-load-path (path)
-  (add-to-list 'load-path path))
+(define-key global-map (kbd "C-s") 'isearch-forward-regexp)
+(define-key global-map (kbd "C-r") 'isearch-backward-regexp)
 
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
@@ -28,16 +23,34 @@
 ;; winner-mode for window undo/redo
 (winner-mode t)
 
+;;
+;; Aliases
+;;
+
+(defalias 'qr 'query-replace)
+(defalias 'rs 'replace-string)
+(defalias 'qrr 'query-replace-regexp)
+(defalias 'rr 'replace-regexp)
+
+(defalias 'lf 'load-file)
+(defalias 'll 'load-library)
+
+(defalias 'tail-mode 'auto-revert-tail-mode)
+(defalias 'quit-emacs 'save-buffers-kill-terminal)
+
+;;
+;; Packages
+;;
+
 ;; escreen
 (require 'escreen)
 (require 'ido-escreen)
 (escreen-install)
 (setq escreen-prefix-char (kbd "C-z"))
-(global-set-key escreen-prefix-char 'escreen-prefix) 
+(global-set-key escreen-prefix-char 'escreen-prefix)
 (add-to-list 'same-window-buffer-names "*Escreen List*")
 (add-hook 'escreen-goto-screen-hook
           'escreen-enable-number-mode-if-more-than-one-screen)
-
 (define-key escreen-map (kbd "<backspace>") 'escreen-goto-prev-screen)
 
 ;; yasnippet
@@ -52,6 +65,14 @@
                  (or buffer-read-only
                      (and yas/root-directory
                           (null (yas/get-snippet-tables))))))
+
+;; remember
+(require 'remember)
+(add-hook 'remember-mode-hook 'org-remember-apply-template)
+(define-key global-map [(control meta ?r)] 'remember)
+(setq
+ remember-annotation-functions '(org-remember-annotation)
+ remember-handler-functions    '(org-remember-handler))
 
 (provide 'my-bindings)
 ;; end my-bindings.el
