@@ -41,6 +41,17 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;
+;; backups
+;;
+
+(setq
+ version-control t   ;; version backup files
+ backup-by-copying t ;; don't clobber symlinks
+ delete-old-versions t
+ kept-new-versions 4
+ kept-old-versions 2)
+
+;;
 ;; display
 ;;
 
