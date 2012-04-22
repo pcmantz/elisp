@@ -33,8 +33,8 @@
 (defvar my-packages
   '(browse-kill-ring coffee-mode cperl-mode csv-mode gist
                 haml-mode haskell-mode magit markdown-mode
-                multi-term sass-mode scss-mode smex yaml-mode
-                yasnippet)
+                monokai-theme multi-term sass-mode scss-mode smex
+                yaml-mode yasnippet zenburn-theme)
   "A list of packages to be installed at launch.")
 
 (defun my-packages-installed-p ()
