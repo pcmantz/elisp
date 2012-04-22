@@ -3,7 +3,6 @@
 ;;
 ;; Graphical stuff I'm never going to use, and no one else shoud either
 ;;
-
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -11,10 +10,7 @@
 ;;
 ;; add elisp/ and its subdirectories to the load path
 ;;
-
-(setq elisp-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
-
+(setq elisp-dir (file-name-directory (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path elisp-dir)
 
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
@@ -27,13 +23,32 @@
 ;;
 ;; emacs package manager
 ;;
-
 (require 'package)
 (dolist (source
          '(("melpa" . "http://melpa.milkbox.net/packages/")
            ("marmalade" . "http://marmalade-repo.org/packages/")))
   (add-to-list 'package-archives source t))
 (package-initialize)
+
+(defvar my-packages
+  '(browse-kill-ring coffee-mode cperl-mode csv-mode gist
+                haml-mode haskell-mode magit markdown-mode
+                multi-term sass-mode scss-mode smex yaml-mode
+                yasnippet)
+  "A list of packages to be installed at launch.")
+
+(defun my-packages-installed-p ()
+  (loop for p in my-packages
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+
+(unless (my-packages-installed-p)
+  ;; check for new packages (package versions)
+  (package-refresh-contents)
+  ;; install the missing packages
+  (dolist (p my-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 ;;
 ;; load custom modules
@@ -43,8 +58,6 @@
 (require 'my-env)
 (require 'my-bindings)
 (require 'my-defuns)
-
-(require 'my-remember)
 
 ;; minor modes
 (require 'my-minor-modes)
