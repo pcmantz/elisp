@@ -13,11 +13,11 @@ ${1:Package::Name} - ${2:do some stuff}
 
 =head1 DESCRIPTION
 
-${4}
+$4
 
 =head1 AUTHOR
 
-${5}
+$5
 
 =cut
 
