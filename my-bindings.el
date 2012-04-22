@@ -56,10 +56,8 @@
 ;; yasnippet
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory (concat elisp-dir "/git/yasnippet/snippets"))
 (yas/load-directory (concat elisp-dir "/snippets"))
 (setq yas/prompt-functions '(yas/ido-prompt yas/completing-prompt))
-
 (set-default 'yas/dont-activate
              #'(lambda ()
                  (or buffer-read-only

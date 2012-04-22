@@ -1,5 +1,7 @@
 ;;; init.el --- config script for elisp packages
 
+(require 'cl)
+
 ;;
 ;; Graphical stuff I'm never going to use, and no one else shoud either
 ;;
