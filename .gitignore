@@ -3,5 +3,6 @@
 /auto-save-list/
 /eshell/
 /url/
-/custom.el
+/my-custom-file.el
 /session.*
+/bookmarks

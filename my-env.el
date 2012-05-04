@@ -15,7 +15,7 @@
 ;;
 
 ;; keep local customizations out of this file
-(setq custom-file (concat elisp-dir "custom.el"))
+(setq custom-file (concat elisp-dir "my-custom-file.el"))
 (load custom-file)
 
 ;;
