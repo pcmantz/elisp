@@ -7,11 +7,15 @@
 (define-key global-map (kbd "<f5>")  'revert-buffer)
 (define-key global-map (kbd "<f11>") 'fullscreen)
 
-(define-key global-map (kbd "C-z") nil)     ;; stopping emacs is useless
-(define-key global-map (kbd "C-x C-c") nil) ;; don't make it easy to kill emacs
+(define-key global-map (kbd "C-z") nil)       ;; stopping emacs is useless
+(define-key global-map (kbd "C-x C-c") nil)   ;; don't make it easy to kill emacs
+(define-key global-map (kbd "<f2> <f2>") nil) ;; whatever this is is frustrating
 
 (define-key global-map (kbd "C-s") 'isearch-forward-regexp)
 (define-key global-map (kbd "C-r") 'isearch-backward-regexp)
+
+(define-key global-map (kbd "C-M-s") 'isearch-forward)
+(define-key global-map (kbd "C-M-r") 'isearch-backward-regexp)
 
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
@@ -66,8 +70,8 @@
 
 ;; remember
 (require 'remember)
+(define-key global-map (kbd "<f2>") 'remember)
 (add-hook 'remember-mode-hook 'org-remember-apply-template)
-(define-key global-map [(control meta ?r)] 'remember)
 (setq
  remember-annotation-functions '(org-remember-annotation)
  remember-handler-functions    '(org-remember-handler))
