@@ -8,6 +8,8 @@
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (setq org-log-done t)
 
+(setq my-org-dirs '("~/org" "~/org/projects"))
+
 (eval-after-load "org"
   '(progn
      (define-prefix-command 'org-todo-state-map)
@@ -32,9 +34,16 @@
       org-reverse-note-order t
       org-fast-tag-selection-single-key (quote expert)
       org-remember-store-without-prompt t
+      org-refile-targets '((nil :maxlevel . 9)
+                           (org-agenda-files :maxlevel . 9))
+      org-completion-use-ido t      ; use ido-mode
+      org-outline-path-complete-in-steps nil ; targets complete w/ ido-mode
+      org-refile-use-outline-path t ; use full outline paths for refile targets
       org-remember-templates
       '(("Todo" ?t "* TODO %?\n  %u" "~/org/todo.org"  "Tasks")
-        ("Note" ?n "* %u %?"         "~/org/notes.org" "Notes"))))) 
+        ("Note" ?n "* %u %?"         "~/org/notes.org" "Notes")
+        ("Appt" ?a "* APPT %?\n  SCHEDULED: %^T\n  %u"
+         "~/org/appts.org" "Appointments")))))
 
 (eval-after-load "org-agenda"
   '(progn
@@ -43,8 +52,8 @@
      (define-key org-agenda-mode-map (kbd "C-p") 'previous-line)
      (define-key org-agenda-keymap   (kbd "C-p") 'previous-line)
 
-     (setq 
-      org-agenda-files          '("~/org/todo.org")
+     (setq
+      org-agenda-files          my-org-dirs
       org-agenda-include-diary  t
       org-agenda-ndays          14
       org-agenda-show-all-dates t
