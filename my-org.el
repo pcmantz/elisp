@@ -40,10 +40,10 @@
       org-outline-path-complete-in-steps nil ; targets complete w/ ido-mode
       org-refile-use-outline-path t ; use full outline paths for refile targets
       org-remember-templates
-      '(("Todo" ?t "* TODO %?\n  %u" "~/org/todo.org"  "Tasks")
-        ("Note" ?n "* %u %?"         "~/org/notes.org" "Notes")
+      '(("Todo" ?t "* TODO %?\n  %u" "~/org/incoming.org"  "Tasks")
+        ("Note" ?n "* %u %?"         "~/org/incoming.org" "Notes")
         ("Appt" ?a "* APPT %?\n  SCHEDULED: %^T\n  %u"
-         "~/org/appts.org" "Appointments")))))
+         "~/org/incoming.org" "Appointments")))))
 
 (eval-after-load "org-agenda"
   '(progn
