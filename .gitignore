@@ -1,8 +1,18 @@
+# .gitignore
+#
+# helpful ignores for emacs
+
+# compiled files
 *.elc
+
+# various temp dirs
 /elpa/
 /auto-save-list/
 /eshell/
 /url/
+
+# top-level config files
 /my-custom-file.el
 /session.*
 /bookmarks
+/tramp
