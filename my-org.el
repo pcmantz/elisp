@@ -9,29 +9,29 @@
 
 (defvar my-org-dirs '("~/org" "~/org/projects"))
 
+(define-prefix-command 'org-todo-state-map)
+(define-key org-todo-state-map "t"
+  (lambda nil (interactive) (org-todo "TODO")))
+(define-key org-todo-state-map "s"
+  (lambda nil (interactive) (org-todo "STARTED")))
+(define-key org-todo-state-map "w"
+  (lambda nil (interactive) (org-todo "WAITING")))
+(define-key org-todo-state-map "l"
+  (lambda nil (interactive) (org-todo "DELEGATED")))
+(define-key org-todo-state-map "d"
+  (lambda nil (interactive) (org-todo "DONE")))
+(define-key org-todo-state-map "C"
+  (lambda nil (interactive) (org-todo "CANCELLED")))
+(define-key org-todo-state-map "D"
+  (lambda nil (interactive) (org-todo "DEFERRED")))
+(define-key org-todo-state-map "a"
+  (lambda nil (interactive) (org-todo "APPT")))
+(define-key org-todo-state-map "f"
+  (lambda nil (interactive) (org-todo "FINISHED")))
+
 (eval-after-load "org"
   '(progn
-     (define-prefix-command 'org-todo-state-map)
      (define-key org-mode-map (kbd "C-c t") 'org-todo-state-map)
-
-     (define-key org-todo-state-map "t"
-       #'(lambda nil (interactive) (org-todo "TODO")))
-     (define-key org-todo-state-map "s"
-       #'(lambda nil (interactive) (org-todo "STARTED")))
-     (define-key org-todo-state-map "w"
-       #'(lambda nil (interactive) (org-todo "WAITING")))
-     (define-key org-todo-state-map "l"
-       #'(lambda nil (interactive) (org-todo "DELEGATED")))
-     (define-key org-todo-state-map "d"
-       #'(lambda nil (interactive) (org-todo "DONE")))
-     (define-key org-todo-state-map "C"
-       #'(lambda nil (interactive) (org-todo "CANCELLED")))
-     (define-key org-todo-state-map "D"
-       #'(lambda nil (interactive) (org-todo "DEFERRED")))
-     (define-key org-todo-state-map "a"
-       #'(lambda nil (interactive) (org-todo "APPT")))
-     (define-key org-todo-state-map "f"
-       #'(lambda nil (interactive) (org-todo "FINISHED")))
 
      (setq
       ;; todo transition
