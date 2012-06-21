@@ -46,10 +46,9 @@
 
 (eval-after-load "org-agenda"
   '(progn
+     ;; TODO: decide if I even need these
      (define-key org-agenda-mode-map (kbd "C-n") 'next-line)
-     (define-key org-agenda-keymap   (kbd "C-n") 'next-line)
      (define-key org-agenda-mode-map (kbd "C-p") 'previous-line)
-     (define-key org-agenda-keymap   (kbd "C-p") 'previous-line)
 
      (setq
       org-agenda-files          my-org-dirs
