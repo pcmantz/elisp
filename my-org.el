@@ -6,9 +6,8 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
-(setq org-log-done t)
 
-(setq my-org-dirs '("~/org" "~/org/projects"))
+(defvar my-org-dirs '("~/org" "~/org/projects"))
 
 (eval-after-load "org"
   '(progn
