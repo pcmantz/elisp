@@ -12,32 +12,46 @@
 (eval-after-load "org"
   '(progn
      (define-prefix-command 'org-todo-state-map)
-     (define-key org-mode-map (kbd "C-c x") 'org-todo-state-map)
+     (define-key org-mode-map (kbd "C-c t") 'org-todo-state-map)
 
-     (define-key org-todo-state-map "x"
-       #'(lambda nil (interactive) (org-todo "CANCELLED")))
-     (define-key org-todo-state-map "d"
-       #'(lambda nil (interactive) (org-todo "DONE")))
-     (define-key org-todo-state-map "f"
-       #'(lambda nil (interactive) (org-todo "DEFERRED")))
-     (define-key org-todo-state-map "l"
-       #'(lambda nil (interactive) (org-todo "DELEGATED")))
+     (define-key org-todo-state-map "t"
+       #'(lambda nil (interactive) (org-todo "TODO")))
      (define-key org-todo-state-map "s"
        #'(lambda nil (interactive) (org-todo "STARTED")))
      (define-key org-todo-state-map "w"
        #'(lambda nil (interactive) (org-todo "WAITING")))
+     (define-key org-todo-state-map "l"
+       #'(lambda nil (interactive) (org-todo "DELEGATED")))
+     (define-key org-todo-state-map "d"
+       #'(lambda nil (interactive) (org-todo "DONE")))
+     (define-key org-todo-state-map "C"
+       #'(lambda nil (interactive) (org-todo "CANCELLED")))
+     (define-key org-todo-state-map "D"
+       #'(lambda nil (interactive) (org-todo "DEFERRED")))
+     (define-key org-todo-state-map "a"
+       #'(lambda nil (interactive) (org-todo "APPT")))
+     (define-key org-todo-state-map "f"
+       #'(lambda nil (interactive) (org-todo "FINISHED")))
 
      (setq
-      org-default-notes-file    "~/org/notes.org"
+      ;; TODO transition
+      org-todo-keywords '((sequence "TODO" "STARTED" "WAITING" "DELEGATED" "|" "DONE")
+                          (sequence "|" "CANCELLED")
+                          (sequence "|" "DEFERRED")
+                          (sequence "APPT" "|" "FINISHED"))
       org-deadline-warning-days 14
-      org-reverse-note-order t
-      org-fast-tag-selection-single-key (quote expert)
-      org-remember-store-without-prompt t
-      org-refile-targets '((nil :maxlevel . 9)
-                           (org-agenda-files :maxlevel . 9))
-      org-completion-use-ido t      ; use ido-mode
+      org-fast-tag-selection-single-key 'expert
+
+      ;; refile configuration
+      org-completion-use-ido t               ; use ido-mode
       org-outline-path-complete-in-steps nil ; targets complete w/ ido-mode
       org-refile-use-outline-path t ; use full outline paths for refile targets
+      org-refile-targets '((nil :maxlevel . 9)
+                           (org-agenda-files :maxlevel . 9))
+
+      ;; remember-mode config
+      org-default-notes-file "~/org/incoming.org"
+      org-remember-store-without-prompt t
       org-remember-templates
       '(("Todo" ?t "* TODO %?\n  %u" "~/org/incoming.org"  "Tasks")
         ("Note" ?n "* %u %?"         "~/org/incoming.org" "Notes")
