@@ -34,7 +34,7 @@
        #'(lambda nil (interactive) (org-todo "FINISHED")))
 
      (setq
-      ;; TODO transition
+      ;; todo transition
       org-todo-keywords '((sequence "TODO" "STARTED" "WAITING" "DELEGATED" "|" "DONE")
                           (sequence "|" "CANCELLED")
                           (sequence "|" "DEFERRED")
@@ -74,8 +74,8 @@
       org-agenda-start-on-weekday       nil
       org-agenda-custom-commands
       '(("d" todo "DELEGATED" nil)
-        ("c" todo "DONE|DEFERRED|CANCELLED" nil)
         ("w" todo "WAITING" nil)
+        ("c" todo "DONE|CANCELLED|DEFERRED|FINISHED" nil)
         ("W" agenda "" ((org-agenda-ndays 21)))
         ("A" agenda ""
          ((org-agenda-skip-function
