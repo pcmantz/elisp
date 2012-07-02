@@ -7,7 +7,7 @@
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
-(defvar my-org-dirs '("~/org" "~/org/projects"))
+(defvar my-org-dirs '("~/org" "~/org/projects" "~/org/cohesive"))
 
 (define-prefix-command 'org-todo-state-map)
 (define-key org-todo-state-map "t"

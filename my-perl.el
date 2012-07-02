@@ -1,12 +1,13 @@
 ;; my-perl.el
 
 ;; cperl-mode
-(add-to-list 'auto-mode-alist '("\\.t$" . cperl-mode))
+(defalias 'perl-mode 'cperl-mode)
 (mapc
  (lambda (pair)
    (if (eq (cdr pair) 'perl-mode)
        (setcdr pair 'cperl-mode)))
  (append auto-mode-alist interpreter-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.t$" . cperl-mode))
 
 ;; perltidy
 ;; code copied from Emacs::PDE
