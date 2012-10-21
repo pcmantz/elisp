@@ -59,14 +59,14 @@
 
 ;; yasnippet
 (require 'yasnippet)
-(yas/initialize)
-(yas/load-directory (concat elisp-dir "/snippets"))
-(setq yas/prompt-functions '(yas/ido-prompt yas/completing-prompt))
-(set-default 'yas/dont-activate
+(yas--initialize)
+(yas-load-directory (concat elisp-dir "/snippets"))
+(setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
+(set-default 'yas--dont-activate
              #'(lambda ()
                  (or buffer-read-only
-                     (and yas/root-directory
-                          (null (yas/get-snippet-tables))))))
+                     (and yas-snippet-dirs
+                          (null (yas--get-snippet-tables))))))
 
 ;; remember
 (require 'remember)
