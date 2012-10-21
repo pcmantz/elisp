@@ -47,15 +47,43 @@
 ;;
 
 ;; escreen
-(require 'escreen)
-(require 'ido-escreen)
-(escreen-install)
-(setq escreen-prefix-char (kbd "C-z"))
-(global-set-key escreen-prefix-char 'escreen-prefix)
-(add-to-list 'same-window-buffer-names "*Escreen List*")
-(add-hook 'escreen-goto-screen-hook
-          'escreen-enable-number-mode-if-more-than-one-screen)
-(define-key escreen-map (kbd "<backspace>") 'escreen-goto-prev-screen)
+
+;; (require 'escreen)
+;; (require 'ido-escreen)
+;; (escreen-install)
+;; (setq escreen-prefix-char (kbd "C-z"))
+;; (global-set-key escreen-prefix-char 'escreen-prefix)
+;; (add-to-list 'same-window-buffer-names "*Escreen List*")
+;; (add-hook 'escreen-goto-screen-hook
+;;           'escreen-enable-number-mode-if-more-than-one-screen)
+;; (define-key escreen-map (kbd "<backspace>") 'escreen-goto-prev-screen)
+
+;; workgroups
+
+(require 'workgroups)
+(setq wg-prefix-key (kbd "C-z")
+      wg-no-confirm t
+      wg-file (concat elisp-dir "/workgroups")
+      wg-use-faces nil
+      wg-switch-on-load nil)
+
+(defun wg-load-default ()
+  "Run `wg-load' on `wg-file'."
+  (interactive)
+  (wg-load wg-file))
+
+(defun wg-save-default ()
+  "Run `wg-save' on `wg-file'."
+  (interactive)
+  (when wg-list
+    (with-temp-message ""
+      (wg-save wg-file))))
+
+(define-key wg-map (kbd "C-l") 'wg-load-default)
+(define-key wg-map (kbd "C-s") 'wg-save-default)
+(workgroups-mode 1)
+(add-hook 'auto-save-hook 'wg-save-default)
+(add-hook 'kill-emacs-hook 'wg-save-default)
 
 ;; yasnippet
 (require 'yasnippet)
