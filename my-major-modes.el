@@ -11,6 +11,14 @@
 (eval-after-load "sql"
   '(load-library "sql-indent"))
 
+;; sh-mode
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (add-hook 'local-write-file-hooks
+                      '(lambda()
+                         (save-excursion
+                           (delete-trailing-whitespace))))))
+
 ;;
 ;; standalone applications
 ;;
