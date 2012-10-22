@@ -19,6 +19,18 @@
 (load custom-file)
 
 ;;
+;; path
+;;
+
+;; TODO: Get this to work only for OS X
+
+;; quick and dirty hack to pull my shell environment from my bash config.  I
+;; suppose if I ever switch to zsh I'll have problems
+(if (not (getenv "TERM_PROGRAM"))
+    (setenv "PATH"
+            (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
+
+;;
 ;; interaction
 ;;
 
