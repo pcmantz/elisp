@@ -33,11 +33,13 @@
 (package-initialize)
 
 (defvar my-packages
+
   '(apache-mode browse-kill-ring coffee-mode cperl-mode csv-mode
                 escreen gist haml-mode haskell-mode magit
                 markdown-mode melpa monokai-theme multi-term
-                php-mode sass-mode scss-mode smex yaml-mode
-                yasnippet zenburn-theme)
+                php-mode ruby-tools rvm s sass-mode scss-mode
+                smex yaml-mode workgroups yasnippet
+                zenburn-theme)
   "A list of packages to be installed at launch.")
 
 (defun my-packages-installed-p ()
