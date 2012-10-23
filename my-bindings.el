@@ -40,26 +40,12 @@
 (defalias 'll 'load-library)
 
 (defalias 'tail-mode 'auto-revert-tail-mode)
-(defalias 'quit-emacs 'save-buffers-kill-terminal)
 
 ;;
 ;; Packages
 ;;
 
-;; escreen
-
-;; (require 'escreen)
-;; (require 'ido-escreen)
-;; (escreen-install)
-;; (setq escreen-prefix-char (kbd "C-z"))
-;; (global-set-key escreen-prefix-char 'escreen-prefix)
-;; (add-to-list 'same-window-buffer-names "*Escreen List*")
-;; (add-hook 'escreen-goto-screen-hook
-;;           'escreen-enable-number-mode-if-more-than-one-screen)
-;; (define-key escreen-map (kbd "<backspace>") 'escreen-goto-prev-screen)
-
 ;; workgroups
-
 (require 'workgroups)
 (setq wg-prefix-key (kbd "C-z")
       wg-no-confirm t
@@ -81,6 +67,7 @@
 
 (define-key wg-map (kbd "C-l") 'wg-load-default)
 (define-key wg-map (kbd "C-s") 'wg-save-default)
+(define-key wg-map (kbd "<backspace>") 'wg-switch-left)
 (workgroups-mode 1)
 (add-hook 'auto-save-hook 'wg-save-default)
 (add-hook 'kill-emacs-hook 'wg-save-default)
