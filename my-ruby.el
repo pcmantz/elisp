@@ -3,6 +3,8 @@
 ;; (rx (and (or "Gem" "Rake" "Cap") "file" (opt ".lock")))
 (add-to-list 'auto-mode-alist '("\\(Gem\\|Rake\\|Cap\\)file\\(?:\\.lock\\)?" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
+
 
 (require 'rvm)
 (rvm-use-default)
