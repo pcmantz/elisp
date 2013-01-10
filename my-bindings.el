@@ -65,6 +65,7 @@
     (with-temp-message ""
       (wg-save wg-file))))
 
+(define-key wg-map (kbd "g") 'wg-switch-to-workgroup)
 (define-key wg-map (kbd "C-l") 'wg-load-default)
 (define-key wg-map (kbd "C-s") 'wg-save-default)
 (define-key wg-map (kbd "<backspace>") 'wg-switch-left)
