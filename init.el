@@ -34,12 +34,12 @@
 
 (defvar my-packages
 
-  '(apache-mode browse-kill-ring coffee-mode cperl-mode csv-mode
-                escreen gist haml-mode haskell-mode magit
-                markdown-mode melpa monokai-theme multi-term
-                php-mode ruby-tools rvm s sass-mode scss-mode
-                smex yaml-mode workgroups yasnippet
-                zenburn-theme)
+  '(ack-and-a-half apache-mode browse-kill-ring coffee-mode
+                   cperl-mode csv-mode escreen gist haml-mode
+                   haskell-mode magit markdown-mode melpa
+                   monokai-theme multi-term php-mode ruby-tools
+                   rvm s sass-mode scss-mode smex yaml-mode
+                   workgroups yasnippet zenburn-theme)
   "A list of packages to be installed at launch.")
 
 (defun my-packages-installed-p ()
