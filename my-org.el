@@ -2,7 +2,7 @@
 
 ;; org-mode configuration
 
-(require 'org-install)
+(require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -34,7 +34,10 @@
      (define-key org-mode-map (kbd "C-c t") 'org-todo-state-map)
 
      (setq
-      ;; todo transition
+      ;; keybindings
+      org-replace-disputed-keys t
+
+      ;; Todo transition
       org-todo-keywords '((sequence "TODO" "STARTED" "WAITING" "DELEGATED" "|" "DONE")
                           (sequence "|" "CANCELLED")
                           (sequence "|" "DEFERRED")
