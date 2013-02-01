@@ -17,6 +17,14 @@
 (define-key global-map (kbd "C-M-s") 'isearch-forward)
 (define-key global-map (kbd "C-M-r") 'isearch-backward-regexp)
 
+(define-key global-map (kbd "C-M-g") 'goto-line)
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR.")
+(global-set-key (kbd "M-z") 'zap-to-char)
+(global-set-key (kbd "M-Z") 'zap-up-to-char)
+
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
 
@@ -26,6 +34,16 @@
 
 ;; winner-mode for window undo/redo
 (winner-mode t)
+
+;; better goto-line
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
 
 ;;
 ;; Aliases
