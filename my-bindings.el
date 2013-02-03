@@ -102,6 +102,34 @@
                      (and yas-snippet-dirs
                           (null (yas--get-snippet-tables))))))
 
+
+(setq default-cursor-color "green")
+(setq yasnippet-can-fire-cursor-color "purple" )
+
+;; It will test whether it can expand, if yes, cursor color -> green.
+(defun yasnippet-can-fire-p (&optional field)
+  (interactive)
+  (setq yas--condition-cache-timestamp (current-time))
+  (let (templates-and-pos)
+    (unless (and yas-expand-only-for-last-commands
+                 (not (member last-command yas-expand-only-for-last-commands)))
+      (setq templates-and-pos (if field
+                                  (save-restriction
+                                    (narrow-to-region (yas--field-start field)
+                                                      (yas--field-end field))
+                                    (yas--current-key))
+                                (yas--current-key))))
+    (and templates-and-pos (first templates-and-pos))))
+
+(defun yasnippet-change-cursor-color-when-can-fire (&optional field)
+  (interactive)
+  (set-cursor-color (if (yasnippet-can-fire-p)
+                        yasnippet-can-fire-cursor-color
+                      default-cursor-color)))
+
+; As pointed out by Dmitri, this will make sure it will update color when needed.
+;; (add-hook 'post-command-hook 'yasnippet-change-cursor-color-when-can-fire)
+
 ;; remember
 (require 'remember)
 (define-key global-map (kbd "<f2>") 'remember)
