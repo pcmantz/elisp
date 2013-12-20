@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: description
+# trigger: desc
+# --
+\begin{description}
+  $0
+\end{description}
