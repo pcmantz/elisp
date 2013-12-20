@@ -4,12 +4,14 @@
 
 # compiled files
 *.elc
+**/.yas-compiled-snippets.el
 
 # various temp dirs
 /elpa/
 /auto-save-list/
 /eshell/
 /url/
+/var/
 
 # top-level config files
 /my-custom-file.el
