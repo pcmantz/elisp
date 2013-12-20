@@ -18,5 +18,19 @@
                          (save-excursion
                            (delete-trailing-whitespace))))))
 
+(defun ruby-hash-arrows-to-keys-region (beg end)
+  "Replace symbol-arrow hash syntax with the newer 1.9 Javascript-like syntax."
+  (interactive "r")
+  (save-restriction 
+    (narrow-to-region beg end)
+    (goto-char beg)
+    (while (re-search-forward ":\\([[:alnum:]_]+\\)\\s-+=>\\s-+" nil t)
+      (replace-match "\\1: " t nil))))
+
+(defun ruby-hash-arrows-to-keys-buffer ()
+  (interactive)
+  (ruby-hash-arrows-to-keys-region (point-min) (point-max)))
+
+
 (provide 'my-ruby)
 ;;end my-ruby.el
