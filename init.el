@@ -42,6 +42,7 @@
                       gist
                       haml-mode
                       haskell-mode
+                      ido-ubiquitous
                       js2-mode
                       magit
                       markdown-mode
