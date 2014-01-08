@@ -95,6 +95,7 @@
 (require 'my-js)
 (require 'my-php)
 (require 'my-ruby)
+(require 'my-java)
 (require 'my-org)
 
 ;;
