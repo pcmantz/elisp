@@ -21,7 +21,7 @@
 (defun ruby-hash-arrows-to-keys-region (beg end)
   "Replace symbol-arrow hash syntax with the newer 1.9 Javascript-like syntax."
   (interactive "r")
-  (save-restriction 
+  (save-restriction
     (narrow-to-region beg end)
     (goto-char beg)
     (while (re-search-forward ":\\([[:alnum:]_]+\\)\\s-+=>\\s-+" nil t)
