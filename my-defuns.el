@@ -4,15 +4,29 @@
 ;; Interactive functions
 ;;
 
-(defun msg-buffer-filename () (interactive)
+(defun msg-buffer-filename ()
+  "Prints the file name of the buffer to the minibar"
+  (interactive)
   (message (buffer-file-name)))
 
-(defun untabify-buffer () (interactive)
+(defun untabify-buffer ()
+  "Untabify the entire buffer"
+  (interactive)
   (untabify (point-min) (point-max)))
 
-(defun fullscreen () (interactive)
+(defun fullscreen ()
+  "Fullscreen from within Emacs, ignoring UI interaction"
+  (interactive)
   (set-frame-parameter nil 'fullscreen
                        (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+
+(defun dos2unix (buffer)
+  "Automate M-% C-q C-m RET C-q C-j RET"
+  (interactive "*b")
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward (string ?\C-m) nil t)
+      (replace-match (string ?\C-j) nil t))))
 
 ;;
 ;; elisp utils
@@ -22,8 +36,8 @@
   (add-to-list 'load-path path))
 
 (defun range (first-arg &optional last-arg)
-  "Super-naïve implementation of a range function.  Update this
-do to this in reverse."
+  "Super-naïve implementation of a range function. Update this to
+do this in reverse."
   (let* ((start (if (null last-arg) 0         first-arg))
          (end   (if (null last-arg) first-arg last-arg))
          (iter start)
