@@ -32,35 +32,14 @@
   (add-to-list 'package-archives source t))
 (package-initialize)
 
-(defvar my-packages '(ack-and-a-half
-                      apache-mode
-                      browse-kill-ring
-                      coffee-mode
-                      cperl-mode
-                      csv-mode
-                      escreen
-                      gist
-                      haml-mode
-                      haskell-mode
-                      ido-ubiquitous
-                      js2-mode
-                      magit
-                      markdown-mode
-                      melpa
-                      monokai-theme
-                      multi-term
-                      php-mode
-                      ruby-tools
-                      rvm
-                      s
-                      sass-mode
-                      scss-mode
-                      smex
-                      yaml-mode
-                      workgroups
-                      yasnippet
-                      zenburn-theme)
-  "A list of packages to be installed at launch.")
+(defun read-lines (file)
+  "Return a list of lines in FILE."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (split-string
+     (buffer-string) "\n" t)))
+
+(defvar my-packages (read-lines (concat elisp-dir "my-packages")))
 
 (defun my-packages-installed-p ()
   (loop for p in my-packages
