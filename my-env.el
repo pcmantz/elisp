@@ -50,6 +50,15 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+;; projectile: for managing projects
+(require 'projectile)
+(eval-after-load 'projectile
+  '(progn
+     (projectile-global-mode t))
+
+;; TODO: Fill in these functions
+;(define-key projectile-mode-map (kbd "C-b") 'projectile-ibuffer)
+
 ;;
 ;; backups
 ;;

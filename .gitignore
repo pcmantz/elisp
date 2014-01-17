@@ -12,6 +12,7 @@
 /eshell/
 /url/
 /var/
+/projectile-bookmarks.eld
 
 # top-level config files
 /my-custom-file.el
