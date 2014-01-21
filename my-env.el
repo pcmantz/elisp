@@ -54,7 +54,7 @@
 (require 'projectile)
 (eval-after-load 'projectile
   '(progn
-     (projectile-global-mode t))
+     (projectile-global-mode t)))
 
 ;; TODO: Fill in these functions
 ;(define-key projectile-mode-map (kbd "C-b") 'projectile-ibuffer)
