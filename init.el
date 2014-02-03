@@ -75,6 +75,7 @@
 (require 'my-php)
 (require 'my-ruby)
 (require 'my-java)
+(require 'my-emacs-lisp)
 (require 'my-org)
 
 ;;
