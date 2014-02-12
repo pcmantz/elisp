@@ -67,6 +67,7 @@
 (require 'workgroups)
 (setq wg-prefix-key (kbd "C-z")
       wg-no-confirm t
+      wg-morph-on f
       wg-file (concat elisp-dir "/workgroups")
       wg-use-faces nil
       wg-switch-on-load nil)
