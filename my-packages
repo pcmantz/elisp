@@ -27,8 +27,6 @@ markdown-mode
 melpa
 monokai-theme
 multi-term
-nrepl
-nrepl-discover
 php-mode
 pkg-info
 projectile
