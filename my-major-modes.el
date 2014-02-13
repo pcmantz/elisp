@@ -64,6 +64,7 @@
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
+;; ack-and-a-half
 (require 'ack-and-a-half)
 (defalias 'ack 'ack-and-a-half)
 (defalias 'ack-same 'ack-and-a-half-same)
