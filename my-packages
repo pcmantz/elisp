@@ -1,5 +1,4 @@
 ack-and-a-half
-anti-zenburn-theme
 apache-mode
 browse-kill-ring
 clojure-mode
@@ -24,7 +23,6 @@ js2-mode
 logito
 magit
 markdown-mode
-melpa
 monokai-theme
 multi-term
 php-mode
