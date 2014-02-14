@@ -81,7 +81,6 @@
 ;;
 ;; NOTE: To avoid recursive loads, we load tramp right here and now
 ;;
-(setq tramp-syntax 'url)
 (require 'tramp)
 
 
