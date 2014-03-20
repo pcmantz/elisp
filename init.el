@@ -3,7 +3,7 @@
 (require 'cl)
 
 ;;
-;; Graphical stuff I'm never going to use, and no one else shoud either
+;; Graphical stuff I'm never going to use
 ;;
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -30,6 +30,8 @@
          '(("melpa" . "http://melpa.milkbox.net/packages/")
            ("marmalade" . "http://marmalade-repo.org/packages/")))
   (add-to-list 'package-archives source t))
+
+;; autoload everything
 (package-initialize)
 
 (defun read-lines (file)
@@ -39,20 +41,20 @@
     (split-string
      (buffer-string) "\n" t)))
 
-(defvar my-packages (read-lines (concat elisp-dir "my-packages")))
+;; retrieve a list of expected packages
+(defvar my-packages (mapcar #'intern (read-lines (concat elisp-dir "my-packages"))))
 
-(defun my-packages-installed-p ()
-  (loop for p in my-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
+;; check for new packages (package versions)
+(unless package-archive-contents
+  (package-refresh-contents))
 
-(unless (my-packages-installed-p)
-  ;; check for new packages (package versions)
-  (package-refresh-contents)
-  ;; install the missing packages
-  (dolist (p my-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+;; install any packages that are not present
+(dolist (package my-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+;; play it again sam
+(package-initialize)
 
 ;;
 ;; load custom modules
