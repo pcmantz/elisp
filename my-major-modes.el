@@ -59,6 +59,7 @@
 ;; multi-term
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
+(add-hook 'term-mode-hook (lambda () (yas-minor-mode -1)))
 
 ;; browse-kill-ring
 (require 'browse-kill-ring)
