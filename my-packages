@@ -35,6 +35,7 @@ s
 sass-mode
 scss-mode
 smex
+tt-mode
 w3m
 workgroups
 yaml-mode
