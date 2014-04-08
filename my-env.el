@@ -19,14 +19,10 @@
 (load custom-file)
 
 ;;
-;; path
+;; path (via exec-path-from-shell)
 ;;
-
-;; quick and dirty hack to pull my shell environment from my bash config.  I
-;; suppose if I ever switch to zsh I'll have problems
-(if (not (getenv "TERM_PROGRAM"))
-    (setenv "PATH"
-            (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;;
 ;; interaction

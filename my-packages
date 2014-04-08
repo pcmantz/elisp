@@ -8,6 +8,7 @@ csv-mode
 dash
 epl
 escreen
+exec-path-from-shell
 f
 gh
 gist
