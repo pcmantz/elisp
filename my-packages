@@ -35,6 +35,7 @@ rvm
 s
 sass-mode
 scss-mode
+sql-indent
 smex
 tt-mode
 w3m

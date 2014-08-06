@@ -8,7 +8,7 @@
 ;;
 
 ;; sql-indent
-(eval-after-load "sql"
+(eval-after-load 'sql
   '(load-library "sql-indent"))
 
 ;; sh-mode
