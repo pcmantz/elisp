@@ -5,10 +5,6 @@
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
 
-
-(require 'rvm)
-(rvm-use-default)
-
 (require 'ruby-tools)
 
 (add-hook 'ruby-mode-hook
@@ -25,7 +21,7 @@
   (save-restriction
     (narrow-to-region beg end)
     (goto-char beg)
-    (while (re-search-forward ":\\([[:alnum:]_]+\\)\\s-+=>\\s-+" nil t)
+    (while (re-search-forward "['\"]\\([[:alnum:]_]+\\)['\"]\\s-+=>\\s-+" nil t)
       (replace-match "\\1: " t nil))))
 
 (defun ruby-hash-arrows-to-keys-buffer ()
