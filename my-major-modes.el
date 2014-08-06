@@ -37,7 +37,8 @@
      (set-face-foreground 'magit-diff-del "red3")
      (if (fboundp 'magit-completing-read-function)
          (setq magit-completing-read-function 'ido-completing-read))
-     (add-to-list 'same-window-regexps "\\*magit: [[:ascii:]]\\*")))
+     (add-to-list 'same-window-regexps "\\*magit: [[:ascii:]]\\*")
+     (add-to-list 'magit-diff-options "--patience")))
 
 (defun magit-toggle-whitespace ()
   (interactive)
