@@ -17,7 +17,8 @@
             (add-hook 'local-write-file-hooks
                       '(lambda()
                          (save-excursion
-                           (delete-trailing-whitespace))))))
+                           (delete-trailing-whitespace)))))
+          t)
 
 ;;
 ;; standalone applications
@@ -125,4 +126,5 @@
 (add-hook 'shell-mode-hook
           (lambda ()
             (define-key shell-mode-map
-              (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
+              (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer))
+          t)

@@ -8,7 +8,8 @@
             (add-hook 'local-write-file-hooks
                       '(lambda()
                          (save-excursion
-                           (delete-trailing-whitespace))))))
+                           (delete-trailing-whitespace)))))
+          t)
 
 (provide 'my-php)
 ;; end my-php.el

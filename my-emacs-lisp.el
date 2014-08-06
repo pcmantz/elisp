@@ -5,7 +5,7 @@
   ;; nothing yet
   )
 
-(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
+(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook t)
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (add-hook 'local-write-file-hooks

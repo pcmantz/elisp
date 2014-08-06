@@ -7,7 +7,7 @@
         c-electric-flag nil
         c-tab-always-indent t))
 
-(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook t)
 
 (provide 'my-cc)
 ;; end my-cc.el

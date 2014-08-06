@@ -89,8 +89,8 @@
 (define-key wg-map (kbd "C-s") 'wg-save-default)
 (define-key wg-map (kbd "<backspace>") 'wg-switch-left)
 (workgroups-mode 1)
-(add-hook 'auto-save-hook 'wg-save-default)
-(add-hook 'kill-emacs-hook 'wg-save-default)
+(add-hook 'auto-save-hook 'wg-save-default t)
+(add-hook 'kill-emacs-hook 'wg-save-default t)
 
 ;; yasnippet
 (require 'yasnippet)

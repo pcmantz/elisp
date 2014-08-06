@@ -16,7 +16,8 @@
             (add-hook 'local-write-file-hooks
                       '(lambda()
                          (save-excursion
-                           (delete-trailing-whitespace))))))
+                           (delete-trailing-whitespace)))))
+          t)
 
 (defun ruby-hash-arrows-to-keys-region (beg end)
   "Replace symbol-arrow hash syntax with the newer 1.9 Javascript-like syntax."

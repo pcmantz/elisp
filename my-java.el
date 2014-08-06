@@ -4,7 +4,7 @@
   (setq indent-tabs-mode nil)
   (setq tab-width 4))
 
-(add-hook 'java-mode-hook 'my-java-mode-hook)
+(add-hook 'java-mode-hook 'my-java-mode-hook t)
 (add-hook 'java-mode-hook
           (lambda ()
             (add-hook 'local-write-file-hooks
