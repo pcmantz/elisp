@@ -13,7 +13,6 @@
 ;; add elisp/ and its subdirectories to the load path
 ;;
 (setq elisp-dir (file-name-directory (or (buffer-file-name) load-file-name)))
-(add-to-list 'load-path elisp-dir)
 
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
     (let* ((my-lisp-dir elisp-dir)
