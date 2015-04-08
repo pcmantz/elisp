@@ -96,7 +96,7 @@
 
 ;; yasnippet
 (require 'yasnippet)
-(yas--initialize)
+(yas-initialize)
 (yas-load-directory (concat elisp-dir "/snippets"))
 (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
 (set-default 'yas--dont-activate
