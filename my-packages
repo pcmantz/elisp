@@ -6,6 +6,7 @@ clojure-snippets
 coffee-mode
 csv-mode
 dash
+enh-ruby-mode
 epl
 escreen
 exec-path-from-shell
@@ -21,6 +22,7 @@ haskell-mode
 ido-ubiquitous
 inflections
 js2-mode
+js2-refactor
 logito
 magit
 markdown-mode
@@ -30,15 +32,18 @@ php-mode
 pkg-info
 projectile
 projectile-rails
+rubocop
 ruby-tools
 rvm
 s
 sass-mode
 scss-mode
-sql-indent
+slim-mode
 smex
+sql-indent
 tt-mode
 w3m
+web-beautify
 workgroups
 yaml-mode
 yasnippet

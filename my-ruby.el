@@ -1,5 +1,12 @@
 ;; my-ruby.el
 
+(defalias 'ruby-mode 'enh-ruby-mode)
+(mapc
+ (lambda (pair)
+   (if (eq (cdr pair) 'ruby-mode)
+       (setcdr pair 'enh-ruby-mode)))
+ (append auto-mode-alist interpreter-mode-alist))
+
 ;; (rx (and (or "Gem" "Rake" "Cap") "file" (opt ".lock")))
 (add-to-list 'auto-mode-alist '("\\(Gem\\|Rake\\|Cap\\)file\\(?:\\.lock\\)?" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -7,7 +14,12 @@
 
 (require 'ruby-tools)
 
-(add-hook 'ruby-mode-hook
+(defun my-ruby-defaults ()
+  (setq
+   enh-ruby-deep-paren nil))
+(add-hook 'enh-ruby-mode-hook 'my-ruby-defaults)
+
+(add-hook 'enh-ruby-mode-hook
           (lambda ()
             (add-hook 'local-write-file-hooks
                       '(lambda()
