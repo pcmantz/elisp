@@ -131,13 +131,5 @@
 ; As pointed out by Dmitri, this will make sure it will update color when needed.
 ;; (add-hook 'post-command-hook 'yasnippet-change-cursor-color-when-can-fire)
 
-;; remember
-(require 'remember)
-(define-key global-map (kbd "<f2>") 'remember)
-(add-hook 'remember-mode-hook 'org-remember-apply-template)
-(setq
- remember-annotation-functions '(org-remember-annotation)
- remember-handler-functions    '(org-remember-handler))
-
 (provide 'my-bindings)
 ;; end my-bindings.el
