@@ -6,6 +6,7 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
+(define-key global-map (kbd "<f2>") 'org-capture)
 
 (defvar my-org-dirs '("~/org" "~/org/projects" "~/org/cohesive"))
 
@@ -52,14 +53,16 @@
       org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 9))
 
-      ;; remember-mode config
       org-default-notes-file "~/org/incoming.org"
-      org-remember-store-without-prompt t
-      org-remember-templates
-      '(("Todo" ?t "* TODO %?\n  %u" "~/org/incoming.org"  "Tasks")
-        ("Note" ?n "* %u %?"         "~/org/incoming.org" "Notes")
-        ("Appt" ?a "* APPT %?\n  SCHEDULED: %^T\n  %u"
-         "~/org/incoming.org" "Appointments")))))
+
+      ;; org-capture config
+      org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/incoming.org" "Todos")
+         "* TODO %?\n  %i\n  %a")
+        ("n" "Note" entry (file+headline "~/org/incoming.org" "Notes")
+         "* %u %?")
+        ("a" "Appointment" entry (file+headline "~/org/incoming.org" "Appointments")
+         "* APPT %?\n SCHEDULED %^T\n %u")))))
 
 (eval-after-load "org-agenda"
   '(progn

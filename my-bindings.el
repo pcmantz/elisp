@@ -25,6 +25,8 @@
 (global-set-key (kbd "M-z") 'zap-to-char)
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
 
+(define-key global-map (kbd "C-x K") 'kill-buffer-and-window)
+
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
 
@@ -94,7 +96,7 @@
 
 ;; yasnippet
 (require 'yasnippet)
-(yas--initialize)
+(yas-initialize)
 (yas-load-directory (concat elisp-dir "/snippets"))
 (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
 (set-default 'yas--dont-activate
