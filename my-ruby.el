@@ -17,16 +17,7 @@
    enh-ruby-deep-paren nil))
 
 (setq my-ruby-hook 'my-ruby-defaults)
-
-(add-hook 'enh-ruby-mode-hook
-          (lambda () (run-hooks 'my-ruby-hook)) t)
-(add-hook 'enh-ruby-mode-hook
-          (lambda ()
-            (add-hook 'local-write-file-hooks
-                      '(lambda()
-                         (save-excursion
-                           (delete-trailing-whitespace)))))
-          t)
+(add-hook 'enh-ruby-mode-hook (lambda () (run-hooks 'my-ruby-hook)) t)
 
 (require 'ruby-tools)
 (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)

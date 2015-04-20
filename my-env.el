@@ -143,5 +143,10 @@
  tab-width 4
  indent-tabs-mode nil)
 
+;; whitespace configuration
+;; TODO: Make individual customizations for major modes
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(setq whitespace-line-column 120)
+
 (provide 'my-env)
 ;; end my-env.el

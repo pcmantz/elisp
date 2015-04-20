@@ -34,13 +34,6 @@
 
 (add-hook 'cperl-mode-hook
           (lambda () (run-hooks 'my-perl-hook)) t)
-(add-hook 'cperl-mode-hook
-          (lambda ()
-            (add-hook 'local-write-file-hooks
-                      '(lambda ()
-                         (save-excursion
-                           (delete-trailing-whitespace)))))
-          t)
 
 (provide 'my-perl)
 ;; end my-perl.el
