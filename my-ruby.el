@@ -14,7 +14,7 @@
 
 (defun my-ruby-defaults ()
   (setq
-   enh-ruby-deep-paren nil))
+   enh-ruby-deep-indent-paren nil))
 
 (setq my-ruby-hook 'my-ruby-defaults)
 (add-hook 'enh-ruby-mode-hook (lambda () (run-hooks 'my-ruby-hook)) t)
