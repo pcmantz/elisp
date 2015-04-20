@@ -7,18 +7,19 @@
        (setcdr pair 'enh-ruby-mode)))
  (append auto-mode-alist interpreter-mode-alist))
 
-;; (rx (and (or "Gem" "Rake" "Cap") "file" (opt ".lock")))
-(add-to-list 'auto-mode-alist '("\\(Gem\\|Rake\\|Cap\\)file\\(?:\\.lock\\)?" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
-
-(require 'ruby-tools)
+;; (rx (and (or "Gem" "Rake" "Cap" "Vagrant") "file" (opt ".lock")))
+(add-to-list 'auto-mode-alist '("\\(?:Cap\\|Gem\\|Rake\\|Vagrant\\)file\\(?:\\.lock\\)?" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl$" . enh-ruby-mode))
 
 (defun my-ruby-defaults ()
   (setq
    enh-ruby-deep-paren nil))
-(add-hook 'enh-ruby-mode-hook 'my-ruby-defaults)
 
+(setq my-ruby-hook 'my-ruby-defaults)
+
+(add-hook 'enh-ruby-mode-hook
+          (lambda () (run-hooks 'my-ruby-hook)) t)
 (add-hook 'enh-ruby-mode-hook
           (lambda ()
             (add-hook 'local-write-file-hooks
@@ -26,6 +27,9 @@
                          (save-excursion
                            (delete-trailing-whitespace)))))
           t)
+
+(require 'ruby-tools)
+(add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
 
 (defun ruby-hash-arrows-to-keys-region (beg end)
   "Replace symbol-arrow hash syntax with the newer 1.9 Javascript-like syntax."
@@ -39,7 +43,6 @@
 (defun ruby-hash-arrows-to-keys-buffer ()
   (interactive)
   (ruby-hash-arrows-to-keys-region (point-min) (point-max)))
-
 
 (provide 'my-ruby)
 ;;end my-ruby.el
