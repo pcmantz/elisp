@@ -1,9 +1,9 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: mod
-# key: mod
+# name: do
+# key: do
 # binding: direct-keybinding
-# group: definitions
+# group: collections
 # --
-module ${1:mod_name}
+do |${e}|
   $0
 end
