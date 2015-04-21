@@ -146,7 +146,7 @@
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
 (add-hook 'before-save-hook 'whitespace-cleanup)
-(setq whitespace-line-column 120)
+(setq whitespace-line-column 150)
 
 (provide 'my-env)
 ;; end my-env.el
