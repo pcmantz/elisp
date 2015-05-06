@@ -147,6 +147,7 @@
 ;; TODO: Make individual customizations for major modes
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (setq whitespace-line-column 150)
+(define-key global-map (kbd "C-x W") 'whitespace-mode)
 
 (provide 'my-env)
 ;; end my-env.el
