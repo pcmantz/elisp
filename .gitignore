@@ -20,3 +20,7 @@
 /bookmarks
 /tramp
 /workgroups
+
+# miscellaneous data files
+/smex-items
+/ido.last
