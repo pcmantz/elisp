@@ -11,6 +11,12 @@
 (eval-after-load 'sql
   '(load-library "sql-indent"))
 
+;; (rx (and line-start "*SQL" (0+ anything)  "*"))
+(add-to-list 'same-window-regexps '("^\\*SQL\\(?:.\\|\n\\)*\\*" . nil))
+
+(add-hook 'sql-interactive-mode-hook
+          (lambda () (toggle-truncate-lines t)))
+
 ;;
 ;; standalone applications
 ;;
