@@ -30,27 +30,26 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (eval-after-load 'magit
   '(progn
-     (set-face-foreground 'magit-diff-add "green3")
-     (set-face-foreground 'magit-diff-del "red3")
      (if (fboundp 'magit-completing-read-function)
-         (setq magit-completing-read-function 'ido-completing-read))
-     (add-to-list 'same-window-regexps "\\*magit: [[:ascii:]]\\*")
-     (add-to-list 'magit-diff-options "--patience")))
+         (setq magit-completing-read-function 'ido-completing-read))))
+
+;; (rx (and line-start "*magit" (zero-or-one "-refs") ":" (0+ anything)  "*"))
+(add-to-list 'same-window-regexps '("^\\*magit\\(?:-refs\\)?:\\(?:.\\|\n\\)*\\*" . nil))
 
 (defun magit-toggle-whitespace ()
   (interactive)
-  (if (member "-w" magit-diff-options)
+  (if (member "-w" magit-diff-arguments)
       (magit-dont-ignore-whitespace)
     (magit-ignore-whitespace)))
 
 (defun magit-ignore-whitespace ()
   (interactive)
-  (add-to-list 'magit-diff-options "-w")
+  (add-to-list 'magit-diff-arguments "-w")
   (magit-refresh))
 
 (defun magit-dont-ignore-whitespace ()
   (interactive)
-  (setq magit-diff-options (remove "-w" magit-diff-options))
+  (setq magit-diff-arguments (remove "-w" magit-diff-arguments))
   (magit-refresh))
 
 (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
