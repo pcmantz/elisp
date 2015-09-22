@@ -74,9 +74,9 @@
 (require 'my-cc)
 (require 'my-js)
 (require 'my-php)
-(require 'my-ruby)
 (require 'my-java)
 (require 'my-emacs-lisp)
+(require 'my-ruby)
 (require 'my-org)
 
 ;;
