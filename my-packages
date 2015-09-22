@@ -13,12 +13,11 @@ exec-path-from-shell
 f
 gh
 gist
-git-commit-mode
-git-rebase-mode
 gitignore-mode
 graphviz-dot-mode
 haml-mode
 haskell-mode
+ibuffer-vc
 ido-ubiquitous
 inflections
 js2-mode
