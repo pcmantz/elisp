@@ -131,6 +131,10 @@
         ibuffer-always-show-last-buffer t
         ibuffer-view-ibuffer t)))
 
+(require 'ibuffer-vc)
+(add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root)
+
+
 ;; frame config
 (line-number-mode t)
 (column-number-mode t)
