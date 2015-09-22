@@ -18,6 +18,7 @@
 (define-key global-map (kbd "C-M-r") 'isearch-backward-regexp)
 
 (define-key global-map (kbd "C-M-g") 'goto-line)
+(define-key global-map (kbd "C-S-l") 'goto-line)
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 (autoload 'zap-up-to-char "misc"
@@ -29,6 +30,7 @@
 
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 ;; windmove for navigating buffers
 (when (fboundp 'windmove-default-keybindings)
