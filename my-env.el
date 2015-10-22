@@ -30,21 +30,11 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; ido for files
-(require 'ido)
-(eval-after-load 'ido
-  '(progn
-    (ido-mode t)
-    (setq
-     ido-everywhere t
-     ido-enable-flex-matching t)));; enable fuzzy matching
+;; helm - Crazy powerful matching
+(require 'helm)
+(require 'helm-config)
 
-;; smex for menus
-(require 'smex)
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(helm-mode 1)
 
 ;; projectile: for managing projects
 (require 'projectile)

@@ -47,12 +47,9 @@
       org-fast-tag-selection-single-key 'expert
 
       ;; refile configuration
-      org-completion-use-ido t               ; use ido-mode
-      org-outline-path-complete-in-steps nil ; targets complete w/ ido-mode
       org-refile-use-outline-path t ; use full outline paths for refile targets
       org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 9))
-
       org-default-notes-file "~/org/incoming.org"
 
       ;; org-capture config

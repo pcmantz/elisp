@@ -4,7 +4,6 @@ browse-kill-ring
 clojure-mode
 clojure-snippets
 coffee-mode
-csv-mode
 dash
 enh-ruby-mode
 epl
@@ -14,11 +13,13 @@ f
 gh
 gist
 gitignore-mode
+git-rebase-mode
 graphviz-dot-mode
 haml-mode
 haskell-mode
+helm
+helm-projectile
 ibuffer-vc
-ido-ubiquitous
 inflections
 js2-mode
 js2-refactor
@@ -38,7 +39,6 @@ s
 sass-mode
 scss-mode
 slim-mode
-smex
 sql-indent
 tt-mode
 w3m

@@ -2,8 +2,8 @@
 
 (defun ido-escreen-goto-screen ()
   (interactive)
-  (let ((number 
-         (string-to-number (ido-completing-read
+  (let ((number
+         (string-to-number (helm-comp-read
                             "Go to escreen number: "
                             (mapcar 'number-to-string screen-list)
                             nil t))))

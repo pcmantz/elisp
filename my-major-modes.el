@@ -31,10 +31,10 @@
 (eval-after-load 'magit
   '(progn
      (if (fboundp 'magit-completing-read-function)
-         (setq magit-completing-read-function 'ido-completing-read))))
+         (setq magit-completing-read-function 'helm-comp-read))))
 
-;; (rx (and line-start "*magit" (zero-or-one "-refs") ":" (0+ anything)  "*"))
-(add-to-list 'same-window-regexps '("^\\*magit\\(?:-refs\\)?:\\(?:.\\|\n\\)*\\*" . nil))
+;; (rx (and line-start "*magit" (zero-or-one (and "-" (or "refs"))) ":" (0+ anything)  "*"))
+(add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
 
 (defun magit-toggle-whitespace ()
   (interactive)
