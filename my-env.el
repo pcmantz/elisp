@@ -38,6 +38,8 @@
 
 ;; projectile: for managing projects
 (require 'projectile)
+(require 'helm-projectile)
+(helm-projectile-on)
 (eval-after-load 'projectile
   '(progn
      (projectile-global-mode t)))
@@ -62,13 +64,13 @@
       `(("." . ,(expand-file-name
                  (concat elisp-dir "backups")))))
 
+
 ;;
 ;; TRAMP
 ;;
 ;; NOTE: To avoid recursive loads, we load tramp right here and now
 ;;
 (require 'tramp)
-
 
 ;;
 ;; display
