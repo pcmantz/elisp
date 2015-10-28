@@ -13,7 +13,6 @@ f
 gh
 gist
 gitignore-mode
-git-rebase-mode
 graphviz-dot-mode
 haml-mode
 haskell-mode
