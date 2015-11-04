@@ -21,6 +21,11 @@
 (require 'ruby-tools)
 (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
 
+(require 'robe)
+(add-hook 'enh-ruby-mode-hook 'robe-mode)
+
+(require 'chruby)
+
 (defun ruby-hash-arrows-to-keys-region (beg end)
   "Replace symbol-arrow hash syntax with the newer 1.9 Javascript-like syntax."
   (interactive "r")
