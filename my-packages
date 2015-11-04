@@ -1,6 +1,7 @@
 ack-and-a-half
 apache-mode
 browse-kill-ring
+chruby
 clojure-mode
 clojure-snippets
 coffee-mode
@@ -18,6 +19,7 @@ haml-mode
 haskell-mode
 helm
 helm-projectile
+helm-robe
 ibuffer-vc
 inflections
 js2-mode
@@ -31,6 +33,7 @@ php-mode
 pkg-info
 projectile
 projectile-rails
+robe
 rubocop
 ruby-tools
 rvm
