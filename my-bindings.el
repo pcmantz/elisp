@@ -28,6 +28,9 @@
 
 (define-key global-map (kbd "C-x K") 'kill-buffer-and-window)
 
+(define-key global-map (kbd "C-x F") 'msg-buffer-filename)
+(define-key global-map (kbd "C-c b") 'magit-blame)
+
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
