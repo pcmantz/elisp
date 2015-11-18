@@ -26,8 +26,8 @@
 ;;
 (require 'package)
 (dolist (source
-         '(("melpa" . "http://melpa.milkbox.net/packages/")
-           ("marmalade" . "http://marmalade-repo.org/packages/")))
+         '(("gnu" . "https://elpa.gnu.org/packages/")
+           ("melpa" . "https://melpa.org/packages/")))
   (add-to-list 'package-archives source t))
 
 ;; autoload everything
