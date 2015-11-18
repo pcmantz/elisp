@@ -19,6 +19,7 @@ graphviz-dot-mode
 haml-mode
 haskell-mode
 helm
+helm-ag
 helm-projectile
 helm-robe
 ibuffer-vc
