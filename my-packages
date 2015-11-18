@@ -6,6 +6,7 @@ clojure-mode
 clojure-snippets
 coffee-mode
 dash
+diminish
 enh-ruby-mode
 epl
 escreen

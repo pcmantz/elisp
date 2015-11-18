@@ -78,6 +78,7 @@
       wg-file (concat elisp-dir "/workgroups")
       wg-use-faces nil
       wg-switch-on-load nil)
+(eval-after-load 'workgroups '(diminish 'workgroups-mode))
 
 (defun wg-load-default ()
   "Run `wg-load' on `wg-file'."
@@ -109,7 +110,7 @@
                  (or buffer-read-only
                      (and yas-snippet-dirs
                           (null (yas--get-snippet-tables))))))
-
+(eval-after-load 'yasnippet '(diminish 'yas-minor-mode))
 
 (setq default-cursor-color "green")
 (setq yasnippet-can-fire-cursor-color "purple" )

@@ -5,7 +5,6 @@
 ;;
 ;; encoding
 ;;
-
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
@@ -23,29 +22,6 @@
 ;;
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
-;;
-;; interaction
-;;
-
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;; helm - Crazy powerful matching
-(require 'helm)
-(require 'helm-config)
-
-(helm-mode 1)
-
-;; projectile: for managing projects
-(require 'projectile)
-(require 'helm-projectile)
-(helm-projectile-on)
-(eval-after-load 'projectile
-  '(progn
-     (projectile-global-mode t)))
-
-;; TODO: Fill in these functions
-;(define-key projectile-mode-map (kbd "C-b") 'projectile-ibuffer)
 
 ;;
 ;; backups
@@ -69,7 +45,6 @@
 ;; TRAMP
 ;;
 ;; NOTE: To avoid recursive loads, we load tramp right here and now
-;;
 (require 'tramp)
 
 ;;
@@ -126,10 +101,13 @@
 (require 'ibuffer-vc)
 (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root)
 
-
 ;; frame config
 (line-number-mode t)
 (column-number-mode t)
+
+;; mode line config
+;; NOTE: Make sure to add diminishing to each mode individually
+(require 'diminish)
 
 ;; text display config
 (show-paren-mode t)
@@ -138,6 +116,30 @@
  fill-column 78
  tab-width 4
  indent-tabs-mode nil)
+
+
+
+;;
+;; interaction
+;;
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; helm - Crazy powerful matching
+(require 'helm)
+(require 'helm-config)
+(progn
+  (helm-mode 1)
+  (diminish 'helm-mode))
+
+;; projectile: for managing projects
+(require 'projectile)
+(require 'helm-projectile)
+(helm-projectile-on)
+(eval-after-load 'projectile
+  '(progn
+     (projectile-global-mode t)))
+
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes

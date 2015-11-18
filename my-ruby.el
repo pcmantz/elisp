@@ -17,9 +17,11 @@
 
 (require 'rubocop)
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
+(eval-after-load 'rubocop '(diminish 'rubocop-mode))
 
 (require 'ruby-tools)
 (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
+(eval-after-load 'ruby-tools '(diminish 'ruby-tools-mode))
 
 (require 'robe)
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
