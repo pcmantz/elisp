@@ -32,9 +32,6 @@
 ;; elisp utils
 ;;
 
-(defun add-to-load-path (path)
-  (add-to-list 'load-path path))
-
 (defun range (first-arg &optional last-arg)
   "Super-naïve implementation of a range function. Update this to
 do this in reverse."

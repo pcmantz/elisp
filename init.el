@@ -10,16 +10,16 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;;
-;; add elisp/ and its subdirectories to the load path
+;; add elisp/{lisp,site} to the load path
 ;;
+(defun add-to-load-path (path)
+  "Does exactly what is says."
+  (add-to-list 'load-path path))
+
 (setq elisp-dir (file-name-directory (or (buffer-file-name) load-file-name)))
 
-(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-    (let* ((my-lisp-dir elisp-dir)
-           (default-directory my-lisp-dir))
-      (setq load-path (cons my-lisp-dir load-path))
-      (normal-top-level-add-subdirs-to-load-path)
-      (byte-recompile-directory my-lisp-dir 0)))
+(add-to-list 'load-path (concat elisp-dir "site"))
+(add-to-list 'load-path (concat elisp-dir "lisp"))
 
 ;;
 ;; emacs package manager

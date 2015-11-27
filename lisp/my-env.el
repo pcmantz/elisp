@@ -40,7 +40,6 @@
       `(("." . ,(expand-file-name
                  (concat elisp-dir "backups")))))
 
-
 ;;
 ;; TRAMP
 ;;
