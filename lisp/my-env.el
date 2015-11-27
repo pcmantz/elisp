@@ -116,13 +116,13 @@
  tab-width 4
  indent-tabs-mode nil)
 
-
-
 ;;
 ;; interaction
 ;;
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+(setq echo-keystrokes 0.1)
 
 ;; helm - Crazy powerful matching
 ;; NOTE: Further keybinding present in my-bindings.el
