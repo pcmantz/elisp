@@ -126,6 +126,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; helm - Crazy powerful matching
+;; NOTE: Further keybinding present in my-bindings.el
 (require 'helm)
 (require 'helm-config)
 (progn
@@ -140,6 +141,7 @@
   '(progn
      (projectile-global-mode t)))
 
+(require 'multiple-cursors)
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes

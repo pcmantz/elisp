@@ -21,10 +21,6 @@
 ;; standalone applications
 ;;
 
-;; browse-kill-ring
-(require 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
-
 ;; magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)

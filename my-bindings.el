@@ -23,6 +23,8 @@
 (define-key global-map (kbd "C-S-l") 'goto-line)
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
+(define-key global-map (kbd "M-y") 'helm-show-kill-ring)
+
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR.")
 (global-set-key (kbd "M-z") 'zap-to-char)
@@ -53,6 +55,9 @@
         (linum-mode 1)
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
+
+;; Navigate through edit points
+(require 'goto-chg)
 
 ;;
 ;; Aliases
