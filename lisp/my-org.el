@@ -1,6 +1,7 @@
 ;; my-org.el
-
 ;; org-mode configuration
+
+(require 'dir-subdirs)
 
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -8,7 +9,7 @@
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "<f2>") 'org-capture)
 
-(defvar my-org-dirs '("~/org" "~/org/projects" "~/org/cohesive"))
+(setq my-org-dirs (dir-subdirs "~/org"))
 
 (define-prefix-command 'org-todo-state-map)
 (define-key org-todo-state-map "t"
@@ -30,7 +31,7 @@
 (define-key org-todo-state-map "f"
   (lambda nil (interactive) (org-todo "FINISHED")))
 
-(eval-after-load "org"
+(eval-after-load 'org
   '(progn
      (define-key org-mode-map (kbd "C-c t") 'org-todo-state-map)
 
@@ -50,25 +51,30 @@
       org-refile-use-outline-path t ; use full outline paths for refile targets
       org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 9))
-      org-default-notes-file "~/org/incoming.org"
 
       ;; org-capture config
+      org-default-notes-file "~/org/incoming.org"
       org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/incoming.org" "Todos")
          "* TODO %?\n  %i\n  %a")
         ("n" "Note" entry (file+headline "~/org/incoming.org" "Notes")
          "* %u %?")
         ("a" "Appointment" entry (file+headline "~/org/incoming.org" "Appointments")
-         "* APPT %?\n SCHEDULED %^T\n %u")))))
+         "* APPT %?\n SCHEDULED %^T\n %u")))
 
-(eval-after-load "org-agenda"
+     ;; Make windmove work in org-mode:
+     (add-hook 'org-shiftup-final-hook 'windmove-up)
+     (add-hook 'org-shiftleft-final-hook 'windmove-left)
+     (add-hook 'org-shiftdown-final-hook 'windmove-down)
+     (add-hook 'org-shiftright-final-hook 'windmove-right)))
+
+(eval-after-load 'org-agenda
   '(progn
      ;; TODO: decide if I even need these
      (define-key org-agenda-mode-map (kbd "C-n") 'next-line)
      (define-key org-agenda-mode-map (kbd "C-p") 'previous-line)
 
      (setq
-      org-agenda-files          my-org-dirs
       org-agenda-include-diary  t
       org-agenda-ndays          14
       org-agenda-show-all-dates t
@@ -92,6 +98,16 @@
              (org-agenda-skip-entry-if (quote scheduled) (quote deadline)
                                        (quote regexp) "<[^>\n]+>")))
           (org-agenda-overriding-header "Unscheduled TODO entries: ")))))))
+
+(require 'org-agenda)
+
+(defun reload-org-dirs ()
+  "Reloads the org directories."
+  (interactive)
+  (setq my-org-dirs (dir-subdirs "~/org"))
+  (setq org-agenda-files my-org-dirs))
+
+(reload-org-dirs)
 
 (provide 'my-org)
 ;; end my-org.el
