@@ -19,7 +19,7 @@
     (while pending
       (let* ((this-dir (pop pending))
              (these-subdirs (-filter
-                             #'subdir-descend-p
+                             #'dir-subdirs-descend-p
                              (directory-files this-dir t))))
         (push this-dir dirs)
         (setq pending (append pending these-subdirs))))
