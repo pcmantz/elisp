@@ -40,7 +40,6 @@
       `(("." . ,(expand-file-name
                  (concat elisp-dir "backups")))))
 
-
 ;;
 ;; TRAMP
 ;;
@@ -117,15 +116,16 @@
  tab-width 4
  indent-tabs-mode nil)
 
-
-
 ;;
 ;; interaction
 ;;
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(setq echo-keystrokes 0.1)
+
 ;; helm - Crazy powerful matching
+;; NOTE: Further keybinding present in my-bindings.el
 (require 'helm)
 (require 'helm-config)
 (progn
@@ -140,6 +140,7 @@
   '(progn
      (projectile-global-mode t)))
 
+(require 'multiple-cursors)
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes

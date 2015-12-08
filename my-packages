@@ -1,5 +1,4 @@
 apache-mode
-browse-kill-ring
 chruby
 clojure-mode
 clojure-snippets
@@ -8,12 +7,10 @@ dash
 diminish
 enh-ruby-mode
 epl
-escreen
 exec-path-from-shell
 f
-gh
-gist
 gitignore-mode
+goto-chg
 graphviz-dot-mode
 haml-mode
 haskell-mode
