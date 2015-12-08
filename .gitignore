@@ -13,6 +13,9 @@
 /url/
 /var/
 /projectile-bookmarks.eld
+/projectile.cache
+/recentf
+/.mc-lists.el
 
 # top-level config files
 /my-custom-file.el

@@ -9,7 +9,8 @@
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "<f2>") 'org-capture)
 
-(setq my-org-dirs (dir-subdirs "~/org"))
+(setq org-directory "~/org")
+(setq my-org-dirs (dir-subdirs org-directory))
 
 (define-prefix-command 'org-todo-state-map)
 (define-key org-todo-state-map "t"
@@ -56,11 +57,11 @@
       org-default-notes-file "~/org/incoming.org"
       org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/incoming.org" "Todos")
-         "* TODO %?\n  %i\n  %a")
+         "* TODO %?\n  %i\n  %a\n  %T\n")
         ("n" "Note" entry (file+headline "~/org/incoming.org" "Notes")
-         "* %u %?")
+         "* %u %?\n  %T\n")
         ("a" "Appointment" entry (file+headline "~/org/incoming.org" "Appointments")
-         "* APPT %?\n SCHEDULED %^T\n %u")))
+         "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")))
 
      ;; Make windmove work in org-mode:
      (add-hook 'org-shiftup-final-hook 'windmove-up)
@@ -104,7 +105,7 @@
 (defun reload-org-dirs ()
   "Reloads the org directories."
   (interactive)
-  (setq my-org-dirs (dir-subdirs "~/org"))
+  (setq my-org-dirs (dir-subdirs org-directory))
   (setq org-agenda-files my-org-dirs))
 
 (reload-org-dirs)
