@@ -86,3 +86,4 @@
 (setq initial-scratch-message ";; Scratch Buffer")
 
 ;; end init.el
+(put 'downcase-region 'disabled nil)
