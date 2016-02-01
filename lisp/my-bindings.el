@@ -35,6 +35,23 @@
 (define-key global-map (kbd "C-x F") 'msg-buffer-filename)
 (define-key global-map (kbd "C-c b") 'magit-blame)
 
+
+;; bindings for multiple-cursors
+(require 'multiple-cursors)
+(setq multiple-cursors-keymap (make-sparse-keymap))
+
+(define-key multiple-cursors-keymap (kbd "n") 'mc/mark-next-like-this)
+(define-key multiple-cursors-keymap (kbd "p") 'mc/mark-previous-like-this)
+(define-key multiple-cursors-keymap (kbd "a") 'mc/mark-all-like-this)
+(define-key multiple-cursors-keymap (kbd "r") 'mc/mark-all-in-region-regexp)
+(define-key multiple-cursors-keymap (kbd "d") 'mc/mark-next-like-this-dwim)
+
+(define-key multiple-cursors-keymap (kbd "M-n") 'mc/mark-next-word-like-this)
+(define-key multiple-cursors-keymap (kbd "M-p") 'mc/mark-previous-word-like-this)
+(define-key multiple-cursors-keymap (kbd "M-a") 'mc/mark-all-words-like-this)
+
+(define-key global-map (kbd "C-|") multiple-cursors-keymap)
+
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
@@ -42,6 +59,13 @@
 ;; windmove for navigating buffers
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
+;; ace-window for navigating buffers. Let's give this a try.
+(require 'ace-window)
+(eval-after-load 'ace-window
+  '(progn
+     (global-set-key (kbd "M-p" ) 'ace-window)
+     ))
 
 ;; winner-mode for window undo/redo
 (winner-mode t)
