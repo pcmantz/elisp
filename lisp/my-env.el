@@ -128,9 +128,16 @@
 ;; NOTE: Further keybinding present in my-bindings.el
 (require 'helm)
 (require 'helm-config)
-(progn
-  (helm-mode 1)
-  (diminish 'helm-mode))
+(eval-after-load 'helm
+  '(progn
+     (helm-mode 1)
+     (diminish 'helm-mode)
+     (defadvice helm-find-file (before make-directory-maybe (filename &optional wildcards) activate)
+       "Create parent directory if not exists while visiting file."
+       (unless (file-exists-p filename)
+         (let ((dir (file-name-directory filename)))
+           (unless (file-exists-p dir)
+             (make-directory dir)))))))
 
 ;; projectile: for managing projects
 (require 'projectile)

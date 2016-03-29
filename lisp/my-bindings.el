@@ -12,6 +12,7 @@
 (define-key global-map (kbd "<f2> <f2>") nil) ;; whatever this is is frustrating
 
 (define-key global-map (kbd "M-x") 'helm-M-x)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
 
 (define-key global-map (kbd "C-s") 'isearch-forward-regexp)
 (define-key global-map (kbd "C-r") 'isearch-backward-regexp)
