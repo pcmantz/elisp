@@ -132,6 +132,11 @@
 (add-hook 'auto-save-hook 'wg-save-default t)
 (add-hook 'kill-emacs-hook 'wg-save-default t)
 
+;; default-text-scale
+(require 'default-text-scale)
+(global-set-key (kbd "C-M-+") 'default-text-scale-increase)
+(global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+
 ;; yasnippet
 (require 'yasnippet)
 (yas-initialize)

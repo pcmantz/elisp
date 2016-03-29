@@ -5,6 +5,7 @@ clojure-mode
 clojure-snippets
 coffee-mode
 dash
+default-text-scale
 diminish
 enh-ruby-mode
 epl
