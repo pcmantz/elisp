@@ -11,6 +11,8 @@ enh-ruby-mode
 epl
 exec-path-from-shell
 f
+flycheck
+flycheck-status-emoji
 gitignore-mode
 goto-chg
 graphviz-dot-mode

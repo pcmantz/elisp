@@ -3,11 +3,14 @@
 ;; miscellaneous minor modes that aren't complicated enough to warrant their
 ;; own file
 
+;;; Code:
+
 ;; outline-minor-mode stuff.  Not requiring this since I don't need it
 ;; everywhere, but it is useful.
 
 ;; Outline-minor-mode key map
 (define-prefix-command 'cm-map nil "Outline-")
+
 ;; HIDE
 (define-key cm-map "q" 'hide-sublevels)    ; Hide everything but the top-level headings
 (define-key cm-map "t" 'hide-body)         ; Hide everything but headings (all body lines)
@@ -30,5 +33,14 @@
 
 (global-set-key (kbd "C-c o") cm-map)
 
+(require 'flycheck)
+(require 'flycheck-status-emoji)
+
+(eval-after-load 'flycheck
+  (progn
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (add-to-list flycheck-disabled-checkers 'ruby-rubylint)))
+
+
 (provide 'my-minor-modes)
-;; end my-minor-modes.el
+;;; my-minor-modes.el ends here
