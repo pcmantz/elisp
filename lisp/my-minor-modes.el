@@ -39,7 +39,7 @@
 (eval-after-load 'flycheck
   (progn
     (add-hook 'after-init-hook #'global-flycheck-mode)
-    (add-to-list flycheck-disabled-checkers 'ruby-rubylint)))
+    (setq flycheck-disabled-checkers '('ruby-rubylint))))
 
 
 (provide 'my-minor-modes)
