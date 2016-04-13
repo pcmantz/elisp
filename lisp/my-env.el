@@ -1,6 +1,10 @@
-;; my-env.el
+;; my-env --- Basic environment configuration
+
+;;; Commentary:
 
 ;; miscellaneous environment variables and global scope modes
+
+;;; Code:
 
 ;;
 ;; encoding
@@ -14,7 +18,10 @@
 ;;
 
 ;; keep local customizations out of this file
-(setq custom-file (concat elisp-dir "my-custom-file.el"))
+
+(defvar custom-file
+  (concat elisp-dir "my-custom-file.el")
+  "File where site-specific configuration is kept.")
 (load custom-file)
 
 ;;
@@ -51,16 +58,15 @@
 ;;
 
 ;; colors! the colors!
-(require 'font-lock)
-(eval-after-load 'font-lock
-  '(progn
+(use-package font-lock
+  :config
+  (progn
      (global-font-lock-mode t)
      (setq font-lock-maximum-decoration t)
      (ansi-color-for-comint-mode-on)))
 
 ;; graphical config
 (when (display-graphic-p)
-  (tooltip-mode -1)
   (blink-cursor-mode -1)
   (mouse-wheel-mode t)
   (xterm-mouse-mode t)
@@ -79,13 +85,13 @@
         (t nil)))
 
 ;; uniquify: unique buffer names
-(require 'uniquify)
-(eval-after-load 'uniquify
- '(progn
-   (setq uniquify-buffer-name-style 'reverse
-         uniquify-separator "|"
-         uniquify-after-kill-buffer-p t
-         uniquify-ignore-buffers-re "^\\*")))
+(use-package uniquify
+  :config
+  (progn
+    (setq uniquify-buffer-name-style 'reverse
+          uniquify-separator "|"
+          uniquify-after-kill-buffer-p t
+          uniquify-ignore-buffers-re "^\\*")))
 
 ;; buffer listing
 (require 'ibuffer)
