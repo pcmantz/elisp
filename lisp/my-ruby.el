@@ -13,26 +13,27 @@
    ("\\.rabl$" . enh-ruby-mode))
   :config
   (progn
-    (defalias 'ruby-mode 'enh-ruby-mode)))
+    (defalias 'ruby-mode 'enh-ruby-mode)
+    (mapc
+     (lambda (pair)
+       (if (eq (cdr pair) 'ruby-mode)
+           (setcdr pair 'enh-ruby-mode)))
+     (append auto-mode-alist interpreter-mode-alist))
+    (defun my-ruby-defaults () (setq enh-ruby-deep-indent-paren nil))
+    (defalias 'my-ruby-defaults 'my-ruby-hook)
+    (add-hook 'enh-ruby-mode-hook (lambda () (run-hooks 'my-ruby-hook)) t)))
 
-(defun my-ruby-defaults ()
-  (setq enh-ruby-deep-indent-paren nil))
+(use-package rubocop
+  :diminish rubocop-mode
+  :config (progn (add-hook 'enh-ruby-mode-hook 'rubocop-mode)))
 
-(setq my-ruby-hook 'my-ruby-defaults)
-(add-hook 'enh-ruby-mode-hook (lambda () (run-hooks 'my-ruby-hook)) t)
+(use-package ruby-tools
+  :diminish ruby-tools)
 
-(require 'rubocop)
-(add-hook 'enh-ruby-mode-hook 'rubocop-mode)
-(eval-after-load 'rubocop '(diminish 'rubocop-mode))
+(use-package robe
+  :config (add-hook 'enh-ruby-mode-hook 'robe-mode))
 
-(require 'ruby-tools)
-(add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
-(eval-after-load 'ruby-tools '(diminish 'ruby-tools-mode))
-
-(require 'robe)
-(add-hook 'enh-ruby-mode-hook 'robe-mode)
-
-(require 'chruby)
+(use-package chruby)
 
 (defun ruby-hash-arrows-to-keys-region (beg end)
   "Replace symbol-arrow hash syntax with the newer 1.9 Javascript-like syntax."
@@ -44,14 +45,9 @@
       (replace-match "\\1: " t nil))))
 
 (defun ruby-hash-arrows-to-keys-buffer ()
+  "Convert all hash arrows in the buffer to javascript-like keys."
   (interactive)
   (ruby-hash-arrows-to-keys-region (point-min) (point-max)))
 
-(mapc
- (lambda (pair)
-   (if (eq (cdr pair) 'ruby-mode)
-       (setcdr pair 'enh-ruby-mode)))
- (append auto-mode-alist interpreter-mode-alist))
-
 (provide 'my-ruby)
-;;end my-ruby.el
+;;;  my-ruby.el ends here
