@@ -18,10 +18,7 @@
 ;;
 
 ;; keep local customizations out of this file
-
-(defvar custom-file
-  (concat elisp-dir "my-custom-file.el")
-  "File where site-specific configuration is kept.")
+(setq custom-file (concat elisp-dir "my-custom-file.el"))
 (load custom-file)
 
 ;;
