@@ -1,6 +1,10 @@
 ;;; init.el --- config script for elisp packages
 
+;;; Commentary:
+
 (require 'cl)
+
+;;; Code:
 
 ;;
 ;; Graphical stuff I'm never going to use
@@ -16,7 +20,9 @@
   "Does exactly what is says."
   (add-to-list 'load-path path))
 
-(setq elisp-dir (file-name-directory (or (buffer-file-name) load-file-name)))
+(defvar elisp-dir
+  (file-name-directory (or (buffer-file-name) load-file-name))
+  "Location where all the Elisp is held.")
 
 (add-to-list 'load-path (concat elisp-dir "site"))
 (add-to-list 'load-path (concat elisp-dir "lisp"))
@@ -85,5 +91,7 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message ";; Scratch Buffer")
 
-;; end init.el
 (put 'downcase-region 'disabled nil)
+
+(provide 'init)
+;;; init.el ends here
