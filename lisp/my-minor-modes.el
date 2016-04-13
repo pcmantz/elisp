@@ -1,7 +1,7 @@
-;; my-minor-modes.el
+;; my-minor-modes --- Miscellaneous minor modes that aren't complicated enough
+;; to warrant their own file
 
-;; miscellaneous minor modes that aren't complicated enough to warrant their
-;; own file
+;;; Commentary:
 
 ;;; Code:
 
@@ -33,14 +33,23 @@
 
 (global-set-key (kbd "C-c o") cm-map)
 
-(require 'flycheck)
-(require 'flycheck-status-emoji)
-
-(eval-after-load 'flycheck
+(use-package flycheck
+  :config
   (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)
-    (setq flycheck-disabled-checkers '('ruby-rubylint))))
+    (global-flycheck-mode)))
 
+(use-package flycheck-status-emoji)
+
+(flycheck-define-checker proselint
+  "A linter for prose."
+  :command ("proselint" source-inplace)
+  :error-patterns
+  ((warning line-start (file-name) ":" line ":" column ": "
+        (id (one-or-more (not (any " "))))
+        (message) line-end))
+  :modes (text-mode markdown-mode gfm-mode tex-mode latex-mode))
+
+(add-to-list 'flycheck-checkers 'proselint)
 
 (provide 'my-minor-modes)
 ;;; my-minor-modes.el ends here

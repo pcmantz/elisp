@@ -47,6 +47,7 @@ scss-mode
 slim-mode
 sql-indent
 tt-mode
+use-package
 w3m
 web-beautify
 workgroups
