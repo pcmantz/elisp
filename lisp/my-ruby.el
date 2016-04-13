@@ -1,13 +1,19 @@
-;; my-ruby.el
+;; my-ruby --- Configurations for Ruby
+
+;;; Commentary:
+
+;;; Code:
 
 ;; enh-ruby-mode
-(require 'enh-ruby-mode)
-(defalias 'ruby-mode 'enh-ruby-mode)
-
-;; (rx (and (or "Gem" "Rake" "Cap" "Vagrant") "file" (opt ".lock")))
-(add-to-list 'auto-mode-alist '("\\(?:Cap\\|Gem\\|Rake\\|Vagrant\\)file\\(?:\\.lock\\)?" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rabl$" . enh-ruby-mode))
+(use-package enh-ruby-mode
+  :mode
+  ;; (rx (and (or "Gem" "Rake" "Cap" "Vagrant") "file" (opt ".lock")))
+  (("\\(?:Cap\\|Gem\\|Rake\\|Vagrant\\)file\\(?:\\.lock\\)?" . enh-ruby-mode)
+   ("\\.rake$" . enh-ruby-mode)
+   ("\\.rabl$" . enh-ruby-mode))
+  :config
+  (progn
+    (defalias 'ruby-mode 'enh-ruby-mode)))
 
 (defun my-ruby-defaults ()
   (setq enh-ruby-deep-indent-paren nil))
