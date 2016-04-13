@@ -1,4 +1,8 @@
-;; my-bindings.el
+;; my-bindings --- Binding for Emacs
+
+;;; Commentary:
+
+;;; Code:
 
 ;;
 ;; Emacs Core Bindings
@@ -18,7 +22,7 @@
 (define-key global-map (kbd "C-r") 'isearch-backward-regexp)
 
 (define-key global-map (kbd "C-M-s") 'isearch-forward)
-(define-key global-map (kbd "C-M-r") 'isearch-backward-regexp)
+(define-key global-map (kbd "C-M-r") 'isearch-backward)
 
 (define-key global-map (kbd "C-M-g") 'goto-line)
 (define-key global-map (kbd "C-S-l") 'goto-line)
@@ -39,7 +43,7 @@
 
 ;; bindings for multiple-cursors
 (require 'multiple-cursors)
-(setq multiple-cursors-keymap (make-sparse-keymap))
+(defvar multiple-cursors-keymap (make-sparse-keymap))
 
 (define-key multiple-cursors-keymap (kbd "n") 'mc/mark-next-like-this)
 (define-key multiple-cursors-keymap (kbd "p") 'mc/mark-previous-like-this)
@@ -62,18 +66,15 @@
   (windmove-default-keybindings))
 
 ;; ace-window for navigating buffers. Let's give this a try.
-(require 'ace-window)
-(eval-after-load 'ace-window
-  '(progn
-     (global-set-key (kbd "M-p" ) 'ace-window)
-     ))
+(use-package ace-window
+  :bind ("M-p" . ace-window))
 
 ;; winner-mode for window undo/redo
 (winner-mode t)
 
 ;; better goto-line
 (defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
+  "Show line numbers temporarily, while prompting for the line number input."
   (interactive)
   (unwind-protect
       (progn
@@ -82,7 +83,7 @@
     (linum-mode -1)))
 
 ;; Navigate through edit points
-(require 'goto-chg)
+(use-package goto-chg)
 
 ;;
 ;; Aliases
@@ -133,27 +134,29 @@
 (add-hook 'kill-emacs-hook 'wg-save-default t)
 
 ;; default-text-scale
-(require 'default-text-scale)
-(global-set-key (kbd "C-M-+") 'default-text-scale-increase)
-(global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+(use-package default-text-scale
+  :bind (("C-M-+" . default-text-scale-increase)
+         ("C-M--" . default-text-scale-decrease)))
 
 ;; yasnippet
-(require 'yasnippet)
-(yas-initialize)
-(yas-load-directory (concat elisp-dir "/snippets"))
-(setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
-(set-default 'yas--dont-activate
-             #'(lambda ()
-                 (or buffer-read-only
-                     (and yas-snippet-dirs
-                          (null (yas--get-snippet-tables))))))
-(eval-after-load 'yasnippet '(diminish 'yas-minor-mode))
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :config
+  (progn
+    (yas-global-mode 1)
+    (yas-load-directory (concat elisp-dir "/snippets"))
+    (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
+    (set-default 'yas--dont-activate
+                 #'(lambda ()
+                     (or buffer-read-only
+                         (and yas-snippet-dirs
+                              (null (yas--get-snippet-tables))))))))
 
-(setq default-cursor-color "green")
-(setq yasnippet-can-fire-cursor-color "purple" )
+(defvar default-cursor-color "green")
+(defvar yasnippet-can-fire-cursor-color "purple")
 
-;; It will test whether it can expand, if yes, cursor color -> green.
 (defun yasnippet-can-fire-p (&optional field)
+  "Check to see if a snippet can fire at point."
   (interactive)
   (setq yas--condition-cache-timestamp (current-time))
   (let (templates-and-pos)
@@ -168,6 +171,7 @@
     (and templates-and-pos (first templates-and-pos))))
 
 (defun yasnippet-change-cursor-color-when-can-fire (&optional field)
+  "Change the cursor color if a snippet can expand at point."
   (interactive)
   (set-cursor-color (if (yasnippet-can-fire-p)
                         yasnippet-can-fire-cursor-color
@@ -177,4 +181,4 @@
 ;; (add-hook 'post-command-hook 'yasnippet-change-cursor-color-when-can-fire)
 
 (provide 'my-bindings)
-;; end my-bindings.el
+;;;  my-bindings ends here
