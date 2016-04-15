@@ -91,17 +91,16 @@
           uniquify-ignore-buffers-re "^\\*")))
 
 ;; buffer listing
-(require 'ibuffer)
-(eval-after-load 'ibuffer
-    '(progn
+(use-package ibuffer
+  :config
+  (progn
        (global-set-key (kbd "C-x C-b") 'ibuffer)
        (setq
         ibuffer-default-sorting-mode 'major-mode
         ibuffer-always-show-last-buffer t
-        ibuffer-view-ibuffer t)))
-
-(require 'ibuffer-vc)
-(add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root)
+        ibuffer-view-ibuffer t)
+       (use-package ibuffer-vc
+         :config (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root))))
 
 ;; frame config
 (line-number-mode t)
@@ -157,4 +156,4 @@
 (define-key global-map (kbd "C-x W") 'whitespace-mode)
 
 (provide 'my-env)
-;; my-env.el ends here
+;;; my-env.el ends here
