@@ -150,8 +150,6 @@
   '(progn
      (projectile-global-mode t)))
 
-(require 'multiple-cursors)
-
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
 (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -159,4 +157,4 @@
 (define-key global-map (kbd "C-x W") 'whitespace-mode)
 
 (provide 'my-env)
-;; end my-env.el
+;; my-env.el ends here

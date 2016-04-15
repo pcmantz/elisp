@@ -40,22 +40,22 @@
 (define-key global-map (kbd "C-x F") 'msg-buffer-filename)
 (define-key global-map (kbd "C-c b") 'magit-blame)
 
-
 ;; bindings for multiple-cursors
-(require 'multiple-cursors)
-(defvar multiple-cursors-keymap (make-sparse-keymap))
+(use-package multiple-cursors
+  :bind-keymap ("C-|" . multiple-cursors-keymap)
+  :init
+  (progn
+    (defvar multiple-cursors-keymap (make-sparse-keymap))
 
-(define-key multiple-cursors-keymap (kbd "n") 'mc/mark-next-like-this)
-(define-key multiple-cursors-keymap (kbd "p") 'mc/mark-previous-like-this)
-(define-key multiple-cursors-keymap (kbd "a") 'mc/mark-all-like-this)
-(define-key multiple-cursors-keymap (kbd "r") 'mc/mark-all-in-region-regexp)
-(define-key multiple-cursors-keymap (kbd "d") 'mc/mark-next-like-this-dwim)
+    (define-key multiple-cursors-keymap (kbd "n") 'mc/mark-next-like-this)
+    (define-key multiple-cursors-keymap (kbd "p") 'mc/mark-previous-like-this)
+    (define-key multiple-cursors-keymap (kbd "a") 'mc/mark-all-like-this)
+    (define-key multiple-cursors-keymap (kbd "r") 'mc/mark-all-in-region-regexp)
+    (define-key multiple-cursors-keymap (kbd "d") 'mc/mark-next-like-this-dwim)
 
-(define-key multiple-cursors-keymap (kbd "M-n") 'mc/mark-next-word-like-this)
-(define-key multiple-cursors-keymap (kbd "M-p") 'mc/mark-previous-word-like-this)
-(define-key multiple-cursors-keymap (kbd "M-a") 'mc/mark-all-words-like-this)
-
-(define-key global-map (kbd "C-|") multiple-cursors-keymap)
+    (define-key multiple-cursors-keymap (kbd "M-n") 'mc/mark-next-word-like-this)
+    (define-key multiple-cursors-keymap (kbd "M-p") 'mc/mark-previous-word-like-this)
+    (define-key multiple-cursors-keymap (kbd "M-a") 'mc/mark-all-words-like-this)))
 
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
@@ -181,4 +181,4 @@
 ;; (add-hook 'post-command-hook 'yasnippet-change-cursor-color-when-can-fire)
 
 (provide 'my-bindings)
-;;;  my-bindings ends here
+;;; my-bindings ends here
