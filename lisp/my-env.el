@@ -142,12 +142,13 @@
              (make-directory dir)))))))
 
 ;; projectile: for managing projects
-(require 'projectile)
-(require 'helm-projectile)
-(helm-projectile-on)
-(eval-after-load 'projectile
-  '(progn
-     (projectile-global-mode t)))
+(use-package projectile
+  :config
+  (progn
+    (projectile-global-mode t)))
+
+(use-package helm-projectile
+  :config (helm-projectile-on))
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
