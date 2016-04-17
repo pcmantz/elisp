@@ -104,14 +104,17 @@
 ;;
 
 ;; workgroups
-(require 'workgroups)
-(setq wg-prefix-key (kbd "C-z")
-      wg-no-confirm t
-      wg-morph-on nil
-      wg-file (concat elisp-dir "/workgroups")
-      wg-use-faces nil
-      wg-switch-on-load nil)
-(eval-after-load 'workgroups '(diminish 'workgroups-mode))
+(use-package workgroups
+  :diminish
+  :config
+  (progn
+    (setq wg-prefix-key (kbd "C-z")
+          wg-no-confirm t
+          wg-morph-on nil
+          wg-file (concat elisp-dir "/workgroups")
+          wg-use-faces nil
+          wg-switch-on-load nil)
+    (workgroups-mode 1)))
 
 (defun wg-load-default ()
   "Run `wg-load' on `wg-file'."
@@ -129,7 +132,7 @@
 (define-key wg-map (kbd "C-l") 'wg-load-default)
 (define-key wg-map (kbd "C-s") 'wg-save-default)
 (define-key wg-map (kbd "<backspace>") 'wg-switch-left)
-(workgroups-mode 1)
+
 (add-hook 'auto-save-hook 'wg-save-default t)
 (add-hook 'kill-emacs-hook 'wg-save-default t)
 
