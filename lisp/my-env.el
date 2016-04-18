@@ -25,7 +25,11 @@
 ;; path (via exec-path-from-shell)
 ;;
 (when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+  (use-package exec-path-from-shell
+    :config
+    (progn
+      (setq exec-path-from-shell-check-startup-files nil)
+      (exec-path-from-shell-initialize))))
 
 ;;
 ;; backups
