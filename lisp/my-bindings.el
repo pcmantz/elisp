@@ -114,6 +114,12 @@
           wg-file (concat elisp-dir "/workgroups")
           wg-use-faces nil
           wg-switch-on-load nil)
+    (define-key wg-map (kbd "g") 'wg-switch-to-workgroup)
+    (define-key wg-map (kbd "C-l") 'wg-load-default)
+    (define-key wg-map (kbd "C-s") 'wg-save-default)
+    (define-key wg-map (kbd "<backspace>") 'wg-switch-left)
+    (add-hook 'auto-save-hook 'wg-save-default t)
+    (add-hook 'kill-emacs-hook 'wg-save-default t)
     (workgroups-mode 1)))
 
 (defun wg-load-default ()
@@ -128,13 +134,7 @@
     (with-temp-message ""
       (wg-save wg-file))))
 
-(define-key wg-map (kbd "g") 'wg-switch-to-workgroup)
-(define-key wg-map (kbd "C-l") 'wg-load-default)
-(define-key wg-map (kbd "C-s") 'wg-save-default)
-(define-key wg-map (kbd "<backspace>") 'wg-switch-left)
 
-(add-hook 'auto-save-hook 'wg-save-default t)
-(add-hook 'kill-emacs-hook 'wg-save-default t)
 
 ;; default-text-scale
 (use-package default-text-scale
