@@ -67,8 +67,7 @@
   (blink-cursor-mode -1)
   (mouse-wheel-mode t)
   (xterm-mouse-mode t)
-  (set-foreground-color "white")
-  (set-background-color "black")
+  (load-theme 'zenburn)
   (set-cursor-color "green")
   (cond ((string= window-system "x")   ;; X11 window system
          (set-face-attribute 'default nil :font "Inconsolata-9")
