@@ -109,10 +109,6 @@
 (line-number-mode t)
 (column-number-mode t)
 
-;; mode line config
-;; NOTE: Make sure to add diminishing to each mode individually
-(require 'diminish)
-
 ;; text display config
 (show-paren-mode t)
 (transient-mark-mode)
@@ -131,18 +127,18 @@
 
 ;; helm - Crazy powerful matching
 ;; NOTE: Further keybinding present in my-bindings.el
-(require 'helm)
-(require 'helm-config)
-(eval-after-load 'helm
-  '(progn
-     (helm-mode 1)
-     (diminish 'helm-mode)
-     (defadvice helm-find-file (before make-directory-maybe (filename &optional wildcards) activate)
-       "Create parent directory if not exists while visiting file."
-       (unless (file-exists-p filename)
-         (let ((dir (file-name-directory filename)))
-           (unless (file-exists-p dir)
-             (make-directory dir)))))))
+(use-package helm
+  :config
+  (progn
+    (helm-mode 1)
+    (diminish 'helm-mode)
+    (defadvice helm-find-file (before make-directory-maybe (filename &optional wildcards) activate)
+      "Create parent directory if not exists while visiting file."
+      (unless (file-exists-p filename)
+        (let ((dir (file-name-directory filename)))
+          (unless (file-exists-p dir)
+            (make-directory dir)))))))
+(use-package helm-config)
 
 ;; projectile: for managing projects
 (use-package projectile
