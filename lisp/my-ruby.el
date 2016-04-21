@@ -26,9 +26,8 @@
     (set-ruby-mode-to-enh-ruby-mode))
   :config
   (progn
-    (defun my-ruby-defaults () (setq enh-ruby-deep-indent-paren nil))
-    (defalias 'my-ruby-defaults 'my-ruby-hook)
-    (add-hook 'enh-ruby-mode-hook (lambda () (run-hooks 'my-ruby-hook)) t)
+    (setq enh-ruby-deep-indent-paren nil)
+    (add-hook 'enh-ruby-mode-hook 'my-ruby-defaults)
     (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
     (add-hook 'enh-ruby-mode-hook 'robe-mode)
     (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)))
