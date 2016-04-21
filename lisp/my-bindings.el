@@ -18,11 +18,12 @@
 (define-key global-map (kbd "M-x") 'helm-M-x)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 
-(define-key global-map (kbd "C-s") 'isearch-forward-regexp)
-(define-key global-map (kbd "C-r") 'isearch-backward-regexp)
+(use-package isearch
+  :bind (( "C-s" . isearch-forward-regexp)
+         ( "C-r" . isearch-backward-regexp)
+         ( "C-M-s" . isearch-forward)
+         ( "C-M-r" . isearch-backward)))
 
-(define-key global-map (kbd "C-M-s") 'isearch-forward)
-(define-key global-map (kbd "C-M-r") 'isearch-backward)
 
 (define-key global-map (kbd "C-M-g") 'goto-line)
 (define-key global-map (kbd "C-S-l") 'goto-line)
@@ -88,15 +89,6 @@
 ;;
 ;; Aliases
 ;;
-
-(defalias 'qr 'query-replace)
-(defalias 'rs 'replace-string)
-(defalias 'qrr 'query-replace-regexp)
-(defalias 'rr 'replace-regexp)
-
-(defalias 'lf 'load-file)
-(defalias 'll 'load-library)
-
 (defalias 'tail-mode 'auto-revert-tail-mode)
 
 ;;
@@ -105,7 +97,7 @@
 
 ;; workgroups
 (use-package workgroups
-  :diminish
+  :diminish workgroups-mode
   :config
   (progn
     (setq wg-prefix-key (kbd "C-z")
