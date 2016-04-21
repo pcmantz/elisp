@@ -1,5 +1,6 @@
 ace-window
 apache-mode
+bind-key
 chruby
 clojure-mode
 clojure-snippets

@@ -61,6 +61,11 @@
 ;; play it again sam
 (package-initialize)
 
+;; global requirements
+(require 'use-package)
+(require 'diminish)
+(require 'bind-key)
+
 ;;
 ;; load custom modules
 ;;
