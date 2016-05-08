@@ -35,8 +35,9 @@
 (use-package rubocop
   :diminish rubocop-mode)
 (use-package ruby-tools
-  :diminish ruby-tools)
-(use-package robe)
+  :diminish ruby-tools-mode)
+(use-package robe
+  :diminish robe-mode)
 (use-package chruby)
 
 (use-package projectile-rails
