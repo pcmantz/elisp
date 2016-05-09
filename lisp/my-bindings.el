@@ -15,9 +15,6 @@
 (define-key global-map (kbd "C-x C-c") nil)   ;; don't make it easy to kill emacs
 (define-key global-map (kbd "<f2> <f2>") nil) ;; whatever this is is frustrating
 
-(define-key global-map (kbd "M-x") 'helm-M-x)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-
 (use-package isearch
   :bind (( "C-s" . isearch-forward-regexp)
          ( "C-r" . isearch-backward-regexp)
@@ -28,8 +25,6 @@
 (define-key global-map (kbd "C-M-g") 'goto-line)
 (define-key global-map (kbd "C-S-l") 'goto-line)
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
-
-(define-key global-map (kbd "M-y") 'helm-show-kill-ring)
 
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR.")
@@ -69,6 +64,9 @@
 ;; ace-window for navigating buffers. Let's give this a try.
 (use-package ace-window
   :bind ("M-p" . ace-window))
+
+(use-package ace-jump-mode
+  :bind ("C-c SPC" . ace-jump-mode))
 
 ;; winner-mode for window undo/redo
 (winner-mode t)
@@ -125,8 +123,6 @@
   (when wg-list
     (with-temp-message ""
       (wg-save wg-file))))
-
-
 
 ;; default-text-scale
 (use-package default-text-scale

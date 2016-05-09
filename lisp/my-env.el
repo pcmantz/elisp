@@ -128,6 +128,10 @@
 ;; helm - Crazy powerful matching
 ;; NOTE: Further keybinding present in my-bindings.el
 (use-package helm
+  :bind (("M-x" . helm-M-x)
+         ("C-x C-f" . helm-find-files)
+         ("C-x b". helm-mini)
+         ("M-y" . helm-show-kill-ring))
   :config
   (progn
     (helm-mode 1)
@@ -137,7 +141,8 @@
       (unless (file-exists-p filename)
         (let ((dir (file-name-directory filename)))
           (unless (file-exists-p dir)
-            (make-directory dir)))))))
+            (make-directory dir)))))
+    (helm-autoresize-mode 1)))
 (use-package helm-config)
 
 ;; projectile: for managing projects
