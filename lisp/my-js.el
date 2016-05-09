@@ -27,9 +27,10 @@
     (defvar my-js-hook 'my-js-defaults)
     (add-hook 'js2-mode-hook (lambda () (run-hooks 'my-js-hook)) t)))
 
+
 (use-package web-beautify
   :bind
-  (:js2-mode-map
+  (:map js2-mode-map
    ( "C-M-\\" . web-beautify-js)))
 
 (provide 'my-js)
