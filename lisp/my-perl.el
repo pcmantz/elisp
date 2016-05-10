@@ -4,7 +4,6 @@
 
 ;;; Code:
 
-;; cperl-mode
 (defun set-perl-mode-to-cperl-mode ()
     "Replace `perl-mode' with `cperl-mode' in `auto-mode-alist' and `interpreter-mode-alist'."
     (mapc
@@ -35,8 +34,7 @@
     (setq my-perl-hook 'my-perl-defaults))
   :config
   (progn
-    (add-hook 'cperl-mode-hook
-              (lambda () (run-hooks 'my-perl-hook)) t)))
+    (add-hook 'cperl-mode-hook (lambda () (run-hooks 'my-perl-hook)) t)))
 
 ;; perltidy
 ;; code copied from Emacs::PDE
@@ -48,4 +46,4 @@
    ("C-c C-q" . perltidy-subroutine)))
 
 (provide 'my-perl)
-;; end my-perl.el
+;;; my-perl.el ends here
