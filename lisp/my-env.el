@@ -95,15 +95,16 @@
 
 ;; buffer listing
 (use-package ibuffer
+  :bind ("C-x C-b" . ibuffer)
   :config
   (progn
-       (global-set-key (kbd "C-x C-b") 'ibuffer)
-       (setq
-        ibuffer-default-sorting-mode 'major-mode
-        ibuffer-always-show-last-buffer t
-        ibuffer-view-ibuffer t)
-       (use-package ibuffer-vc
-         :config (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root))))
+    (setq
+     ibuffer-default-sorting-mode 'major-mode
+     ibuffer-always-show-last-buffer t
+     ibuffer-view-ibuffer t)
+    (use-package ibuffer-vc
+      :config
+      (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root))))
 
 ;; frame config
 (line-number-mode t)
