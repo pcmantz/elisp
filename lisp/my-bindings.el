@@ -63,7 +63,7 @@
 
 ;; ace-window for navigating buffers. Let's give this a try.
 (use-package ace-window
-  :bind ("M-p" . ace-window))
+  :bind ("C-c w" . ace-window))
 
 (use-package ace-jump-mode
   :bind ("C-c SPC" . ace-jump-mode))
