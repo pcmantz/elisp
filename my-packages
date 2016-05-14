@@ -34,6 +34,7 @@ markdown-mode
 monokai-theme
 multi-term
 multiple-cursors
+pandoc-mode
 php-mode
 pkg-info
 projectile
