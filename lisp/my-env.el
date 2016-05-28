@@ -36,11 +36,11 @@
 ;;
 
 (setq
- version-control t   ;; version backup files
  backup-by-copying t ;; don't clobber symlinks
+ version-control t   ;; version backup files
+ kept-new-versions 10
+ kept-old-versions 0
  delete-old-versions t
- kept-new-versions 4
- kept-old-versions 2
  vc-make-backup-files t)
 
 ;; Write backup files to own directory
