@@ -27,7 +27,6 @@
   :config
   (progn
     (setq enh-ruby-deep-indent-paren nil)
-    (add-hook 'enh-ruby-mode-hook 'my-ruby-defaults)
     (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
     (add-hook 'enh-ruby-mode-hook 'robe-mode)
     (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)))
@@ -59,6 +58,8 @@
   "Convert all hash arrows in the buffer to javascript-like keys."
   (interactive)
   (ruby-hash-arrows-to-keys-region (point-min) (point-max)))
+
+(set-ruby-mode-to-enh-ruby-mode)
 
 (provide 'my-ruby)
 ;;;  my-ruby.el ends here
