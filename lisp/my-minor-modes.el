@@ -48,8 +48,10 @@
         (id (one-or-more (not (any " "))))
         (message) line-end))
   :modes (text-mode markdown-mode gfm-mode tex-mode latex-mode))
-
 (add-to-list 'flycheck-checkers 'proselint)
+
+;;
+(use-package pandoc-mode)
 
 (provide 'my-minor-modes)
 ;;; my-minor-modes.el ends here
