@@ -171,5 +171,9 @@
 ; As pointed out by Dmitri, this will make sure it will update color when needed.
 ;; (add-hook 'post-command-hook 'yasnippet-change-cursor-color-when-can-fire)
 
+(use-package dash-at-point
+  :bind (("C-c d" . dash-at-point)
+         ("C-c D" . dash-at-point-with-docset)))
+
 (provide 'my-bindings)
 ;;; my-bindings ends here
