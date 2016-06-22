@@ -1,3 +1,4 @@
+# -*- mode: snippet -*-
 # name : moosex-declare
 # key : mxd
 # contributor : Paul C. Mantz <pcmantz@gmail.com>
@@ -8,6 +9,6 @@ use 5.010;
 
 class ${1:Package::Name} with (${2:Role::Name}){
 
-    $0      
+    $0
 
 }

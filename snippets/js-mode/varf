@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: var function
+# key: varf
+# expand-env: ((yas/indent-line 'fixed))
+# --
+
+var ${1:varname} = function (${2:args}) {
+  $0
+};
