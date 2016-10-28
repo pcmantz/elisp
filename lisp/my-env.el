@@ -71,10 +71,10 @@
   (blink-cursor-mode -1)
   (mouse-wheel-mode t)
   (xterm-mouse-mode t)
-  (use-package zenburn-theme
+  (use-package metalheart-theme
     :config
     (load-theme 'zenburn))
-  (set-cursor-color "green")
+  (set-cursor-color "purple")
   (cond ((string= window-system "x")   ;; X11 window system
          (set-face-attribute 'default nil :font "Inconsolata-9")
          (setq
