@@ -19,6 +19,8 @@
 
 ;; keep local customizations out of this file
 (setq custom-file (concat elisp-dir "my-custom-file.el"))
+(if (not (file-exists-p custom-file))
+    (write-region "" nil custom-file))
 (load custom-file)
 
 ;;
