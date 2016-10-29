@@ -80,7 +80,7 @@
   (cond ((string= window-system "x")   ;; X11 window system
          (set-face-attribute 'default nil :font "Inconsolata-9")
          (setq
-          x-select-enable-clipboard t
+          select-enable-clipboard t
           interprogram-paste-function 'x-cut-buffer-or-selection-value))
         ((string= window-system "ns")  ;; Apple OS X
          (set-face-attribute 'default nil :font "Inconsolata-11"))
