@@ -50,8 +50,14 @@
   :modes (text-mode markdown-mode gfm-mode tex-mode latex-mode))
 (add-to-list 'flycheck-checkers 'proselint)
 
-;;
+;; pandoc-mode
 (use-package pandoc-mode)
+
+;; company
+(use-package company
+  :config
+  (progn
+    (global-company-mode)))
 
 (provide 'my-minor-modes)
 ;;; my-minor-modes.el ends here

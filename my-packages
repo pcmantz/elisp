@@ -6,6 +6,7 @@ chruby
 clojure-mode
 clojure-snippets
 coffee-mode
+company
 dash
 default-text-scale
 diminish
@@ -31,10 +32,11 @@ js2-refactor
 logito
 magit
 markdown-mode
+metalheart-theme
 monokai-theme
 multi-term
 multiple-cursors
-pandoc-mode
+origami
 pandoc-mode
 php-mode
 pkg-info
