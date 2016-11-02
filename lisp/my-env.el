@@ -154,7 +154,13 @@
 (use-package projectile
   :config
   (progn
-    (projectile-global-mode t)))
+    (defun projectile-multi-term-in-root ()
+      "Invoke `multi-term' in the project's root."
+      (interactive)
+      (projectile-with-default-dir (projectile-project-root) (multi-term)))
+
+    (define-key projectile-command-map (kbd "x m") 'projectile-multi-term-in-root)
+    (projectile-mode t)))
 
 (use-package helm-projectile
   :config (helm-projectile-on))
