@@ -75,8 +75,9 @@
   (xterm-mouse-mode t)
   (use-package metalheart-theme
     :config
-    (load-theme 'zenburn))
-  (set-cursor-color "purple")
+    (progn
+      (load-theme 'metalheart)
+      (set-cursor-color "purple")))
   (cond ((string= window-system "x")   ;; X11 window system
          (set-face-attribute 'default nil :font "Inconsolata-9")
          (setq
