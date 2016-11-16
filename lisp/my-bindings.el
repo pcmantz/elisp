@@ -53,6 +53,10 @@
     (define-key multiple-cursors-keymap (kbd "M-p") 'mc/mark-previous-word-like-this)
     (define-key multiple-cursors-keymap (kbd "M-a") 'mc/mark-all-words-like-this)))
 
+; expand the marked region in semantic increments (negative prefix to reduce region)
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
 ;; enable default disabled bindings
 (put 'set-goal-column 'disabled nil)
 (put 'narrow-to-region 'disabled nil)

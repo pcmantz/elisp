@@ -13,6 +13,7 @@ diminish
 enh-ruby-mode
 epl
 exec-path-from-shell
+expand-region
 f
 flycheck
 flycheck-status-emoji
