@@ -8,9 +8,18 @@
 ;; outline-minor-mode stuff.  Not requiring this since I don't need it
 ;; everywhere, but it is useful.
 
+;; I don't use this and I want to use origami
+(global-unset-key (kbd "C-o"))
+
 (use-package origami
   :config
   (progn
+    (define-key global-map (kbd "C-o o") 'origami-recursively-toggle-node)
+    (define-key global-map (kbd "C-o O") 'origami-open-node-recursively)
+    (define-key global-map (kbd "C-o c") 'origami-close-node-recursively)
+    (define-key global-map (kbd "C-o C") 'origami-close-all-nodes)
+    (define-key global-map (kbd "C-o A") 'origami-open-all-nodes)
+
     (global-origami-mode)))
 
 (use-package flycheck
