@@ -118,10 +118,12 @@
 ;; text display config
 (show-paren-mode t)
 (transient-mark-mode)
-(setq-default
- fill-column 78
- tab-width 4
- indent-tabs-mode nil)
+(setq-default fill-column 78
+              tab-width 4
+              indent-tabs-mode nil)
+
+;; audible bells are horrible
+(setq visible-bell t)
 
 ;;
 ;; interaction
