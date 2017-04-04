@@ -22,6 +22,7 @@ goto-chg
 graphviz-dot-mode
 haml-mode
 haskell-mode
+hcl-mode
 helm
 helm-ag
 helm-projectile

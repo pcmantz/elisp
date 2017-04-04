@@ -96,6 +96,11 @@
   :mode  (("\\.md$" . markdown-mode)
           ("\\.markdown$" . markdown-mode)))
 
+;; hcl-mode
+(use-package hcl-mode
+  :mode (("\\.tf(?:state)" . hcl-mode)
+         ("\\.json" . hcl-mode)))
+
 ;;
 ;; Fundamental mode overrides
 ;;
