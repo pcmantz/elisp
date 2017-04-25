@@ -79,7 +79,7 @@
 ;; yaml-mode
 (use-package yaml-mode
   :mode (("\\.ya?ml$"  . yaml-mode))
-  :config (setq yaml-indent-offset 'tab-width))
+  :config (setq yaml-indent-offset 2))
 
 ;; rnc-mode
 (use-package rnc-mode
