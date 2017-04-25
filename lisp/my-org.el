@@ -62,17 +62,27 @@
 
     (reload-org-dirs)))
 
+;; TODO: Need to refactor this into the use-package hooks
+
+;; active Org-babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(;; other Babel languages
+   (plantuml . t)))
+
+(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/8059/libexec/plantuml.jar")
+
 (use-package org-capture
   :bind ("<f2>" . org-capture)
   :config
   (progn
-    (mapcar (lambda (template) (add-to-list org-capture-templates template))
-            (list ("t" "Todo" entry (file+headline "~/org/incoming.org" "Todos")
-                   "* TODO %?\n  %i\n  %a\n  %T\n")
-                  ("n" "Note" entry (file+headline "~/org/incoming.org" "Notes")
-                   "* %u %?\n  %T\n")
-                  ("a" "Appointment" entry (file+headline "~/org/incoming.org" "Appointments")
-                   "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")))))
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/org/incoming.org" "Todos")
+             "* TODO %?\n  %i\n  %a\n  %T\n")
+            ("n" "Note" entry (file+headline "~/org/incoming.org" "Notes")
+             "* %u %?\n  %T\n")
+            ("a" "Appointment" entry (file+headline "~/org/incoming.org" "Appointments")
+             "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")))))
 
 (use-package org-agenda
   :bind
@@ -107,6 +117,11 @@
                                       (quote regexp) "<[^>\n]+>")))
          (org-agenda-overriding-header "Unscheduled TODO entries: ")))))
     (reload-org-dirs)))
+
+(use-package org-jira
+  :config
+  (progn
+    (define-key org-jira-entry-mode-map (kbd "C-c i i") 'org-jira-get-issue)))
 
 (provide 'my-org)
 ;;; my-org.el ends here

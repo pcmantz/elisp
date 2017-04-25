@@ -38,10 +38,13 @@ metalheart-theme
 monokai-theme
 multi-term
 multiple-cursors
+org-jira
 origami
+ox-pandoc
 pandoc-mode
 php-mode
 pkg-info
+plantuml-mode
 projectile
 projectile-rails
 rails-log-mode
