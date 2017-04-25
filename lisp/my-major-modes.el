@@ -27,10 +27,16 @@
 
 ;; magit
 (use-package magit
+  :bind (("C-x g" . magit-status)
+         ("C-x C-S-s" . (lambda () (progn (save-buffer) (magit-stage-file)))))
+
   :config
   (progn
     (if (fboundp 'magit-completing-read-function)
-        (setq magit-completing-read-function 'helm-comp-read))))
+        (setq magit-completing-read-function 'helm-comp-read))
+    ;; (rx (and line-start "*magit" (zero-or-one (and "-" (or "refs"))) ":" (0+ anything)  "*"))
+    (add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
+    (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)))
 
 (defun magit-toggle-whitespace ()
   (interactive)
@@ -47,16 +53,6 @@
   (interactive)
   (setq magit-diff-arguments (remove "-w" magit-diff-arguments))
   (magit-refresh))
-
-(use-package magit
-  :bind ( "C-x g" . magit-status)
-  :config
-  (progn
-     (if (fboundp 'magit-completing-read-function)
-         (setq magit-completing-read-function 'helm-comp-read))
-     ;; (rx (and line-start "*magit" (zero-or-one (and "-" (or "refs"))) ":" (0+ anything)  "*"))`
-     (add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
-     (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)))
 
 ;; multi-term
 (use-package multi-term
