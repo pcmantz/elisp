@@ -17,6 +17,7 @@ epl
 exec-path-from-shell
 expand-region
 f
+feature-mode
 flycheck
 flycheck-plantuml
 flycheck-status-emoji
