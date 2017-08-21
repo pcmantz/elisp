@@ -5,5 +5,8 @@
 # group: definitions
 # --
 def ${1:attribute}
-  @$1 ||= $0
+  return @$1 if defined?(@$1)
+
+  $0
+  @$1
 end
