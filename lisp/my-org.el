@@ -116,6 +116,8 @@
          (org-agenda-overriding-header "Unscheduled TODO entries: ")))))
     (reload-org-dirs)))
 
+(use-package ox-pandoc)
+
 (use-package org-jira
   :config
   (progn
