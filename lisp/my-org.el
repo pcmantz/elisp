@@ -70,8 +70,6 @@
  '(;; other Babel languages
    (plantuml . t)))
 
-(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/8059/libexec/plantuml.jar")
-
 (use-package org-capture
   :bind ("<f2>" . org-capture)
   :config
