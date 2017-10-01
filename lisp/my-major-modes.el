@@ -97,6 +97,9 @@
   :mode (("\\.tf(?:state)" . hcl-mode)
          ("\\.json" . hcl-mode)))
 
+(use-package plantuml-mode
+  :mode (("\\.plantuml$" . plantuml-mode)))
+
 ;;
 ;; Fundamental mode overrides
 ;;
