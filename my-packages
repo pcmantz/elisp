@@ -12,6 +12,7 @@ csv-mode
 dash
 default-text-scale
 diminish
+dired-subtree
 docker-compose-mode
 dockerfile-mode
 elixir-mode
