@@ -12,6 +12,10 @@ csv-mode
 dash
 default-text-scale
 diminish
+docker-compose-mode
+dockerfile-mode
+elixir-mode
+elixir-yasnippets
 enh-ruby-mode
 epl
 exec-path-from-shell
