@@ -27,8 +27,7 @@
 
 ;; magit
 (use-package magit
-  :bind (("C-x g" . magit-status)
-         ("C-x C-S-s" . (lambda () (progn (save-buffer) (magit-stage-file)))))
+  :bind (("C-x g" . magit-status))
 
   :config
   (progn
