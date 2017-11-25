@@ -12,6 +12,7 @@ csv-mode
 dash
 default-text-scale
 diminish
+dired-subtree
 enh-ruby-mode
 epl
 exec-path-from-shell

@@ -130,6 +130,14 @@
           uniquify-after-kill-buffer-p t
           uniquify-ignore-buffers-re "^\\*")))
 
+
+;; dired
+(use-package dired-subtree
+  :config
+  (bind-keys :map dired-mode-map
+             ("i" . dired-subtree-insert)
+             (";" . dired-subtree-remove)))
+
 ;; buffer listing
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
