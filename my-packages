@@ -23,7 +23,9 @@ flycheck-plantuml
 flycheck-status-emoji
 gitignore-mode
 goto-chg
+gradle-mode
 graphviz-dot-mode
+groovy-mode
 haml-mode
 haskell-mode
 hcl-mode
