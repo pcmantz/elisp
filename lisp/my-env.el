@@ -195,7 +195,13 @@
       (projectile-with-default-dir (projectile-project-root) (multi-term)))
 
     (define-key projectile-command-map (kbd "x m") 'projectile-multi-term-in-root)
-    (projectile-mode t)))
+    (projectile-mode t)
+
+    ;; HACK: latest implementation of proectile-mode-line is horribly
+    ;; un-performant and runs after each keypress, hammering the CPU
+    (setq projectile-mode-line
+          '(:eval (format " Projectile[%s]"
+                          (projectile-project-name))))))
 
 (use-package helm-projectile
   :config (helm-projectile-on))
