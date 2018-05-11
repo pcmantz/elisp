@@ -22,6 +22,10 @@
 
     (global-origami-mode)))
 
+(use-package direnv
+  :config
+  (direnv-mode))
+
 (use-package flycheck
   :config
   (progn
