@@ -27,14 +27,17 @@
   :config
   (progn
     (setq enh-ruby-deep-indent-paren nil)
-    (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
     (add-hook 'enh-ruby-mode-hook 'robe-mode)
+    (add-hook 'enh-ruby-mode-hook 'rspec-mode)
+    (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
     (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)))
 
 (use-package rubocop
   :diminish rubocop-mode)
 (use-package ruby-tools
   :diminish ruby-tools-mode)
+(use-package rspec-mode
+  :diminish rspec-mode)
 (use-package robe
   :diminish robe-mode)
 (use-package chruby)
