@@ -13,6 +13,7 @@ dash
 default-text-scale
 diminish
 dired-subtree
+direnv
 docker-compose-mode
 dockerfile-mode
 elixir-mode
