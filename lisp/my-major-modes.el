@@ -99,6 +99,21 @@
 (use-package plantuml-mode
   :mode (("\\.plantuml$" . plantuml-mode)))
 
+(use-package web-mode
+  :mode (("\\.p?html\\'" . web-mode)
+         ("\\.tpl\\.php\\'" . web-mode)
+         ("\\.[agj]sp\\'" . web-mode)
+         ("\\.as[cp]x\\'" . web-mode)
+         ("\\.erb\\'" . web-mode)
+         ("\\.mustache\\'" . web-mode)
+         ("\\.djhtml\\'" . web-mode))
+  :config
+  (progn
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)))
+
+
 ;;
 ;; Fundamental mode overrides
 ;;

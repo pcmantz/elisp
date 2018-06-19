@@ -73,7 +73,9 @@ tt-mode
 use-package
 w3m
 web-beautify
+web-mode
 workgroups
 yaml-mode
 yasnippet
+yasnippet-snippets
 zenburn-theme
