@@ -60,6 +60,7 @@ plantuml-mode
 projectile
 projectile-rails
 rails-log-mode
+rjsx-mode
 robe
 rubocop
 ruby-tools
