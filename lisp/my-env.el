@@ -217,7 +217,7 @@
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
-(use-package whitespace-mode
+(use-package whitespace
   :demand t
   :bind ("C-x W" . 'whitespace-mode)
   :config
