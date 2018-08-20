@@ -217,9 +217,18 @@
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(setq whitespace-line-column 120)
-(define-key global-map (kbd "C-x W") 'whitespace-mode)
+(use-package whitespace-mode
+  :demand t
+  :bind ("C-x W" . 'whitespace-mode)
+  :config
+  (progn
+    (setq whitespace-line-column 120)
+    (add-hook 'before-save-hook 'whitespace-cleanup)))
+
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
 
 (provide 'my-env)
 ;;; my-env.el ends here
