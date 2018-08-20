@@ -123,5 +123,11 @@
   (progn
     (define-key org-jira-entry-mode-map (kbd "C-c i i") 'org-jira-get-issue)))
 
+(use-package org-journal
+  :config
+  (progn
+    (setq
+     org-journal-file-format "%Y-%m-%d.org")))
+
 (provide 'my-org)
 ;;; my-org.el ends here
