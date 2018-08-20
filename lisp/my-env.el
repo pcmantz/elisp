@@ -40,8 +40,8 @@
 (setq
  backup-by-copying t ;; don't clobber symlinks
  version-control t   ;; version backup files
- kept-new-versions 10
- kept-old-versions 0
+ kept-new-versions 6
+ kept-old-versions 2
  delete-old-versions t
  vc-make-backup-files t)
 
