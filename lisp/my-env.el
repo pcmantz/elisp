@@ -62,6 +62,7 @@
 
 ;; colors! the colors!
 (use-package font-lock
+  :demand t
   :config
   (progn
      (global-font-lock-mode t)
@@ -122,6 +123,7 @@
 
 ;; uniquify: unique buffer names
 (use-package uniquify
+  :demand t
   :config
   (progn
     (setq uniquify-buffer-name-style 'forward
