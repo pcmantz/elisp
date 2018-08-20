@@ -1,0 +1,13 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: get (memo)
+# key: getm
+# expand-env: ((yas/indent-line 'fixed))
+# --
+
+get ${1:attr}() {
+  if (!this.hasOwnProperty('_$1')) {
+    this._$1 = $0;
+  }
+
+  return this._$1;
+}
