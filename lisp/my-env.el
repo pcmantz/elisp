@@ -196,6 +196,8 @@
 
 ;; projectile: for managing projects
 (use-package projectile
+  :bind-keymap (("C-c p" . projectile-command-map)
+                ("s-p" . projectile-command-map))
   :config
   (progn
     (defun projectile-multi-term-in-root ()
