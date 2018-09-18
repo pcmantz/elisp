@@ -4,29 +4,23 @@
 
 ;;; Code:
 
-(defun set-javascript-mode-to-js2-mode ()
-    "Replace `javascript-mode' with `js2-mode' in `auto-mode-alist' and `interpreter-mode-alist'."
+(defun set-javascript-mode-to-rjsx-mode ()
+    "Replace `javascript-mode' with `rjsx-mode' in `auto-mode-alist' and `interpreter-mode-alist'."
     (mapc
      (lambda (pair)
        (if (eq (cdr pair) 'javascript-mode)
-           (setcdr pair 'js2-mode)))
+           (setcdr pair 'rjsx-mode)))
      (append auto-mode-alist interpreter-mode-alist)))
 
-(set-javascript-mode-to-js2-mode)
-(defalias 'javascript-mode 'js2-mode)
+(set-javascript-mode-to-rjsx-mode)
+(defalias 'javascript-mode 'rjsx-mode)
 
-(use-package js2-mode
-  :mode (("*\\.js$" . js2-mode))
+(use-package rjsx-mode
+  :mode (("\\.jsx?$" . rjsx-mode))
   :config
   (progn
-    (defun my-js-defaults ()
-      (setq js2-basic-offset 2)))
-  :config
-  (progn
-    (set-javascript-mode-to-js2-mode)
-    (defvar my-js-hook 'my-js-defaults)
-    (add-hook 'js2-mode-hook (lambda () (run-hooks 'my-js-hook)) t)))
-
+    (set-javascript-mode-to-rjsx-mode)
+    (setq js2-basic-offset 2)))
 
 (use-package web-beautify
   :bind

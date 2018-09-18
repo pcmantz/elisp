@@ -24,7 +24,14 @@
 
 (use-package direnv
   :config
-  (direnv-mode))
+  (progn
+    (direnv-mode)
+    (let ((new-non-file-modes '('magit-mode
+                                'magit-status-mode
+                                'magit-refs-mode
+                                'magit-diff-mode)))
+      (mapcar (lambda (nf-mode) (add-to-list 'direnv-non-file-modes nf-mode))
+              new-non-file-modes))))
 
 (use-package flycheck
   :config

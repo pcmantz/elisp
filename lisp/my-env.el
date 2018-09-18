@@ -40,8 +40,8 @@
 (setq
  backup-by-copying t ;; don't clobber symlinks
  version-control t   ;; version backup files
- kept-new-versions 10
- kept-old-versions 0
+ kept-new-versions 6
+ kept-old-versions 2
  delete-old-versions t
  vc-make-backup-files t)
 
@@ -62,6 +62,7 @@
 
 ;; colors! the colors!
 (use-package font-lock
+  :demand t
   :config
   (progn
      (global-font-lock-mode t)
@@ -122,6 +123,7 @@
 
 ;; uniquify: unique buffer names
 (use-package uniquify
+  :demand t
   :config
   (progn
     (setq uniquify-buffer-name-style 'forward
@@ -194,6 +196,8 @@
 
 ;; projectile: for managing projects
 (use-package projectile
+  :bind-keymap (("C-c p" . projectile-command-map)
+                ("s-p" . projectile-command-map))
   :config
   (progn
     (defun projectile-multi-term-in-root ()
@@ -215,9 +219,18 @@
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(setq whitespace-line-column 120)
-(define-key global-map (kbd "C-x W") 'whitespace-mode)
+(use-package whitespace
+  :demand t
+  :bind ("C-x W" . 'whitespace-mode)
+  :config
+  (progn
+    (setq whitespace-line-column 120)
+    (add-hook 'before-save-hook 'whitespace-cleanup)))
+
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
 
 (provide 'my-env)
 ;;; my-env.el ends here

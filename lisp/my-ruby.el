@@ -26,20 +26,25 @@
     (set-ruby-mode-to-enh-ruby-mode))
   :config
   (progn
-    (setq enh-ruby-deep-indent-paren nil)
-    (add-hook 'enh-ruby-mode-hook 'robe-mode)
-    (add-hook 'enh-ruby-mode-hook 'rspec-mode)
-    (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
-    (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)))
+    (setq enh-ruby-deep-indent-paren nil)))
 
 (use-package rubocop
-  :diminish rubocop-mode)
+  :diminish rubocop-mode
+  :hook enh-ruby-mode)
 (use-package ruby-tools
-  :diminish ruby-tools-mode)
-(use-package rspec-mode
-  :diminish rspec-mode)
+  :diminish ruby-tools-mode
+  :hook enh-ruby-mode)
 (use-package robe
-  :diminish robe-mode)
+  :diminish robe-mode
+  :hook enh-ruby-mode)
+(use-package rspec-mode
+  :diminish rspec-mode
+  :hook enh-ruby-mode
+  :config
+  (progn
+    (rspec-install-snippets)))
+
+;; NOTE: This is really useful, but less so with direnv mode
 (use-package chruby)
 
 (use-package projectile-rails

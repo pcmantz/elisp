@@ -138,7 +138,7 @@
   :diminish yas-minor-mode
   :config
   (progn
-    (yas-global-mode 1)
+    (yas-global-mode)
     (yas-load-directory (concat elisp-dir "/snippets"))
     (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
     (set-default 'yas--dont-activate
@@ -146,6 +146,8 @@
                      (or buffer-read-only
                          (and yas-snippet-dirs
                               (null (yas--get-snippet-tables))))))))
+
+(use-package yasnippet-snippets)
 
 (defvar default-cursor-color "green")
 (defvar yasnippet-can-fire-cursor-color "purple")
