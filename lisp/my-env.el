@@ -228,9 +228,16 @@
     (add-hook 'before-save-hook 'whitespace-cleanup)))
 
 (use-package editorconfig
+  :diminish editorconfig-mode
   :config
   (editorconfig-mode 1))
 
+(use-package keyfreq
+  :demand t
+  :config
+  (progn
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1)))
 
 (provide 'my-env)
 ;;; my-env.el ends here
