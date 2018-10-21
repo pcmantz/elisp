@@ -28,7 +28,6 @@
 ;; magit
 (use-package magit
   :bind (("C-x g" . magit-status))
-
   :config
   (progn
     (if (fboundp 'magit-completing-read-function)

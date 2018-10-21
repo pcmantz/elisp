@@ -16,6 +16,7 @@ dired-subtree
 direnv
 docker-compose-mode
 dockerfile-mode
+editorconfig
 elixir-mode
 elixir-yasnippets
 enh-ruby-mode

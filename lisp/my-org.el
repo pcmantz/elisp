@@ -75,7 +75,8 @@
   :config
   (progn
     (setq
-     org-journal-file-format "%Y-%m-%d.org")))
+     org-journal-file-format "%Y-%m-%d.org"
+     org-journal-date-format "%A, %b  %d, %Y")))
 
 (defun org-journal-find-location ()
   ;; Open today's journal, but specify a non-nil prefix argument in order to
@@ -139,7 +140,6 @@
   :config
   (progn
     (define-key org-jira-entry-mode-map (kbd "C-c i i") 'org-jira-get-issue)))
-
 
 (provide 'my-org)
 ;;; my-org.el ends here
