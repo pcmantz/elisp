@@ -70,17 +70,34 @@
  '(;; other Babel languages
    (plantuml . t)))
 
+
+(use-package org-journal
+  :config
+  (progn
+    (setq
+     org-journal-file-format "%Y-%m-%d.org")))
+
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  ;; Position point on the journal's top-level heading so that org-capture
+  ;; will add the new entry as a child entry.
+  (goto-char (point-min)))
+
 (use-package org-capture
   :bind ("<f2>" . org-capture)
   :config
   (progn
     (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline "~/org/incoming.org" "Todos")
+          '(("t" "Todo" entry (function org-journal-find-location)
              "* TODO %?\n  %i\n  %a\n  %T\n")
-            ("n" "Note" entry (file+headline "~/org/incoming.org" "Notes")
+            ("n" "Note" entry (function org-journal-find-location)
              "* %u %?\n  %T\n")
-            ("a" "Appointment" entry (file+headline "~/org/incoming.org" "Appointments")
-             "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")))))
+            ("a" "Appointment" entry (function org-journal-find-location)
+             "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")
+            ("e" "Journal entry" entry (function org-journal-find-location)
+                               "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))))
 
 (use-package org-agenda
   :bind
@@ -123,11 +140,6 @@
   (progn
     (define-key org-jira-entry-mode-map (kbd "C-c i i") 'org-jira-get-issue)))
 
-(use-package org-journal
-  :config
-  (progn
-    (setq
-     org-journal-file-format "%Y-%m-%d.org")))
 
 (provide 'my-org)
 ;;; my-org.el ends here
