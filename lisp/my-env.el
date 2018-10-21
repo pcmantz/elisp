@@ -211,7 +211,7 @@
     ;; HACK: latest implementation of proectile-mode-line is horribly
     ;; un-performant and runs after each keypress, hammering the CPU
     (setq projectile-mode-line
-          '(:eval (format " Projectile[%s]"
+          '(:eval (format " Pj<%s>"
                           (projectile-project-name))))))
 
 (use-package helm-projectile
