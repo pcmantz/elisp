@@ -91,14 +91,12 @@
   :config
   (progn
     (setq org-capture-templates
-          '(("t" "Todo" entry (function org-journal-find-location)
+          '(("e" "Journal entry" entry (function org-journal-find-location)
+             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+            ("t" "Todo" entry (function org-journal-find-location)
              "* TODO %?\n  %i\n  %a\n  %T\n")
-            ("n" "Note" entry (function org-journal-find-location)
-             "* %u %?\n  %T\n")
             ("a" "Appointment" entry (function org-journal-find-location)
-             "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")
-            ("e" "Journal entry" entry (function org-journal-find-location)
-                               "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))))
+             "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")))))
 
 (use-package org-agenda
   :bind
