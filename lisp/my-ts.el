@@ -13,4 +13,5 @@
     (flycheck-add-mode 'javascript-eslint 'typescript-mode)))
 
 (provide 'my-ts)
-;;; my-js.el ends here
+
+;;; my-ts.el ends here
