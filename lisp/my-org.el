@@ -75,7 +75,7 @@
   :config
   (progn
     (setq
-     org-journal-file-format "%Y-%m-%d.org"
+     org-journal-file-format "%Y/%m/%Y-%m-%d.org"
      org-journal-date-format "%A, %b  %d, %Y")))
 
 (defun org-journal-find-location ()
