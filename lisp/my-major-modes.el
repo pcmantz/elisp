@@ -36,6 +36,17 @@
     (add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
     (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)))
 
+(defun dir-git-project? (dir)
+  "Return true if DIR is a git project directory. False otherwise."
+  (f-exists? (f-join dir ".git")))
+
+(defun add-to-list-git-subdirs (list dir)
+  "Add the subdirectories of DIR to LIST."
+  (let* ((subdirs (f-directories dir)))
+    (add-to-list 'list
+                 (-map (lambda (dir) (dir . 0))
+                       (-filter 'dir-git-project? subdirs)))))
+
 (defun magit-toggle-whitespace ()
   (interactive)
   (if (member "-w" magit-diff-arguments)
