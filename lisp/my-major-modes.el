@@ -112,6 +112,18 @@
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 2)))
 
+;; scss-mode
+(use-package scss-mode
+  :config
+  (progn
+    (custom-set-variables
+     '(css-indent-offset 2))))
+
+(use-package css-mode
+  :config
+  (progn
+    (custom-set-variables
+     '(css-indent-offset 2))))
 
 ;;
 ;; Fundamental mode overrides
