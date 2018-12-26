@@ -89,6 +89,7 @@
 (require 'my-emacs-lisp)
 (require 'my-ruby)
 (require 'my-org)
+(require 'my-prodigy)
 
 ;;
 ;; startup preferences
