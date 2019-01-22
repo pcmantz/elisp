@@ -59,6 +59,7 @@ pandoc-mode
 php-mode
 pkg-info
 plantuml-mode
+prodigy
 projectile
 projectile-rails
 rails-log-mode

@@ -33,7 +33,7 @@
   :hook enh-ruby-mode)
 (use-package ruby-tools
   :diminish ruby-tools-mode
-  :hook enh-ruby-mode)
+  :hook (enh-ruby-mode . ruby-tools-mode))
 (use-package robe
   :diminish robe-mode
   :hook enh-ruby-mode)

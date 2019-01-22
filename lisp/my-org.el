@@ -37,6 +37,7 @@
     (setq
      ;; keybindings
      org-replace-disputed-keys t
+     org-startup-folded nil
 
      ;; Todo transition
      org-todo-keywords '((sequence "TODO" "STARTED" "WAITING" "DELEGATED" "|" "DONE")
@@ -44,15 +45,11 @@
                          (sequence "|" "DEFERRED")
                          (sequence "APPT" "|" "FINISHED"))
      org-deadline-warning-days 14
-     org-fast-tag-selection-single-key 'expert
 
      ;; refile configuration
      org-refile-use-outline-path t ; use full outline paths for refile targets
      org-refile-targets '((nil :maxlevel . 9)
-                          (org-agenda-files :maxlevel . 9))
-
-     ;; org-capture config
-     org-default-notes-file "~/org/incoming.org")
+                          (org-agenda-files :maxlevel . 9)))
 
     ;; Make windmove work in org-mode:
     (add-hook 'org-shiftup-final-hook 'windmove-up)
