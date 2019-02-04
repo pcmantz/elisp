@@ -34,6 +34,8 @@
         (setq magit-completing-read-function 'helm-comp-read))
     ;; (rx (and line-start "*magit" (zero-or-one (and "-" (or "refs"))) ":" (0+ anything)  "*"))
     (add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
+    (add-to-list 'magit-repository-directories '("~/git" . 1))
+    (add-to-list 'magit-repository-directories '("~/Documents" . 1))
     (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)))
 
 (defun magit-toggle-whitespace ()
