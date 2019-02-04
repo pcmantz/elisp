@@ -6,7 +6,6 @@
 # --
 def ${1:attribute}
   return @$1 if defined?(@$1)
-
   $0
   @$1
 end
