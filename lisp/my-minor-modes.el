@@ -67,7 +67,9 @@ See URL `https://github.com/troessner/reek'."
           (setq-local flycheck-javascript-eslint-executable eslint))))
     (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
-    (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+
+    ;; The following is not used while idle-change is not in the above list
     (setq flycheck-idle-change-delay 2)
     (global-flycheck-mode)))
 
