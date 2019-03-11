@@ -30,7 +30,7 @@
 
 (use-package rubocop
   :diminish rubocop-mode
-  :hook enh-ruby-mode)
+  :hook (enh-ruby-mode . rubocop-mode))
 (use-package ruby-tools
   :diminish ruby-tools-mode
   :hook (enh-ruby-mode . ruby-tools-mode))
@@ -44,7 +44,8 @@
   (progn
     (rspec-install-snippets)))
 
-;; NOTE: This is really useful, but less so with direnv mode
+
+;; NOTE: This is really useful, but less necessary with direnv mode
 (use-package chruby)
 
 (use-package projectile-rails
