@@ -178,6 +178,7 @@
 ;; NOTE: Further keybinding present in my-bindings.el
 (use-package helm
   :bind (("M-x" . helm-M-x)
+         ("<f13>" . helm-M-x)
          ("C-x C-f" . helm-find-files)
          ("C-x b". helm-mini)
          ("M-y" . helm-show-kill-ring))
@@ -192,6 +193,7 @@
           (unless (file-exists-p dir)
             (make-directory dir)))))
     (helm-autoresize-mode 1)))
+
 (use-package helm-config)
 
 ;; projectile: for managing projects
