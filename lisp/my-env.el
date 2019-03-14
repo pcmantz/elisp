@@ -121,6 +121,14 @@
          (set-face-attribute 'default nil :font "Consolas-9"))
         (t nil)))
 
+;; all-the-icons
+(use-package all-the-icons
+  :defer 0.5)
+
+(use-package all-the-icons-dired
+  :diminish
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 ;; uniquify: unique buffer names
 (use-package uniquify
   :demand t
