@@ -101,18 +101,23 @@
   :mode (("\\.plantuml$" . plantuml-mode)))
 
 (use-package web-mode
-  :mode (("\\.p?html\\'" . web-mode)
-         ("\\.tpl\\.php\\'" . web-mode)
-         ("\\.[agj]sp\\'" . web-mode)
+  :mode (("\\.[agj]sp\\'" . web-mode)
          ("\\.as[cp]x\\'" . web-mode)
+         ("\\.djhtml\\'" . web-mode)
          ("\\.erb\\'" . web-mode)
+         ("\\.hbs\\'". web-mode)
          ("\\.mustache\\'" . web-mode)
-         ("\\.djhtml\\'" . web-mode))
+         ("\\.p?html\\'" . web-mode)
+         ("\\.tpl\\.php\\'" . web-mode))
   :config
   (progn
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-css-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)))
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-engines-alist
+          '(("php" . "\\.phtml\\'")
+            ("blade" . "\\.blade\\.")
+            ("ctemplate" . "\\.hbs\\.")))))
 
 ;; scss-mode
 (use-package scss-mode
