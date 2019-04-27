@@ -94,5 +94,25 @@ See URL `https://github.com/troessner/reek'."
   (progn
     (global-company-mode)))
 
+(use-package lsp
+  :config
+  (progn
+    (use-package lsp-ui
+      :ensure t
+      :hook (lsp-mode-hook . lsp-ui-mode))
+
+    (use-package company-lsp
+      :ensure t
+      :config
+      (push 'company-lsp company-backends))
+
+    ;; NOTE: This redefines the ruby backend to include enh-ruby-mode.
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection '("solargraph" "stdio"))
+                      :major-modes '(ruby-mode enh-ruby-mode)
+                      :priority -1
+                      :multi-root t
+                      :server-id 'ruby-ls))))
+
 (provide 'my-minor-modes)
 ;;; my-minor-modes.el ends here
