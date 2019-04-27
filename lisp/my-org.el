@@ -16,13 +16,9 @@
 
     (define-key org-todo-state-map "t" (lambda nil (interactive) (org-todo "TODO")))
     (define-key org-todo-state-map "s" (lambda nil (interactive) (org-todo "STARTED")))
-    (define-key org-todo-state-map "w" (lambda nil (interactive) (org-todo "WAITING")))
-    (define-key org-todo-state-map "l" (lambda nil (interactive) (org-todo "DELEGATED")))
-    (define-key org-todo-state-map "d" (lambda nil (interactive) (org-todo "DONE")))
+    (define-key org-todo-state-map "b" (lambda nil (interactive) (org-todo "BLOCKED")))
     (define-key org-todo-state-map "C" (lambda nil (interactive) (org-todo "CANCELLED")))
-    (define-key org-todo-state-map "D" (lambda nil (interactive) (org-todo "DEFERRED")))
-    (define-key org-todo-state-map "a" (lambda nil (interactive) (org-todo "APPT")))
-    (define-key org-todo-state-map "f" (lambda nil (interactive) (org-todo "FINISHED"))))
+    (define-key org-todo-state-map "d" (lambda nil (interactive) (org-todo "DONE"))))
   :config
   (progn
     (defvar org-directory "~/org")
@@ -40,10 +36,8 @@
      org-startup-folded nil
 
      ;; Todo transition
-     org-todo-keywords '((sequence "TODO" "STARTED" "WAITING" "DELEGATED" "|" "DONE")
-                         (sequence "|" "CANCELLED")
-                         (sequence "|" "DEFERRED")
-                         (sequence "APPT" "|" "FINISHED"))
+     org-todo-keywords '((sequence "TODO" "STARTED" "DONE")
+                         (sequence "BLOCKED" "CANCELLED"))
      org-deadline-warning-days 14
 
      ;; refile configuration
@@ -67,14 +61,6 @@
  '(;; other Babel languages
    (plantuml . t)))
 
-
-(use-package org-journal
-  :config
-  (progn
-    (setq
-     org-journal-file-format "%Y/%m/%Y-%m-%d.org"
-     org-journal-date-format "%A, %b  %d, %Y")))
-
 (defun org-journal-find-location ()
   ;; Open today's journal, but specify a non-nil prefix argument in order to
   ;; inhibit inserting the heading; org-capture will insert the heading.
@@ -83,6 +69,13 @@
   ;; Position point on the journal's top-level heading so that org-capture
   ;; will add the new entry as a child entry.
   (goto-char (point-min)))
+
+(use-package org-journal
+  :init
+  (progn
+    (setq
+     org-journal-file-format "%Y/%m/%Y-%m-%d.org"
+     org-journal-date-format "%A, %b  %d, %Y")))
 
 (use-package org-capture
   :bind ("<f2>" . org-capture)
@@ -105,7 +98,7 @@
   :config
   (progn
     (setq
-     org-agenda-include-diary  t
+     org-agenda-include-diary t
      org-agenda-span 14
      org-agenda-show-all-dates t
      org-agenda-skip-deadline-if-done t
