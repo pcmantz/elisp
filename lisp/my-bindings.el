@@ -8,7 +8,9 @@
 ;; Emacs Core Bindings
 ;;
 
-(define-key global-map (kbd "<f5>")  'revert-buffer)
+(use-package files
+  :bind ("<f5>" . revert-buffer))
+
 (define-key global-map (kbd "<f11>") 'fullscreen)
 
 (define-key global-map (kbd "C-z") nil)       ;; stopping emacs is useless
@@ -21,20 +23,30 @@
          ( "C-M-s" . isearch-forward)
          ( "C-M-r" . isearch-backward)))
 
+(use-package simple
+  :bind (("C-M-g" . goto-line)
+         ("C-S-l" . goto-line)
+         ("M-z" . zap-to-char))
+  :config
+  (progn
+    ;; better goto-line
+    (defun goto-line-with-feedback ()
+      "Show line numbers temporarily, while prompting for the line number input."
+      (interactive)
+      (unwind-protect
+          (progn
+            (linum-mode 1)
+            (goto-line (read-number "Goto line: ")))
+        (linum-mode -1)))
+  (global-set-key [remap goto-line] 'goto-line-with-feedback)))
 
-(define-key global-map (kbd "C-M-g") 'goto-line)
-(define-key global-map (kbd "C-S-l") 'goto-line)
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
+(use-package misc
+  :bind ("M-Z" . zap-up-to-char))
 
-(autoload 'zap-up-to-char "misc"
-  "Kill up to, but not including ARGth occurrence of CHAR.")
-(global-set-key (kbd "M-z") 'zap-to-char)
-(global-set-key (kbd "M-Z") 'zap-up-to-char)
-
-(define-key global-map (kbd "C-x K") 'kill-buffer-and-window)
+(use-package window
+  :bind (("C-x K" . kill-buffer-and-window)))
 
 (define-key global-map (kbd "C-x F") 'msg-buffer-filename)
-(define-key global-map (kbd "C-c b") 'magit-blame)
 
 ;; bindings for multiple-cursors
 (use-package multiple-cursors
@@ -62,8 +74,8 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;; windmove for navigating buffers
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+(use-package windmove
+  :config (windmove-default-keybindings))
 
 ;; ace-window for navigating buffers. Let's give this a try.
 (use-package ace-window
@@ -74,16 +86,6 @@
 
 ;; winner-mode for window undo/redo
 (winner-mode t)
-
-;; better goto-line
-(defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input."
-  (interactive)
-  (unwind-protect
-      (progn
-        (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
-    (linum-mode -1)))
 
 ;; Navigate through edit points
 (use-package goto-chg)

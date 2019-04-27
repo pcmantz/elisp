@@ -54,7 +54,8 @@
 ;; TRAMP
 ;;
 ;; NOTE: To avoid recursive loads, we load tramp right here and now
-(require 'tramp)
+(use-package tramp
+  :ensure t)
 
 ;;
 ;; display

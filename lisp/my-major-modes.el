@@ -27,7 +27,8 @@
 
 ;; magit
 (use-package magit
-  :bind (("C-x g" . magit-status))
+  :bind (("C-x g" . magit-status)
+         ("C-c b" . magit-blame))
   :config
   (progn
     (if (fboundp 'magit-completing-read-function)
