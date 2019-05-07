@@ -40,7 +40,7 @@ helm
 helm-ag
 helm-projectile
 helm-robe
-ibuffer-vc
+ibuffer-projectile
 inflections
 js2-mode
 js2-refactor
@@ -63,6 +63,7 @@ prodigy
 projectile
 projectile-rails
 rails-log-mode
+reformatter
 rjsx-mode
 robe
 rubocop
