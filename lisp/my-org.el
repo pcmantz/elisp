@@ -36,8 +36,8 @@
      org-startup-folded nil
 
      ;; Todo transition
-     org-todo-keywords '((sequence "TODO" "STARTED" "DONE")
-                         (sequence "BLOCKED" "CANCELLED"))
+     org-todo-keywords '((sequence "TODO" "STARTED" "BLOCKED")
+                         (sequence "DONE" "CANCELLED"))
      org-deadline-warning-days 14
 
      ;; refile configuration
@@ -74,6 +74,7 @@
   :init
   (progn
     (setq
+     org-journal-carryover-items "TODO=\"TODO\"|TODO=\"STARTED\"|TODO=\"BLOCKED\""
      org-journal-file-format "%Y/%m/%Y-%m-%d.org"
      org-journal-date-format "%A, %b  %d, %Y")))
 
@@ -105,9 +106,7 @@
      org-agenda-skip-scheduled-if-done t
      org-agenda-start-on-weekday nil
      org-agenda-custom-commands
-     '(("d" todo "DELEGATED" nil)
-       ("w" todo "WAITING" nil)
-       ("c" todo "DONE|CANCELLED|DEFERRED|FINISHED" nil)
+     '(("c" todo "DONE|CANCELLED" nil)
        ("W" agenda "" ((org-agenda-ndays 21)))
        ("A" agenda ""
         ((org-agenda-skip-function
