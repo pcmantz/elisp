@@ -22,10 +22,5 @@
     (set-javascript-mode-to-rjsx-mode)
     (setq js2-basic-offset 2)))
 
-(use-package web-beautify
-  :bind
-  (:map js2-mode-map
-   ( "C-M-\\" . web-beautify-js)))
-
 (provide 'my-js)
 ;;; my-js.el ends here
