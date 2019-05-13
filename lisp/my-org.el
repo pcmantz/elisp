@@ -63,9 +63,7 @@
     (add-hook 'org-shiftup-final-hook 'windmove-up)
     (add-hook 'org-shiftleft-final-hook 'windmove-left)
     (add-hook 'org-shiftdown-final-hook 'windmove-down)
-    (add-hook 'org-shiftright-final-hook 'windmove-right)
-
-    (reload-org-dirs)))
+    (add-hook 'org-shiftright-final-hook 'windmove-right)))
 
 ;; TODO: Need to refactor this into the use-package hooks
 (use-package ob
