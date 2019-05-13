@@ -1,4 +1,4 @@
-;;; dir-subdir.el --- find all subdirs -*- lexical-binding: t -*-
+;;; dir-subdirs.el --- find all subdirs -*- lexical-binding: t -*-
 
 (require 'cl)
 (require 'dash)
