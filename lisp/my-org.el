@@ -4,7 +4,21 @@
 
 ;;; Code:
 
-(use-package dir-subdirs)
+(require 'cl-macs)
+(require 'dash)
+(require 's)
+
+(defvar my-org-todo-active-statuses
+  '(("TODO" . "t") ("STARTED" . "s") ("BLOCKED" . "b"))
+  "List of pairs of active statuses and transition key.")
+
+(defvar my-org-todo-finished-statuses
+  '(("CANCELLED" . "C") ("DONE" . "d"))
+  "List of pairs of finished statuses and transition key.")
+
+(defvar my-org-todo-all-statuses
+  (append my-org-todo-active-statuses my-org-todo-finished-statuses)
+  "List of all statuses and keys.")
 
 (use-package org
   :mode (("\\.org$" . org-mode))
@@ -75,7 +89,10 @@
   :init
   (progn
     (setq
-     org-journal-carryover-items "TODO=\"TODO\"|TODO=\"STARTED\"|TODO=\"BLOCKED\""
+     org-journal-carryover-items (s-join "|"
+                                         (-map (lambda (status)
+                                                 (s-concat "TODO=\"" (s-upcase (car status)) "\""))
+                                               my-org-todo-active-statuses))
      org-journal-file-format "%Y/%m/%Y-%m-%d.org"
      org-journal-date-format "%A, %b  %d, %Y")))
 
@@ -100,7 +117,6 @@
   :config
   (progn
     (setq
-     org-agenda-include-diary t
      org-agenda-span 14
      org-agenda-show-all-dates t
      org-agenda-skip-deadline-if-done t
@@ -108,6 +124,7 @@
      org-agenda-start-on-weekday nil
      org-agenda-custom-commands
      '(("c" todo "DONE|CANCELLED" nil)
+       ("x" todo "TODO|STARTED|BLOCKED" nil)
        ("W" agenda "" ((org-agenda-ndays 21)))
        ("A" agenda ""
         ((org-agenda-skip-function
