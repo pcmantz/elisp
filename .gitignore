@@ -6,24 +6,28 @@
 *.elc
 **/.yas-compiled-snippets.el
 
-# various temp dirs
-/elpa/
-/auto-save-list/
-/eshell/
-/url/
-/var/
-/projectile-bookmarks.eld
-/projectile.cache
-/recentf
+# top-level local config files
 /.mc-lists.el
-
-# top-level config files
-/my-custom-file.el
-/session.*
 /bookmarks
+/ido.last
+/my-custom-file.el
+/recentf
+/session.*
+/smex-items
 /tramp
 /workgroups
 
-# miscellaneous data files
-/smex-items
-/ido.last
+# various temp dirs
+/.lsp-session-*
+/auto-save-list/
+/elpa/
+/eshell/
+/forge-database.sqlite
+/network-security.data
+/projectile-bookmarks.eld
+/projectile.cache
+/rake.cache
+/request/
+/transient/
+/url/
+/var/
