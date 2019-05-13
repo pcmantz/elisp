@@ -36,13 +36,16 @@
   :hook (enh-ruby-mode . ruby-tools-mode))
 (use-package robe
   :diminish robe-mode
-  :hook enh-ruby-mode)
+  :hook (enh-ruby-mode . robe-mode))
 (use-package rspec-mode
   :diminish rspec-mode
-  :hook enh-ruby-mode
+  :hook (enh-ruby-mode . rspec-mode)
   :config
   (progn
     (rspec-install-snippets)))
+(use-package yard-mode
+  :diminish yard-mode
+  :hook (enh-ruby-mode . yard-mode))
 
 
 ;; NOTE: This is really useful, but less necessary with direnv mode
