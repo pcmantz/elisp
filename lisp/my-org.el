@@ -75,8 +75,9 @@
      (plantuml . t))))
 
 (defun org-journal-find-location ()
-  ;; Open today's journal, but specify a non-nil prefix argument in order to
-  ;; inhibit inserting the heading; org-capture will insert the heading.
+  "Open today's journal, but specify a non-nil prefix argument in
+  order to inhibit inserting the heading; org-capture will insert
+  the heading."
   (org-reload)
   (org-journal-new-entry t)
   ;; Position point on the journal's top-level heading so that org-capture
