@@ -7,6 +7,7 @@
 (require 'cl-macs)
 (require 'dash)
 (require 's)
+(require 'dir-subdirs)
 
 (defvar my-org-todo-active-statuses
   '(("TODO" . "t") ("STARTED" . "s") ("BLOCKED" . "b"))
@@ -36,17 +37,7 @@
     (define-key org-todo-state-map "d" (lambda nil (interactive) (org-todo "DONE"))))
   :config
   (progn
-    (defvar org-directory "~/org")
-    (defvar my-org-dirs (dir-subdirs org-directory))
-
-    (defun reload-org-dirs ()
-      "Reloads the org directories."
-      (interactive)
-      (setq my-org-dirs (dir-subdirs org-directory))
-      (setq org-agenda-files my-org-dirs))
-
     (setq
-     ;; keybindings
      org-replace-disputed-keys t
      org-startup-folded nil
 
@@ -94,12 +85,15 @@
                                                  (s-concat "TODO=\"" (s-upcase (car status)) "\""))
                                                my-org-todo-active-statuses))
      org-journal-file-format "%Y/%m/%Y-%m-%d.org"
-     org-journal-date-format "%A, %b  %d, %Y")))
+     org-journal-date-format "%A, %b  %d, %Y")
+    (setq org-agenda-files (dir-subdirs org-journal-dir))))
 
 (use-package org-capture
   :bind ("<f2>" . org-capture)
   :config
   (progn
+    ;;; (setq org-capture-templates-dir (concat elisp-dir "org-capture-templates"))
+
     (setq org-capture-templates
           '(("e" "Journal entry" entry (function org-journal-find-location)
              "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
