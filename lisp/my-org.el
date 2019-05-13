@@ -28,6 +28,7 @@
   (progn
     (defvar org-todo-state-map (make-sparse-keymap))
 
+    ;;; TODO: Make this defined by my-org-todo-all-statuses
     (define-key org-todo-state-map "t" (lambda nil (interactive) (org-todo "TODO")))
     (define-key org-todo-state-map "s" (lambda nil (interactive) (org-todo "STARTED")))
     (define-key org-todo-state-map "b" (lambda nil (interactive) (org-todo "BLOCKED")))
