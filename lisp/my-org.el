@@ -120,8 +120,7 @@
           (lambda nil
             (org-agenda-skip-entry-if (quote scheduled) (quote deadline)
                                       (quote regexp) "<[^>\n]+>")))
-         (org-agenda-overriding-header "Unscheduled TODO entries: ")))))
-    (reload-org-dirs)))
+         (org-agenda-overriding-header "Unscheduled TODO entries: ")))))))
 
 (use-package ox-pandoc)
 
