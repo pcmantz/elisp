@@ -80,13 +80,14 @@
   :init
   (progn
     (setq
+     org-journal-enable-agenda-integration t
      org-journal-carryover-items (s-join "|"
                                          (-map (lambda (status)
                                                  (s-concat "TODO=\"" (s-upcase (car status)) "\""))
                                                my-org-todo-active-statuses))
      org-journal-file-format "%Y/%m/%Y-%m-%d.org"
-     org-journal-date-format "%A, %b  %d, %Y")
-    (setq org-agenda-files (dir-subdirs org-journal-dir))))
+     org-journal-date-format "%A, %b  %d, %Y")))
+
 
 (use-package org-capture
   :bind ("<f2>" . org-capture)
