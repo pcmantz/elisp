@@ -1,4 +1,4 @@
-;; my-prodigy --- Config for Prodigy.el
+;; my-prodigy --- Config for prodigy.el
 
 ;;; Commentary
 
@@ -19,7 +19,12 @@
 
     (prodigy-define-tag
       :name 'rails
-      :tags '(thin mongrel webrick))))
+      :tags '(thin mongrel webrick))
+
+    (prodigy-define-tag
+      :name 'express
+      :tags '(node)
+      :ready-message "server started at http://.*")))
 
 (provide 'my-prodigy)
 ;;; my-prodigy.el ends here
