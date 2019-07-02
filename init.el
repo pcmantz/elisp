@@ -91,6 +91,10 @@
 (require 'my-org)
 (require 'my-prodigy)
 
+;; site libraries
+(require 'beautify)
+(require 'xmlformat)
+
 ;;
 ;; startup preferences
 ;;
