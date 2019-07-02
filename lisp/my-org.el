@@ -95,11 +95,13 @@
   (progn
     ;;; (setq org-capture-templates-dir (concat elisp-dir "org-capture-templates"))
 
-    (setq org-capture-templates
-          '(("e" "Journal entry" entry (function org-journal-find-location)
+   (setq org-capture-templates
+          '(("e" "Journal Entry" entry (function org-journal-find-location)
              "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
             ("t" "Todo" entry (function org-journal-find-location)
-             "* TODO %?\n  %i\n  %a\n  %T\n")
+             "* TODO %?\n  %i\n  %T\n")
+            ("f" "File Note" entry (function org-journal-find-location)
+             "* %(format-time-string org-journal-time-format)%?\n  %i\n  %a\n  %T\n")
             ("a" "Appointment" entry (function org-journal-find-location)
              "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n")))))
 
