@@ -5,11 +5,24 @@
 
 ;;; Code:
 
-;; outline-minor-mode stuff.  Not requiring this since I don't need it
-;; everywhere, but it is useful.
-
 ;; I don't use this and I want to use origami
 (global-unset-key (kbd "C-o"))
+
+(use-package god-mode
+  :bind (("<escape>" . god-mode-all))
+  :config
+  (progn
+    (defun my-update-cursor ()
+      (setq cursor-type (if (or god-local-mode buffer-read-only)
+                            'box
+                          'bar)))
+
+    (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+    (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+    (setq god-exempt-major-modes nil)
+    (setq god-exempt-predicates nil)))
+
 
 (use-package origami
   :config
