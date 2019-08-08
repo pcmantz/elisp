@@ -88,15 +88,16 @@
      org-journal-file-format "%Y/%m/%Y-%m-%d.org"
      org-journal-date-format "%A, %b  %d, %Y")))
 
-
 (use-package org-capture
   :bind ("<f2>" . org-capture)
   :config
   (progn
     ;;; (setq org-capture-templates-dir (concat elisp-dir "org-capture-templates"))
 
-   (setq org-capture-templates
-          '(("e" "Journal Entry" entry (function org-journal-find-location)
+    (setq org-capture-templates
+          '(("c" "Daily Check-In" entry (function org-journal-find-location)
+             "* %(format-time-string org-journal-time-format)Daily Check-In\n%i%?")
+            ("e" "Journal Entry" entry (function org-journal-find-location)
              "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
             ("t" "Todo" entry (function org-journal-find-location)
              "* TODO %?\n  %i\n  %T\n")
