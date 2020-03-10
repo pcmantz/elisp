@@ -6,6 +6,9 @@
   :config
   (progn
     (prodigy-define-tag
+      :name 'direnv)
+
+    (prodigy-define-tag
       :name 'thin
       :ready-message "Listening on 0\\.0\\.0\\.0:[0-9]+, CTRL\\+C to stop")
 
