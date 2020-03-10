@@ -7,6 +7,13 @@
 ;;; Code:
 
 ;;
+;; Graphical stuff I'm never going to use
+;;
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;;
 ;; encoding
 ;;
 (set-terminal-coding-system 'utf-8)
@@ -110,7 +117,7 @@
     :config
     (progn
       (load-theme 'metalheart)
-      (set-cursor-color "purple")))
+      (set-cursor-color "Purple")))
   (cond ((string= window-system "x")   ;; X11 window system
          (set-face-attribute 'default nil :font "Inconsolata-9")
          (setq

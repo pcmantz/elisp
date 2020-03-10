@@ -3,15 +3,8 @@
 ;;; Commentary:
 
 (require 'cl)
-
+(require 'package)
 ;;; Code:
-
-;;
-;; Graphical stuff I'm never going to use
-;;
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;;
 ;; add elisp/{lisp,site} to the load path
@@ -30,7 +23,6 @@
 ;;
 ;; emacs package manager
 ;;
-(require 'package)
 (dolist (source
          '(("gnu" . "https://elpa.gnu.org/packages/")
            ("melpa" . "https://melpa.org/packages/")))
@@ -39,6 +31,15 @@
 ;; autoload everything
 (package-initialize)
 
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  (if (not (package-installed-p 'use-package))
+    (package-install 'use-package))
+  (require 'use-package))
+
+(use-package dash)
+(use-package s)
+
 (defun read-lines (file)
   "Return a list of lines in FILE."
   (with-temp-buffer
@@ -46,25 +47,36 @@
     (split-string
      (buffer-string) "\n" t)))
 
-;; retrieve a list of expected packages
-(defvar my-packages (mapcar #'intern (read-lines (concat elisp-dir "my-packages"))))
+(defun write-list-lines (list file)
+  "Writes all LIST elements one-per-line to FILE."
+  (with-temp-buffer
+    (insert (s-join "\n" (-map 'symbol-name list)))
+    (insert "\n")
+    (write-file file)))
 
 ;; check for new packages (package versions)
 (unless package-archive-contents
   (package-refresh-contents))
 
+;; Retrieve a list of packages for installation
+(defvar my-packages-file (concat elisp-dir "my-packages"))
+
+(defvar my-packages (mapcar #'intern (read-lines my-packages-file)))
+(setq package-installed-packages
+  (-distinct (-concat (-sort 'string< my-packages) (-sort 'string< package-selected-packages))))
+
 ;; install any packages that are not present
-(dolist (package my-packages)
-  (unless (package-installed-p package)
-    (package-install package)))
+(package-install-selected-packages)
 
 ;; play it again sam
 (package-initialize)
 
+;; Write all the installed files
+(write-list-lines package-installed-packages my-packages-file)
+
 ;; global requirements
-(require 'use-package)
-(require 'diminish)
-(require 'bind-key)
+(use-package diminish)
+(use-package bind-key)
 
 ;;
 ;; load custom modules
