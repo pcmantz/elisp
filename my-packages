@@ -17,6 +17,7 @@ direnv
 docker-compose-mode
 dockerfile-mode
 editorconfig
+eglot
 elixir-mode
 elixir-yasnippets
 enh-ruby-mode
@@ -29,6 +30,7 @@ flycheck
 flycheck-plantuml
 flycheck-status-emoji
 gitignore-mode
+god-mode
 goto-chg
 gradle-mode
 graphviz-dot-mode
@@ -41,9 +43,11 @@ helm-ag
 helm-projectile
 helm-robe
 ibuffer-projectile
+ibuffer-vc
 inflections
 js2-mode
 js2-refactor
+keyfreq
 logito
 magit
 markdown-mode
@@ -66,6 +70,7 @@ rails-log-mode
 reformatter
 rjsx-mode
 robe
+rspec-mode
 rubocop
 ruby-tools
 rvm
@@ -74,6 +79,7 @@ sass-mode
 scss-mode
 slim-mode
 sql-indent
+sqlformat
 tt-mode
 use-package
 w3m
