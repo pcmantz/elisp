@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: @return
+# key: @r
+# contributor : Paul C. Mantz <pcmantz@mcpantz.org>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+
+# @return [${1:type}] $0

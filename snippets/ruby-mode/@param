@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: @param
+# key: @p
+# contributor : Paul C. Mantz <pcmantz@mcpantz.org>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+
+# @param ${1:param} [${2:type}] $0
