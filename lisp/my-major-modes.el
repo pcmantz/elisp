@@ -16,15 +16,12 @@
 (use-package sql-indent)
 
 (use-package sqlformat
-  :config
-  (progn
-    (custom-set-variables
-     '(sqlformat-command 'pgformatter)
-     ;;; NOTE: The "-p" option specifies ignored areas from formatting and
-     ;;; this will be mode-dependent for embedded SQL strings. The one
-     ;;; configured here is intended for interpolated ruby code for SQL
-     ;;; embedded in double-quoted/HEREdoc strings.
-     '(sqlformat-args '("-s" "2" "-u" "2" "-p" "'\\#\\{[^}]*\\}'")))))
+  :custom
+  (sqlformat-command 'pgformatter)
+  ;;; NOTE: The "-p" option specifies ignored areas from formatting and this will be mode-dependent
+  ;;; for embedded SQL strings. The one configured here is intended for interpolated ruby code for
+  ;;; SQL embedded in double-quoted/HEREdoc strings.
+  (sqlformat-args '("-s" "2" "-u" "2" "-p" "'\\#\\{[^}]*\\}'")))
 
 ;; (rx (and line-start "*SQL" (0+ anything)  "*"))
 (add-to-list 'same-window-regexps '("^\\*SQL\\(?:.\\|\n\\)*\\*" . nil))
@@ -68,9 +65,10 @@
 
 ;; multi-term
 (use-package multi-term
+  :custom
+  (multi-term-program "/bin/bash")
   :config
   (progn
-    (setq multi-term-program "/bin/bash")
     (add-hook 'term-mode-hook (lambda () (yas-minor-mode -1)))))
 
 ;;
@@ -87,7 +85,7 @@
 ;; yaml-mode
 (use-package yaml-mode
   :mode (("\\.ya?ml$"  . yaml-mode))
-  :config (setq yaml-indent-offset 2))
+  :custom (yaml-indent-offset 2))
 
 ;; rnc-mode
 (use-package rnc-mode
@@ -120,29 +118,29 @@
          ("\\.hbs\\'". web-mode)
          ("\\.mustache\\'" . web-mode)
          ("\\.p?html\\'" . web-mode)
-         ("\\.tpl\\.php\\'" . web-mode))
-  :config
-  (progn
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-css-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-engines-alist
-          '(("php" . "\\.phtml\\'")
-            ("blade" . "\\.blade\\.")
-            ("ctemplate" . "\\.hbs\\.")))))
+          ("\\.tpl\\.php\\'" . web-mode))
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-code-indent-offset 2)
+  (web-mode-engines-alist '(("php" . "\\.phtml\\'")
+                             ("blade" . "\\.blade\\.")
+                             ("ctemplate" . "\\.hbs\\."))))
 
 ;; scss-mode
 (use-package scss-mode
-  :config
-  (progn
-    (custom-set-variables
-     '(css-indent-offset 2))))
+  :custom
+  (css-set-offset 2))
 
 (use-package css-mode
-  :config
-  (progn
-    (custom-set-variables
-     '(css-indent-offset 2))))
+  :custom
+  (css-set-offset 2))
+
+;; protobuf-mode
+(use-package protobuf-mode
+  :custom
+  (c-basic-offset 2 "Set the tab width to 2.")
+  (indent-tabs-mode nil "No tabs."))
 
 ;;
 ;; Fundamental mode overrides
