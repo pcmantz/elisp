@@ -8,22 +8,6 @@
 ;; I don't use this and I want to use origami
 (global-unset-key (kbd "C-o"))
 
-(use-package god-mode
-  :bind (("<escape>" . god-mode-all))
-  :config
-  (progn
-    (defun my-update-cursor ()
-      (setq cursor-type (if (or god-local-mode buffer-read-only)
-                            'box
-                          'bar)))
-
-    (add-hook 'god-mode-enabled-hook 'my-update-cursor)
-    (add-hook 'god-mode-disabled-hook 'my-update-cursor)
-
-    (setq god-exempt-major-modes nil)
-    (setq god-exempt-predicates nil)))
-
-
 (use-package origami
   :config
   (progn
@@ -106,26 +90,6 @@ See URL `https://github.com/troessner/reek'."
   :config
   (progn
     (global-company-mode)))
-
-(use-package lsp
-  :config
-  (progn
-    (use-package lsp-ui
-      :ensure t
-      :hook (lsp-mode-hook . lsp-ui-mode))
-
-    (use-package company-lsp
-      :ensure t
-      :config
-      (push 'company-lsp company-backends))
-
-    ;; NOTE: This redefines the ruby backend to include enh-ruby-mode.
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-stdio-connection '("solargraph" "stdio"))
-                      :major-modes '(ruby-mode enh-ruby-mode)
-                      :priority -1
-                      :multi-root t
-                      :server-id 'ruby-ls))))
 
 (provide 'my-minor-modes)
 ;;; my-minor-modes.el ends here
