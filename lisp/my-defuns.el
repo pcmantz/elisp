@@ -44,6 +44,12 @@
 ;; elisp utils
 ;;
 
+(defun get-string-from-file (file-path)
+  "Return file-path's file content."
+  (with-temp-buffer
+    (insert-file-contents file-path)
+    (buffer-string)))
+
 (defun range (first-arg &optional last-arg)
   "Super-naïve implementation of a range function.  Update this
 to do this in reverse."
