@@ -10,6 +10,7 @@
 /.mc-lists.el
 /bookmarks
 /ido.last
+/lisp/my-custom-file.el
 /my-custom-file.el
 /recentf
 /session.*
