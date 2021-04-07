@@ -114,8 +114,6 @@
     (define-key wg-map (kbd "C-l") 'wg-load-default)
     (define-key wg-map (kbd "C-s") 'wg-save-default)
     (define-key wg-map (kbd "<backspace>") 'wg-switch-left)
-    (add-hook 'wg-switch-hook 'wg-save-default t)
-    (add-hook 'kill-emacs-hook 'wg-save-default t)
     (workgroups-mode 1)))
 
 (defun wg-load-default ()
