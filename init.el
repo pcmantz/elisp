@@ -62,7 +62,7 @@
 (defvar my-packages-file (concat elisp-dir "my-packages"))
 
 (defvar my-packages (mapcar #'intern (read-lines my-packages-file)))
-(setq package-installed-packages
+(setq package-selected-packages
   (-distinct (-concat (-sort 'string< my-packages) (-sort 'string< package-selected-packages))))
 
 ;; install any packages that are not present
