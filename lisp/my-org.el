@@ -85,7 +85,9 @@
   ; (org-capture-templates-dir (concat elisp-dir "org-capture-templates"))
   (org-capture-templates
    '(("c" "Daily Check-In" entry (function org-journal-find-location)
-      "* %(format-time-string org-journal-time-format)Daily Check-In\n%i%?")
+      "* %(format-time-string org-journal-time-format)Daily Check-In\n\n  MOOD:%i%?")
+     ("o" "Daily Check-Out" entry (function org-journal-find-location)
+      "* %(format-time-string org-journal-time-format)Daily Check-Out\n\n  MOOD:%i%?")
      ("e" "Journal Entry" entry (function org-journal-find-location)
       "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
      ("t" "Todo" entry (function org-journal-find-location)
