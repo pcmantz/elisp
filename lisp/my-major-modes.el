@@ -76,22 +76,23 @@
 ;;
 
 ;; diff-mode
-(setq diff-switches "-u")
-(eval-after-load 'diff-mode
-  '(progn
-     (set-face-foreground 'diff-added "green4")
-     (set-face-foreground 'diff-removed "red3")))
+(use-package diff-mode
+  :custom
+  (diff-switches "-u")
+  :config
+  (set-face-foreground 'diff-added "green4")
+  (set-face-foreground 'diff-removed "red3"))
 
 ;; yaml-mode
 (use-package yaml-mode
-  :mode (("\\.ya?ml$"  . yaml-mode))
+  :mode
+  (("\\.ya?ml$" . yaml-mode))
   :custom (yaml-indent-offset 2))
 
 ;; rnc-mode
 (use-package rnc-mode
-  :config
-  (progn
-    (setq rnc-indent-level 'tab-width)))
+  :custom
+  (rnc-indent-level 'tab-width))
 
 ;; csv-mode
 (use-package csv-mode
@@ -108,24 +109,29 @@
          ("\\.json" . hcl-mode)))
 
 (use-package plantuml-mode
-  :mode (("\\.plantuml$" . plantuml-mode)))
+  :mode
+  (("\\.(?:plant)uml$" . plantuml-mode))
+  :custom
+  (plantuml-executable-path "/usr/local/bin/plantuml")
+  (plantuml-default-exec-mode 'executable))
 
 (use-package web-mode
-  :mode (("\\.[agj]sp\\'" . web-mode)
-         ("\\.as[cp]x\\'" . web-mode)
-         ("\\.djhtml\\'" . web-mode)
-         ("\\.erb\\'" . web-mode)
-         ("\\.hbs\\'". web-mode)
-         ("\\.mustache\\'" . web-mode)
-         ("\\.p?html\\'" . web-mode)
-          ("\\.tpl\\.php\\'" . web-mode))
+  :mode
+  (("\\.[agj]sp\\'" . web-mode)
+   ("\\.as[cp]x\\'" . web-mode)
+   ("\\.djhtml\\'" . web-mode)
+   ("\\.erb\\'" . web-mode)
+   ("\\.hbs\\'". web-mode)
+   ("\\.mustache\\'" . web-mode)
+   ("\\.p?html\\'" . web-mode)
+   ("\\.tpl\\.php\\'" . web-mode))
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2)
   (web-mode-engines-alist '(("php" . "\\.phtml\\'")
-                             ("blade" . "\\.blade\\.")
-                             ("ctemplate" . "\\.hbs\\."))))
+                            ("blade" . "\\.blade\\.")
+                            ("ctemplate" . "\\.hbs\\."))))
 
 ;; scss-mode
 (use-package scss-mode
@@ -149,13 +155,11 @@
 (defun comint-delchar-or-eof-or-kill-buffer (arg)
   (interactive "p")
   (if (null (get-buffer-process (current-buffer)))
-      (kill-buffer)
+    (kill-buffer)
     (comint-delchar-or-maybe-eof arg)))
 
 (add-hook 'shell-mode-hook
-          (lambda ()
-            (define-key shell-mode-map
-              (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer))
+          (lambda () (define-key shell-mode-map (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer))
           t)
 
 (provide 'my-major-modes)
