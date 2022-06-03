@@ -80,6 +80,7 @@ scss-mode
 slim-mode
 sql-indent
 sqlformat
+string-inflection
 tt-mode
 use-package
 w3m
