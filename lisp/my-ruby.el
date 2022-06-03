@@ -5,12 +5,12 @@
 ;;; Code:
 
 (defun set-ruby-mode-to-enh-ruby-mode ()
-    "Replace `ruby-mode' with `enh-ruby-mode' in `auto-mode-alist' and `interpreter-mode-alist'."
-    (mapc
-     (lambda (pair)
-       (if (eq (cdr pair) 'ruby-mode)
-           (setcdr pair 'enh-ruby-mode)))
-     (append auto-mode-alist interpreter-mode-alist)))
+  "Replace `ruby-mode' with `enh-ruby-mode' in `auto-mode-alist' and `interpreter-mode-alist'."
+  (mapc
+    (lambda (pair)
+      (if (eq (cdr pair) 'ruby-mode)
+        (setcdr pair 'enh-ruby-mode)))
+    (append auto-mode-alist interpreter-mode-alist)))
 
 ;; enh-ruby-mode
 (use-package enh-ruby-mode
@@ -18,35 +18,37 @@
   :mode
   ;; (rx (and (or "Gem" "Rake" "Cap" "Vagrant") "file" (opt ".lock")))
   (("\\(?:Cap\\|Gem\\|Rake\\|Vagrant\\)file\\(?:\\.lock\\)?" . enh-ruby-mode)
-   ("\\.rake$" . enh-ruby-mode)
-   ("\\.rabl$" . enh-ruby-mode))
-  :init
-  (progn
-    (defalias 'ruby-mode 'enh-ruby-mode)
-    (set-ruby-mode-to-enh-ruby-mode))
+    ("\\.rake$" . enh-ruby-mode)
+    ("\\.rabl$" . enh-ruby-mode))
+  :custom
+  (enh-ruby-deep-indent-paren nil)
   :config
-  (progn
-    (setq enh-ruby-deep-indent-paren nil)))
+  (set-ruby-mode-to-enh-ruby-mode)
+  (defalias 'ruby-mode 'enh-ruby-mode))
+
 
 (use-package rubocop
   :diminish rubocop-mode
   :hook (enh-ruby-mode . rubocop-mode))
+
 (use-package ruby-tools
   :diminish ruby-tools-mode
   :hook (enh-ruby-mode . ruby-tools-mode))
+
 (use-package robe
   :diminish robe-mode
   :hook (enh-ruby-mode . robe-mode))
+
 (use-package rspec-mode
+  :commands rspec-install-snippets
   :diminish rspec-mode
   :hook (enh-ruby-mode . rspec-mode)
   :config
-  (progn
-    (rspec-install-snippets)))
+  (rspec-install-snippets))
+
 (use-package yard-mode
   :diminish yard-mode
   :hook (enh-ruby-mode . yard-mode))
-
 
 ;; NOTE: This is really useful, but less necessary with direnv mode
 (use-package chruby)
