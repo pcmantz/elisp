@@ -6,7 +6,7 @@
 
 ;;; Code:
 
-(use-package emacs-lisp-mode
+(use-package elisp-mode
   :config
   (setq indent-tabs-mode nil))
 
