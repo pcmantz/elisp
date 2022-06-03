@@ -1,11 +1,14 @@
-;; my-emacs-lisp.el
+;;;; my-emacs-lisp --- Summary
 
-(defun my-emacs-lisp-mode-hook ()
-  "Configuration for emacs-lisp-mode"
-  ;; nothing yet
-  )
+;;; Commentary:
 
-(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook t)
+;; Local customizations for emacs lisp. Not much to see here.
+
+;;; Code:
+
+(use-package emacs-lisp-mode
+  :config
+  (setq indent-tabs-mode nil))
 
 (provide 'my-emacs-lisp)
-;; end my-emacs-lisp.el
+;;; my-emacs-lisp.el ends here
