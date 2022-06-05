@@ -18,15 +18,17 @@
 (define-key global-map (kbd "<f2> <f2>") nil) ;; whatever this is is frustrating
 
 (use-package isearch
-  :bind (( "C-s" . isearch-forward-regexp)
-         ( "C-r" . isearch-backward-regexp)
-         ( "C-M-s" . isearch-forward)
-         ( "C-M-r" . isearch-backward)))
+  :bind
+  (( "C-s" . isearch-forward-regexp)
+   ( "C-r" . isearch-backward-regexp)
+   ( "C-M-s" . isearch-forward)
+   ( "C-M-r" . isearch-backward)))
 
 (use-package simple
-  :bind (("C-M-g" . goto-line)
-         ("C-S-l" . goto-line)
-         ("M-z" . zap-to-char))
+  :bind
+  (("C-M-g" . goto-line)
+   ("C-S-l" . goto-line)
+   ("M-z" . zap-to-char))
   :config
   (progn
     ;; better goto-line
@@ -85,7 +87,9 @@
   :bind ("C-c SPC" . ace-jump-mode))
 
 ;; winner-mode for window undo/redo
-(winner-mode t)
+(use-package winner
+  :config
+  (winner-mode t))
 
 ;; Navigate through edit points
 (use-package goto-chg)
@@ -102,50 +106,52 @@
 ;; workgroups
 (use-package workgroups
   :diminish workgroups-mode
+  :custom
+  (wg-prefix-key (kbd "C-z"))
+  (wg-no-confirm t)
+  (wg-morph-on nil)
+  (wg-file (concat elisp-dir "/workgroups"))
+  (wg-use-faces nil)
+  (wg-switch-on-load nil)
+  :bind
+  (:map wg-map
+    ("g" . wg-switch-to-workgroup)
+    ("C-l" . wg-load-default)
+    ("C-s" . wg-save-default)
+    ("<backspace>" . wg-switch-left))
+  :init
+  (defun wg-load-default ()
+    "Run `wg-load' on `wg-file'."
+    (interactive)
+    (wg-load wg-file))
+  (defun wg-save-default ()
+    "Run `wg-save' on `wg-file'."
+    (interactive)
+    (when wg-list
+      (with-temp-message ""
+        (wg-save wg-file))))
   :config
-  (progn
-    (setq wg-prefix-key (kbd "C-z")
-          wg-no-confirm t
-          wg-morph-on nil
-          wg-file (concat elisp-dir "/workgroups")
-          wg-use-faces nil
-          wg-switch-on-load nil)
-    (define-key wg-map (kbd "g") 'wg-switch-to-workgroup)
-    (define-key wg-map (kbd "C-l") 'wg-load-default)
-    (define-key wg-map (kbd "C-s") 'wg-save-default)
-    (define-key wg-map (kbd "<backspace>") 'wg-switch-left)
-    (workgroups-mode 1)))
-
-(defun wg-load-default ()
-  "Run `wg-load' on `wg-file'."
-  (interactive)
-  (wg-load wg-file))
-
-(defun wg-save-default ()
-  "Run `wg-save' on `wg-file'."
-  (interactive)
-  (when wg-list
-    (with-temp-message ""
-      (wg-save wg-file))))
+  (workgroups-mode 1))
 
 ;; default-text-scale
 (use-package default-text-scale
-  :bind (("C-M-+" . default-text-scale-increase)
-         ("C-M--" . default-text-scale-decrease)))
+  :bind
+  (("C-M-+" . default-text-scale-increase)
+   ("C-M--" . default-text-scale-decrease)))
 
 ;; yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
+  :custom
+  (yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
   :config
-  (progn
-    (yas-global-mode)
-    (yas-load-directory (concat elisp-dir "/snippets"))
-    (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
-    (set-default 'yas--dont-activate
-                 #'(lambda ()
-                     (or buffer-read-only
-                         (and yas-snippet-dirs
-                              (null (yas--get-snippet-tables))))))))
+  (yas-global-mode)
+  (yas-load-directory (concat elisp-dir "/snippets"))
+  (set-default 'yas--dont-activate
+    #'(lambda ()
+        (or buffer-read-only
+          (and yas-snippet-dirs
+            (null (yas--get-snippet-tables)))))))
 
 (use-package yasnippet-snippets)
 
@@ -178,8 +184,9 @@
 ;; (add-hook 'post-command-hook 'yasnippet-change-cursor-color-when-can-fire)
 
 (use-package dash-at-point
-  :bind (("C-c d" . dash-at-point)
-         ("C-c D" . dash-at-point-with-docset)))
+  :bind
+  (("C-c d" . dash-at-point)
+   ("C-c D" . dash-at-point-with-docset)))
 
 (provide 'my-bindings)
 ;;; my-bindings ends here
