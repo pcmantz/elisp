@@ -16,11 +16,13 @@
 (defalias 'javascript-mode 'rjsx-mode)
 
 (use-package rjsx-mode
-  :mode (("\\.jsx?$" . rjsx-mode))
+  :mode
+  (("\\.jsx?$" . rjsx-mode))
+  :custom
+  (js2-basic-offset 2)
   :config
-  (progn
-    (set-javascript-mode-to-rjsx-mode)
-    (setq js2-basic-offset 2)))
+  (set-javascript-mode-to-rjsx-mode))
+
 
 (provide 'my-js)
 ;;; my-js.el ends here
