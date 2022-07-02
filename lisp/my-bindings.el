@@ -117,8 +117,6 @@
   :bind
   (:map wg-map
     ("g" . wg-switch-to-workgroup)
-    ("C-l" . wg-load-default)
-    ("C-s" . wg-save-default)
     ("<backspace>" . wg-switch-left))
   :init
   (defun wg-load-default ()
@@ -132,7 +130,10 @@
       (with-temp-message ""
         (wg-save wg-file))))
   :config
-  (workgroups-mode 1))
+  (workgroups-mode 1)
+  (define-key wg-map (kbd "C-l") 'wg-load-default)
+  (define-key wg-map (kbd "C-s") 'wg-save-default))
+
 
 ;; default-text-scale
 (use-package default-text-scale
