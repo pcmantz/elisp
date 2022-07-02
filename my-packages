@@ -42,7 +42,7 @@ helm
 helm-ag
 helm-projectile
 helm-robe
-ibuffer-projectile
+ibuffer-vc
 inflections
 js2-mode
 js2-refactor
