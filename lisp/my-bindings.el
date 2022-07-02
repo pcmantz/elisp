@@ -105,6 +105,7 @@
 
 ;; workgroups
 (use-package workgroups
+  :ensure t
   :diminish workgroups-mode
   :custom
   (wg-prefix-key (kbd "C-z"))
