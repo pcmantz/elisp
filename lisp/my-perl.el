@@ -17,24 +17,18 @@
 
 (use-package cperl-mode
   :mode (("\\.t$" . cperl-mode))
+  :custom
+  (cperl-electric-keywords nil)
+  (cperl-electric-parens nil)
+  (cperl-auto-newline nil)
+  (cperl-indent-parens-as-block t)
+  (cperl-indent-level tab-width)
+  (cperl-close-paren-offset (- tab-width))
   :init
-  (progn
-    (set-perl-mode-to-cperl-mode)
-    (defun my-perl-defaults ()
-      (if (fboundp 'cperl-init-faces) (cperl-init-faces))
-      (setq
-       cperl-electric-keywords      nil
-       cperl-electric-parens        nil
-       cperl-auto-newline           nil
-       cperl-indent-parens-as-block t
-       cperl-indent-level           tab-width
-       cperl-close-paren-offset     (- tab-width))
-      (set-face-background 'cperl-array-face nil)
-      (set-face-background 'cperl-hash-face nil))
-    (setq my-perl-hook 'my-perl-defaults))
+  (set-perl-mode-to-cperl-mode)
   :config
-  (progn
-    (add-hook 'cperl-mode-hook (lambda () (run-hooks 'my-perl-hook)) t)))
+  (set-face-background 'cperl-array-face nil)
+  (set-face-background 'cperl-hash-face nil))
 
 ;; perltidy
 ;; code copied from Emacs::PDE
