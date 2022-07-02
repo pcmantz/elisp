@@ -158,12 +158,12 @@
 ;; buffer listing
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
+  :custom
+  (ibuffer-default-sorting-mode 'major-mode)
+  (ibuffer-always-show-last-buffer t)
+  (ibuffer-view-ibuffer t)
   :config
   (progn
-    (setq
-     ibuffer-default-sorting-mode 'major-mode
-     ibuffer-always-show-last-buffer t
-     ibuffer-view-ibuffer t)
     (use-package ibuffer-vc
       :config
       (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root))))
