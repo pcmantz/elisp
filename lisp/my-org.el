@@ -23,6 +23,8 @@
 
 (use-package org
   :mode (("\\.org$" . org-mode))
+  :bind-keymap
+  ("C-c t" . org-todo-state-map)
   :bind
   (("C-c l" . org-store-link)
    :map org-todo-state-map
@@ -42,6 +44,13 @@
                         (org-agenda-files :maxlevel . 9)))
   :init
   (defvar org-todo-state-map (make-sparse-keymap))
+  (dolist (key-action '(("t" . (lambda nil (interactive) (org-todo "TODO")))
+                        ("s" . (lambda nil (interactive) (org-todo "STARTED")))
+                        ("b" . (lambda nil (interactive) (org-todo "BLOCKED")))
+                        ("C" . (lambda nil (interactive) (org-todo "CANCELLED")))
+                        ("d" . (lambda nil (interactive) (org-todo "DONE")))))
+          (define-key org-todo-state-map (car key-action) (cdr key-action)))
+
   :config
   ;; Make windmove work in org-mode:
   (add-hook 'org-shiftup-final-hook 'windmove-up)
