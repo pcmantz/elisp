@@ -103,37 +103,23 @@
 ;; Packages
 ;;
 
-;; workgroups
-(use-package workgroups
-  :ensure t
-  :diminish workgroups-mode
-  :custom
-  (wg-prefix-key (kbd "C-z"))
-  (wg-no-confirm t)
-  (wg-morph-on nil)
-  (wg-file (concat elisp-dir "/workgroups"))
-  (wg-use-faces nil)
-  (wg-switch-on-load nil)
+;; perspective -- workspace (perspective) handling for emacs
+(use-package perspective
+  :demand
   :bind
-  (:map wg-map
-    ("g" . wg-switch-to-workgroup)
-    ("<backspace>" . wg-switch-left))
-  :init
-  (defun wg-load-default ()
-    "Run `wg-load' on `wg-file'."
-    (interactive)
-    (wg-load wg-file))
-  (defun wg-save-default ()
-    "Run `wg-save' on `wg-file'."
-    (interactive)
-    (when wg-list
-      (with-temp-message ""
-        (wg-save wg-file))))
+  (("C-x b" . persp-switch-to-buffer*)
+   ("C-x k" . persp-kill-buffer*))
+  :custom
+  (persp-mode-prefix-key (kbd "C-z"))
+  (persp-show-modestring nil)
+  (persp-sort 'access)
   :config
-  (workgroups-mode 1)
-  (define-key wg-map (kbd "C-l") 'wg-load-default)
-  (define-key wg-map (kbd "C-s") 'wg-save-default))
-
+  ;; setq here to ensure it gets set immediately before `persp-state-load'
+  (setq persp-state-default-file (concat elisp-dir "perspective"))
+  (persp-mode)
+  (add-hook 'persp-switch-hook #'persp-state-save)
+  (add-hook 'kill-emacs-hook #'persp-state-save)
+  (persp-state-load persp-state-default-file))
 
 ;; default-text-scale
 (use-package default-text-scale
