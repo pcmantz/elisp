@@ -11,7 +11,7 @@
 (use-package files
   :bind ("<f5>" . revert-buffer))
 
-(define-key global-map (kbd "<f11>") 'fullscreen)
+(define-key global-map (kbd "<f11>") 'toggle-frame-fullscreen)
 
 (define-key global-map (kbd "C-z") nil)       ;; stopping emacs is useless
 (define-key global-map (kbd "C-x C-c") nil)   ;; don't make it easy to kill emacs
