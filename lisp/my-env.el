@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'dash)
+
 ;;
 ;; Graphical stuff I'm never going to use
 ;;
@@ -62,7 +64,7 @@
 ;;
 ;; NOTE: To avoid recursive loads, we load tramp right here and now
 (use-package tramp
-  :ensure t)
+  :demand t)
 
 ;;
 ;; display
@@ -76,6 +78,24 @@
   :config
   (global-font-lock-mode t)
   (ansi-color-for-comint-mode-on))
+
+;; tree-sitter: when font lock isn't enough.
+
+(use-package treesit
+  :custom
+  ((treesit-font-lock-level 4)))
+
+(use-package treesit-auto
+  :config
+  (--map (add-to-list 'treesit-language-source-alist it)
+    '('(typescript   . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "typescript/src" nil nil))
+      '(tsx          . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "tsx/src" nil nil))
+      '(elixir       . ("https://github.com/elixir-lang/tree-sitter-elixir" nil nil nil nil))
+      '(heex-ts-mode . ("https://github.com/phoenixframework/tree-sitter-heex" nil nil nil nil))
+      '(ruby         . ("https://github.com/tree-sitter/tree-sitter-ruby" nil nil nil nil))
+      '(scss         . ("https://github.com/serenadeai/tree-sitter-scss" nil nil nil nil))))
+  (setq treesit-auto-install 'prompt)
+  (global-treesit-auto-mode))
 
 ;; graphical config
 
@@ -210,6 +230,7 @@
 
 ;; projectile: for managing projects
 (use-package projectile
+  :blackout " ☄️"
   :bind-keymap
   (("C-c p" . projectile-command-map)
    ("s-p" . projectile-command-map))
@@ -236,7 +257,7 @@
   :demand t
   :bind ("C-x W" . 'whitespace-mode)
   :custom
-  ((whitespace-line-column 120))
+  ((whitespace-line-column 100))
   :config
   (add-hook 'before-save-hook 'whitespace-cleanup))
 

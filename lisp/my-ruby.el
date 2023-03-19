@@ -4,60 +4,41 @@
 
 ;;; Code:
 
-(defun set-ruby-mode-to-enh-ruby-mode ()
-  "Replace `ruby-mode' with `enh-ruby-mode' in `auto-mode-alist' and `interpreter-mode-alist'."
-  (mapc
-    (lambda (pair)
-      (if (eq (cdr pair) 'ruby-mode)
-        (setcdr pair 'enh-ruby-mode)))
-    (append auto-mode-alist interpreter-mode-alist)))
+(use-package ruby-mode
+  :blackout "♦️")
 
-;; enh-ruby-mode
-(use-package enh-ruby-mode
-  :commands enh-ruby-mode
-  :mode
-  ;; (rx (and (or "Gem" "Rake" "Cap" "Vagrant") "file" (opt ".lock")))
-  (("\\(?:Cap\\|Gem\\|Rake\\|Vagrant\\)file\\(?:\\.lock\\)?" . enh-ruby-mode)
-    ("\\.rake$" . enh-ruby-mode)
-    ("\\.rabl$" . enh-ruby-mode))
-  :custom
-  (enh-ruby-deep-indent-paren nil)
-  :config
-  (set-ruby-mode-to-enh-ruby-mode)
-  (defalias 'ruby-mode 'enh-ruby-mode))
-
+(use-package ruby-ts-mode
+  :blackout "♦️")
 
 (use-package rubocop
-  :diminish rubocop-mode
-  :hook (enh-ruby-mode . rubocop-mode))
+  :blackout
+  :hook (ruby-mode . rubocop-mode))
 
 (use-package ruby-tools
-  :diminish ruby-tools-mode
-  :hook (enh-ruby-mode . ruby-tools-mode))
+  :blackout
+  :hook (ruby-mode . ruby-tools-mode))
 
 (use-package robe
-  :diminish robe-mode
-  :hook (enh-ruby-mode . robe-mode))
+  :blackout
+  :hook (ruby-mode . robe-mode))
 
 (use-package rspec-mode
+  :blackout
   :commands rspec-install-snippets
-  :diminish rspec-mode
-  :hook (enh-ruby-mode . rspec-mode)
+  :hook (ruby-mode . rspec-mode)
   :config
   (rspec-install-snippets))
 
 (use-package yard-mode
-  :diminish yard-mode
-  :hook (enh-ruby-mode . yard-mode))
+  :blackout
+  :hook (ruby-mode . yard-mode))
 
 ;; NOTE: This is really useful, but less necessary with direnv mode
 (use-package chruby)
 
 (use-package projectile-rails
   :init
-  (add-hook 'projectile-mode-hook 'projectile-rails-on)
-  :config
-  (set-ruby-mode-to-enh-ruby-mode))
+  (add-hook 'projectile-mode-hook 'projectile-rails-on))
 
 (defun ruby-hash-arrows-to-keys-region (beg end)
   "Replace symbol-arrow hash syntax with the newer 1.9 Javascript-like syntax."
@@ -72,8 +53,6 @@
   "Convert all hash arrows in the buffer to javascript-like keys."
   (interactive)
   (ruby-hash-arrows-to-keys-region (point-min) (point-max)))
-
-(set-ruby-mode-to-enh-ruby-mode)
 
 (provide 'my-ruby)
 ;;;  my-ruby.el ends here
