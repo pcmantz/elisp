@@ -26,6 +26,7 @@
                 new-non-file-modes)))
 
 (use-package flycheck
+  :blackout " 🪰"
   :custom
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-idle-change-delay 2)
@@ -82,6 +83,7 @@ See URL `https://github.com/troessner/reek'."
 
 ;; company
 (use-package company
+  :blackout " 🏭"
   :custom
   (company-idle-delay 0.5)
   :config
