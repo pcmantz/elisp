@@ -129,7 +129,7 @@
 
 ;; yasnippet
 (use-package yasnippet
-  :diminish yas-minor-mode
+  :blackout yas-minor-mode
   :custom
   (yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
   :config

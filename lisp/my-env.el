@@ -152,7 +152,7 @@
   :defer 0.5)
 
 (use-package all-the-icons-dired
-  :diminish
+  :blackout
   :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; uniquify: unique buffer names
@@ -215,7 +215,7 @@
          ("C-x C-f" . helm-find-files)
          ("C-x b". helm-mini)
           ("M-y" . helm-show-kill-ring))
-  :diminish helm-mode
+  :blackout
   :config
   (helm-mode 1)
   (defadvice helm-find-file (before make-directory-maybe (filename &optional wildcards) activate)
@@ -262,7 +262,7 @@
   (add-hook 'before-save-hook 'whitespace-cleanup))
 
 (use-package editorconfig
-  :diminish editorconfig-mode
+  :blackout
   :config
   (editorconfig-mode 1))
 

@@ -12,7 +12,6 @@ confluence
 csv-mode
 dash
 default-text-scale
-diminish
 dired-subtree
 direnv
 docker-compose-mode
