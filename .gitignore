@@ -17,11 +17,15 @@
 /smex-items
 /tramp
 /workgroups
+/perspective
+
 
 # various temp dirs
 /.lsp-session-*
 /auto-save-list/
+/eln-cache/
 /elpa/
+/elpaca/
 /eshell/
 /forge-database.sqlite
 /network-security.data
@@ -30,5 +34,6 @@
 /rake.cache
 /request/
 /transient/
+/tree-sitter/
 /url/
 /var/
