@@ -122,7 +122,8 @@
            '(elixir       . ("https://github.com/elixir-lang/tree-sitter-elixir" nil nil nil nil))
            '(heex-ts-mode . ("https://github.com/phoenixframework/tree-sitter-heex" nil nil nil nil))
            '(ruby         . ("https://github.com/tree-sitter/tree-sitter-ruby" nil nil nil nil))
-           '(scss         . ("https://github.com/serenadeai/tree-sitter-scss" nil nil nil nil))))
+           '(scss         . ("https://github.com/serenadeai/tree-sitter-scss" nil nil nil nil))
+           '(yaml         . ("https://github.com/ikatyang/tree-sitter-yaml" nil nil nil nil))))
 
   (global-treesit-auto-mode))
 
