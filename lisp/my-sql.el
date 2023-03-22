@@ -9,6 +9,9 @@
 (use-package sql
   :elpaca nil)
 
+(add-hook 'sql-interactive-mode-hook
+          (lambda () (toggle-truncate-lines t)))
+
 (use-package sql-indent)
 
 (use-package sqlformat
@@ -21,10 +24,6 @@
 
 ;; (rx (and line-start "*SQL" (0+ anything)  "*"))
 (add-to-list 'same-window-regexps '("^\\*SQL[^z-a]*\\*" . nil))
-
-(add-hook 'sql-interactive-mode-hook
-          (lambda () (toggle-truncate-lines t)))
-
 
 (provide 'my-sql)
 
