@@ -40,18 +40,17 @@
 (use-package multiple-cursors
   :bind-keymap ("C-|" . multiple-cursors-keymap)
   :init
-  (progn
-    (defvar multiple-cursors-keymap (make-sparse-keymap))
+  (defvar multiple-cursors-keymap (make-sparse-keymap))
 
-    (define-key multiple-cursors-keymap (kbd "n") 'mc/mark-next-like-this)
-    (define-key multiple-cursors-keymap (kbd "p") 'mc/mark-previous-like-this)
-    (define-key multiple-cursors-keymap (kbd "a") 'mc/mark-all-like-this)
-    (define-key multiple-cursors-keymap (kbd "r") 'mc/mark-all-in-region-regexp)
-    (define-key multiple-cursors-keymap (kbd "d") 'mc/mark-next-like-this-dwim)
+  (define-key multiple-cursors-keymap (kbd "n") 'mc/mark-next-like-this)
+  (define-key multiple-cursors-keymap (kbd "p") 'mc/mark-previous-like-this)
+  (define-key multiple-cursors-keymap (kbd "a") 'mc/mark-all-like-this)
+  (define-key multiple-cursors-keymap (kbd "r") 'mc/mark-all-in-region-regexp)
+  (define-key multiple-cursors-keymap (kbd "d") 'mc/mark-next-like-this-dwim)
 
-    (define-key multiple-cursors-keymap (kbd "M-n") 'mc/mark-next-word-like-this)
-    (define-key multiple-cursors-keymap (kbd "M-p") 'mc/mark-previous-word-like-this)
-    (define-key multiple-cursors-keymap (kbd "M-a") 'mc/mark-all-words-like-this)))
+  (define-key multiple-cursors-keymap (kbd "M-n") 'mc/mark-next-word-like-this)
+  (define-key multiple-cursors-keymap (kbd "M-p") 'mc/mark-previous-word-like-this)
+  (define-key multiple-cursors-keymap (kbd "M-a") 'mc/mark-all-words-like-this))
 
 ; expand the marked region in semantic increments (negative prefix to reduce region)
 (use-package expand-region
@@ -115,7 +114,7 @@
 
 ;; yasnippet
 (use-package yasnippet
-  :blackout "✂️"
+  :blackout " ✂️"
   :custom
   (yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
   :config
@@ -128,34 +127,6 @@
             (null (yas--get-snippet-tables)))))))
 
 (use-package yasnippet-snippets)
-
-(defvar default-cursor-color "green")
-(defvar yasnippet-can-fire-cursor-color "purple")
-
-(defun yasnippet-can-fire-p (&optional field)
-  "Check to see if a snippet can fire at point."
-  (interactive)
-  (setq yas--condition-cache-timestamp (current-time))
-  (let (templates-and-pos)
-    (unless (and yas-expand-only-for-last-commands
-                 (not (member last-command yas-expand-only-for-last-commands)))
-      (setq templates-and-pos (if field
-                                  (save-restriction
-                                    (narrow-to-region (yas--field-start field)
-                                                      (yas--field-end field))
-                                    (yas--current-key))
-                                (yas--current-key))))
-    (and templates-and-pos (first templates-and-pos))))
-
-(defun yasnippet-change-cursor-color-when-can-fire (&optional field)
-  "Change the cursor color if a snippet can expand at point."
-  (interactive)
-  (set-cursor-color (if (yasnippet-can-fire-p)
-                        yasnippet-can-fire-cursor-color
-                      default-cursor-color)))
-
-; As pointed out by Dmitri, this will make sure it will update color when needed.
-;; (add-hook 'post-command-hook 'yasnippet-change-cursor-color-when-can-fire)
 
 (use-package dash-at-point
   :bind
