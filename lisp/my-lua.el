@@ -1,10 +1,13 @@
-;; my-lua.el
+;;; my-lua.el --- Config for Lua -*- lexical-binding: t -*-
 
-(defun my-lua-defaults ()
-  (setq lua-indent-level tab-width))
-(setq my-lua-hook 'my-lua-defaults)
+;;; Commentary:
 
-(add-hook 'lua-mode-hook (lambda () (run-hooks 'my-lua-hook)) t)
+;; Haven't played with Lua in years but it's best to be prepared
+
+;;; Code:
+
+(use-package lua-mode)
 
 (provide 'my-lua)
-;; end my-lua.el
+
+;;; my-lua.el ends here

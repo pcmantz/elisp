@@ -23,6 +23,5 @@
   :config
   (set-javascript-mode-to-rjsx-mode))
 
-
 (provide 'my-js)
 ;;; my-js.el ends here
