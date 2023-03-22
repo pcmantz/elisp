@@ -8,35 +8,16 @@
 ;;; Code:
 
 ;;
-;; programming language modes
-;;
-
-;; sql-indent
-(use-package sql)
-(use-package sql-indent)
-
-(use-package sqlformat
-  :custom
-  (sqlformat-command 'pgformatter)
-  ;;; NOTE: The "-p" option specifies ignored areas from formatting and this will be mode-dependent
-  ;;; for embedded SQL strings. The one configured here is intended for interpolated ruby code for
-  ;;; SQL embedded in double-quoted/HEREdoc strings.
-  (sqlformat-args '("-s" "2" "-u" "2" "-p" "'\\#\\{[^}]*\\}'")))
-
-;; (rx (and line-start "*SQL" (0+ anything)  "*"))
-(add-to-list 'same-window-regexps '("^\\*SQL\\(?:.\\|\n\\)*\\*" . nil))
-
-(add-hook 'sql-interactive-mode-hook
-          (lambda () (toggle-truncate-lines t)))
-
-;;
 ;; standalone applications
 ;;
 
 ;; magit
 (use-package magit
-  :bind (("C-x g" . magit-status)
-         ("C-c b" . magit-blame))
+  :bind
+  ("C-x g" . magit-status)
+  ("C-c b" . magit-blame)
+  :init
+  (add-to-list 'same-window-regexps '("^magit:[^z-a]*" . nil))
   :config
   (progn
     (if (fboundp 'magit-completing-read-function)
@@ -77,6 +58,7 @@
 
 ;; diff-mode
 (use-package diff-mode
+  :elpaca nil
   :custom
   (diff-switches "-u")
   :config
@@ -85,6 +67,7 @@
 
 ;; yaml-mode
 (use-package yaml-mode
+  :elpaca nil
   :mode
   (("\\.ya?ml$" . yaml-mode))
   :custom (yaml-indent-offset 2))
@@ -115,6 +98,8 @@
   (plantuml-executable-path "/usr/local/bin/plantuml")
   (plantuml-default-exec-mode 'executable))
 
+(use-package flycheck-plantuml)
+
 (use-package web-mode
   :mode
   (("\\.[agj]sp\\'" . web-mode)
@@ -132,15 +117,6 @@
   (web-mode-engines-alist '(("php" . "\\.phtml\\'")
                             ("blade" . "\\.blade\\.")
                             ("ctemplate" . "\\.hbs\\."))))
-
-;; scss-mode
-(use-package scss-mode
-  :custom
-  (css-set-offset 2))
-
-(use-package css-mode
-  :custom
-  (css-set-offset 2))
 
 ;; protobuf-mode
 (use-package protobuf-mode
@@ -161,6 +137,16 @@
 (add-hook 'shell-mode-hook
           (lambda () (define-key shell-mode-map (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer))
           t)
+
+
+;; Miscellaneous modes
+(use-package apache-mode)
+(use-package docker-compose-mode)
+(use-package dockerfile-mode)
+(use-package gradle-mode)
+(use-package graphviz-dot-mode)
+(use-package groovy-mode)
+(use-package php-mode)
 
 (provide 'my-major-modes)
 ;;; my-major-modes.el ends here

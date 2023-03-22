@@ -2,17 +2,9 @@
 
 ;;; Commentary:
 
-(require 'cl-lib)
-(require 'package)
 ;;; Code:
 
-;;
-;; add elisp/{lisp,site} to the load path
-;;
-(defun add-to-load-path (path)
-  "Does exactly what is says."
-  (add-to-list 'load-path path))
-
+;; Set up local package directories
 (defvar elisp-dir
   (file-name-directory (or (buffer-file-name) load-file-name))
   "Location where all the Elisp is held.")
@@ -20,88 +12,60 @@
 (add-to-list 'load-path (concat elisp-dir "site"))
 (add-to-list 'load-path (concat elisp-dir "lisp"))
 
-;;
-;; emacs package manager
-;;
-(dolist (source
-         '(("gnu" . "https://elpa.gnu.org/packages/")
-           ("melpa" . "https://melpa.org/packages/")))
-  (add-to-list 'package-archives source t))
-
-;; autoload everything
-(package-initialize)
-
-;; This is only needed once, near the top of the file
-(eval-when-compile
-  (if (not (package-installed-p 'use-package))
-    (package-install 'use-package))
-  (require 'use-package))
-
-(use-package dash)
-(use-package s)
-
-(defun read-lines (file)
-  "Return a list of lines in FILE."
-  (with-temp-buffer
-    (insert-file-contents file)
-    (split-string
-     (buffer-string) "\n" t)))
-
-(defun write-list-lines (list file)
-  "Writes all LIST elements one-per-line to FILE."
-  (with-temp-buffer
-    (insert (s-join "\n" (-map 'symbol-name list)))
-    (insert "\n")
-    (write-file file)))
-
-;; check for new packages (package versions)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; Retrieve a list of packages for installation
-(defvar my-packages-file (concat elisp-dir "my-packages"))
-
-(defvar my-packages (mapcar #'intern (read-lines my-packages-file)))
-(setq package-selected-packages
-  (-distinct (-concat (-sort 'string< my-packages) (-sort 'string< package-selected-packages))))
-
-;; install any packages that are not present
-(package-install-selected-packages)
-
-;; play it again sam
-(package-initialize)
-
-;; Write all the installed files
-(write-list-lines package-installed-packages my-packages-file)
+;; use elpaca for package management
+(require 'my-elpaca)
 
 ;; global requirements
-(use-package diminish)
-(use-package bind-key)
+(use-package cl-lib :elpaca nil :demand t)
+(use-package blackout :demand t)
+(use-package dash :demand t)
+(use-package s :demand t)
+(use-package bind-key :demand t)
+(use-package f :demand t)
+
+;; miscellaneous requirements
+(use-package inflections)
+(use-package reformatter)
+(use-package string-inflection)
+
+(elpaca-wait)
 
 ;;
 ;; load custom modules
 ;;
 
 ;; global scope modules
+(require 'my-defuns)
 (require 'my-env)
 (require 'my-bindings)
-(require 'my-defuns)
+(require 'my-helm)
+
+;; org mode needs to be loaded early
+(require 'my-org)
+
+(elpaca-wait)
 
 ;; minor modes
 (require 'my-minor-modes)
 
 ;; major modes
 (require 'my-major-modes)
-(require 'my-perl)
-(require 'my-haskell)
+
+(elpaca-wait)
+
 (require 'my-cc)
-(require 'my-js)
-(require 'my-php)
-(require 'my-java)
+(require 'my-clojure)
+(require 'my-css)
+(require 'my-elixir)
 (require 'my-emacs-lisp)
-(require 'my-ruby)
-(require 'my-org)
+(require 'my-haskell)
+(require 'my-java)
+(require 'my-js)
+(require 'my-perl)
+(require 'my-php)
 (require 'my-prodigy)
+(require 'my-ruby)
+(require 'my-sql)
 
 ;; site libraries
 (require 'beautify)
@@ -114,7 +78,13 @@
 (setq initial-scratch-message ";; Scratch Buffer")
 
 (put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 (provide 'init)
 ;;; init.el ends here
-(put 'upcase-region 'disabled nil)
+
+;; Local Variables:
+;; no-byte-compile: t
+;; no-native-compile: t
+;; no-update-autoloads: t
+;; End:

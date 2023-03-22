@@ -6,7 +6,7 @@
 ;;; Code:
 
 ;; I don't use this and I want to use origami
-(global-unset-key (kbd "C-o"))
+(unbind-key "C-o")
 
 (use-package origami
   :bind
@@ -26,7 +26,7 @@
                 new-non-file-modes)))
 
 (use-package flycheck
-  :blackout " 🪰"
+  :blackout " 🪰✅"
   :custom
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-idle-change-delay 2)

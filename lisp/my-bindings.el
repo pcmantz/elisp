@@ -9,46 +9,32 @@
 ;;
 
 (use-package files
+  :elpaca nil
   :bind ("<f5>" . revert-buffer))
 
-(define-key global-map (kbd "<f11>") 'toggle-frame-fullscreen)
+(bind-key "<f11>" 'toggle-frame-fullscreen)
 
-(define-key global-map (kbd "C-z") nil)       ;; stopping emacs is useless
-(define-key global-map (kbd "C-x C-c") nil)   ;; don't make it easy to kill emacs
-(define-key global-map (kbd "<f2> <f2>") nil) ;; whatever this is is frustrating
+(unbind-key "C-z")       ;; stopping emacs is useless
+(unbind-key "C-x C-c")   ;; don't make it easy to kill emacs
+;; (unbind-key "<f2> <f2>") ;; whatever this is is frustrating
 
 (use-package isearch
+  :elpaca nil
   :bind
   (( "C-s" . isearch-forward-regexp)
    ( "C-r" . isearch-backward-regexp)
    ( "C-M-s" . isearch-forward)
    ( "C-M-r" . isearch-backward)))
 
-(use-package simple
-  :bind
-  (("C-M-g" . goto-line)
-   ("C-S-l" . goto-line)
-   ("M-z" . zap-to-char))
-  :config
-  (progn
-    ;; better goto-line
-    (defun goto-line-with-feedback ()
-      "Show line numbers temporarily, while prompting for the line number input."
-      (interactive)
-      (unwind-protect
-          (progn
-            (linum-mode 1)
-            (goto-line (read-number "Goto line: ")))
-        (linum-mode -1)))
-  (global-set-key [remap goto-line] 'goto-line-with-feedback)))
-
 (use-package misc
+  :elpaca nil
   :bind ("M-Z" . zap-up-to-char))
 
 (use-package window
+  :elpaca nil
   :bind (("C-x K" . kill-buffer-and-window)))
 
-(define-key global-map (kbd "C-x F") 'msg-buffer-filename)
+(bind-key "C-x F" 'msg-buffer-filename)
 
 ;; bindings for multiple-cursors
 (use-package multiple-cursors
@@ -77,6 +63,7 @@
 
 ;; windmove for navigating buffers
 (use-package windmove
+  :elpaca nil
   :config (windmove-default-keybindings))
 
 ;; ace-window for navigating buffers. Let's give this a try.
@@ -88,11 +75,9 @@
 
 ;; winner-mode for window undo/redo
 (use-package winner
+  :elpaca nil
   :config
   (winner-mode t))
-
-;; Navigate through edit points
-(use-package goto-chg)
 
 ;;
 ;; Aliases
@@ -105,7 +90,7 @@
 
 ;; perspective -- workspace (perspective) handling for emacs
 (use-package perspective
-  :demand
+  :demand t
   :bind
   (("C-x b" . persp-switch-to-buffer*)
    ("C-x k" . persp-kill-buffer*))
@@ -123,13 +108,14 @@
 
 ;; default-text-scale
 (use-package default-text-scale
+  :elpaca nil
   :bind
   (("C-M-+" . default-text-scale-increase)
    ("C-M--" . default-text-scale-decrease)))
 
 ;; yasnippet
 (use-package yasnippet
-  :blackout yas-minor-mode
+  :blackout "✂️"
   :custom
   (yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
   :config
@@ -178,3 +164,9 @@
 
 (provide 'my-bindings)
 ;;; my-bindings ends here
+
+;; Local Variables:
+;; no-byte-compile: t
+;; no-native-compile: t
+;; no-update-autoloads: t
+;; End:
