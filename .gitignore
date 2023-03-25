@@ -18,7 +18,8 @@
 /tramp
 /workgroups
 /perspective
-
+/history
+/projects
 
 # various temp dirs
 /.lsp-session-*
