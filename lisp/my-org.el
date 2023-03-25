@@ -55,7 +55,6 @@
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right))
 
-;; TODO: Need to refactor this into the use-package hooks
 (use-package ob
   :elpaca nil
   :after (org)
@@ -66,15 +65,9 @@
     '(;; other Babel languages
        (plantuml . t))))
 
-(defun org-journal-find-location ()
-  "Open today's journal, but specify a non-nil prefix argument in
-order to inhibit inserting the heading; `org-capture` will insert
-the heading."
-  (org-reload)
-  (org-journal-new-entry t)
-  ;; Position point on the journal's top-level heading so that org-capture will add the new entry
-  ;; as a child entry.
-  (goto-char (point-min)))
+(use-package doct
+  :ensure t
+  :commands (doct))
 
 (use-package org-capture
   :elpaca nil
@@ -82,18 +75,34 @@ the heading."
   :bind ("<f2>" . org-capture)
   :custom
   (org-capture-templates
-    '(("c" "Daily Check-In" entry (function org-journal-find-location)
-        "* %(format-time-string org-journal-time-format)Daily Check-In\n\n  MOOD:%i%?")
-       ("o" "Daily Check-Out" entry (function org-journal-find-location)
-         "* %(format-time-string org-journal-time-format)Daily Check-Out\n\n  MOOD:%i%?")
-       ("e" "Journal Entry" entry (function org-journal-find-location)
-         "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-       ("t" "Todo" entry (function org-journal-find-location)
-         "* TODO %?\n  %i\n  %T\n")
-       ("f" "File Note" entry (function org-journal-find-location)
-         "* %(format-time-string org-journal-time-format)%?\n  %i\n  %a\n  %T\n")
-       ("a" "Appointment" entry (function org-journal-find-location)
-         "* APPT %?\n SCHEDULED %^T\n %u\n  %T\n"))))
+    (doct
+      '(("Journal"
+         :keys "j"
+          :function (lambda ()
+                      (org-reload)
+                      (org-journal-new-entry t)
+                      (goto-char (point-min)))
+         :children ((:group "Status"
+                     :template ("* %(format-time-string org-journal-time-format) %{status-header}"
+                                 ":PROPERTIES:"
+                                 ":Mood: %^{Mood}p"
+                                 ":END:\n"
+                                 "%?")
+                     :children (("Daily Check-In" :keys "c" :status-header "Daily Check-In")
+                                ("Daily Check-Out" :keys "o" :status-header "Daily Check-Out")))
+                    ("Todo" :keys "t" :template ("* TODO %?" "%i" "%T"))
+                    ("Appointment" :keys "a" :template ("* APPT %?" "SCHEDULED %^T" "%u" "%T"))
+                    ("Source Block"
+                     :keys "s"
+                     :template ("* %^{Title}\n"
+                                "#+begin_src %?"
+                                "%i"
+                                "#+end_src"))
+                    ("Journal Entry"
+                     :keys "e"
+                     :template ("* %(format-time-string org-journal-time-format) %^{Title}\n"
+                                "%i%?"))))))))
+
 
 (use-package org-journal
   :demand t
