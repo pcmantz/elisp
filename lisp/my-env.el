@@ -230,6 +230,10 @@
   (ibuffer-always-show-last-buffer t)
   (ibuffer-view-ibuffer t))
 
+(use-package all-the-icons-ibuffer
+  :ensure t
+  :hook (ibuffer-mode . all-the-icons-ibuffer-mode))
+
 (use-package ibuffer-vc
   :config
   (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root))
