@@ -38,7 +38,7 @@
 (require 'my-defuns)
 (require 'my-env)
 (require 'my-bindings)
-(require 'my-helm)
+(require 'my-autocompletion)
 
 ;; org mode needs to be loaded early
 (require 'my-org)
@@ -62,7 +62,6 @@
 (require 'my-java)
 (require 'my-js)
 (require 'my-perl)
-(require 'my-php)
 (require 'my-prodigy)
 (require 'my-ruby)
 (require 'my-sql)
