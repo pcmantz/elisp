@@ -30,6 +30,7 @@
    ("C" . (lambda nil (interactive) (org-todo "CANCELLED")))
    ("d" . (lambda nil (interactive) (org-todo "DONE"))))
   :custom
+  (org-log-done 'note)
   (org-replace-disputed-keys t)
   (org-startup-folded nil)
   (org-todo-keywords '((sequence "TODO" "STARTED" "BLOCKED")
