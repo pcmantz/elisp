@@ -157,6 +157,12 @@
   (autoload 'projectile-project-root "projectile")
   (setq consult-project-function (lambda (_) (projectile-project-root))))
 
+(use-package consult-ag
+  :elpaca
+  (:host github :repo "yadex205/consult-ag")
+  :bind
+  ("M-s a" . consult-ag))
+
 (use-package embark-consult
   :ensure t
   :hook
