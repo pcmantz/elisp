@@ -79,10 +79,7 @@
     (doct
       '(("Journal"
          :keys "j"
-          :function (lambda ()
-                      (org-reload)
-                      (org-journal-new-entry t)
-                      (goto-char (point-min)))
+         :function (lambda () (org-reload) (org-journal-new-entry t) (goto-char (point-min)))
          :children ((:group "Status"
                      :template ("* %(format-time-string org-journal-time-format) %{status-header}"
                                  ":PROPERTIES:"
@@ -102,8 +99,28 @@
                     ("Journal Entry"
                      :keys "e"
                      :template ("* %(format-time-string org-journal-time-format) %^{Title}\n"
-                                "%i%?"))))))))
+                                 "%i%?"))))
+        ("Recipes"
+         :keys "r"
+         :file "~/Documents/recipes/recipes.org"
+         :children (("Capture"
+                     :keys "c"
+                     :template ("%(org-chef-get-recipe-from-url)"))
+                    ("Manual"
+                      :keys "m"
+                      :template ("* %^{Recipe Title}"
+                                 ":PROPERTIES:"
+                                 ":source-url:"
+                                 ":servings:"
+                                 ":prep-time:"
+                                 ":cook-time:"
+                                 ":ready-in:"
+                                 ":END:\n"
+                                 "** Ingredients\n"
+                                 "%?"
+                                 "** Directions\n\n"))))))))
 
+(use-package org-chef)
 
 (use-package org-journal
   :demand t
