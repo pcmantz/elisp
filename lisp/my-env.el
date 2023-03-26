@@ -33,25 +33,12 @@
 (use-package simple
   :elpaca nil
   :bind
-  (("C-M-g" . goto-line)
-   ("C-S-l" . goto-line)
-   ("M-z" . zap-to-char))
+  ("M-z" . zap-to-char)
   :custom
   (column-number-mode t)
   (line-number-mode t)
   (transient-mark-mode t)
-  (indent-tabs-mode nil)
-  :config
-  ;; better goto-line
-  (defun goto-line-with-feedback ()
-    "Show line numbers temporarily, while prompting for the line number input."
-    (interactive)
-    (unwind-protect
-        (progn
-          (linum-mode 1)
-          (goto-line (read-number "Goto line: ")))
-      (linum-mode -1)))
-  (global-set-key [remap goto-line] 'goto-line-with-feedback))
+  (indent-tabs-mode nil))
 
 ;; Graphical stuff I'm never going to use. may be obsolete due to early-init.el
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
