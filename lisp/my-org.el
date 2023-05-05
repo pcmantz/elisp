@@ -30,6 +30,7 @@
    ("C" . (lambda nil (interactive) (org-todo "CANCELLED")))
    ("d" . (lambda nil (interactive) (org-todo "DONE"))))
   :custom
+  (org-log-into-drawer t)
   (org-log-done 'note)
   (org-replace-disputed-keys t)
   (org-startup-folded nil)
@@ -50,11 +51,18 @@
     (define-key org-todo-state-map (car key-action) (cdr key-action)))
 
   :config
+  (add-to-list 'org-modules "org-habit")
   ;; Make windmove work in org-mode:
   (add-hook 'org-shiftup-final-hook 'windmove-up)
   (add-hook 'org-shiftleft-final-hook 'windmove-left)
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
-  (add-hook 'org-shiftright-final-hook 'windmove-right))
+  (add-hook 'org-shiftright-final-hook 'windmove-right)
+
+  (defun with-no-drawer (func &rest args)
+    (interactive "P")
+    (let ((org-log-into-drawer (not (car args))))
+      (funcall func)))
+  (advice-add 'org-add-note :around #'with-no-drawer))
 
 (use-package ob
   :elpaca nil
@@ -66,9 +74,7 @@
     '(;; other Babel languages
        (plantuml . t))))
 
-(use-package doct
-  :ensure t
-  :commands (doct))
+(use-package doct)
 
 (use-package org-capture
   :elpaca nil
@@ -133,7 +139,8 @@
     (s-join "|"
       (-map (lambda (status)
               (s-concat "TODO=\"" (s-upcase (car status)) "\""))
-        my-org-todo-active-statuses))))
+        my-org-todo-active-statuses)))
+  (add-to-list 'org-agenda-files (concat org-journal-dir "projects")))
 
 (use-package org-agenda
   :elpaca nil
@@ -166,7 +173,11 @@
          (org-agenda-overriding-header "Unscheduled TODO entries: ")))))
   (add-to-list 'same-window-regexps '("*Org Agenda*". nil)))
 
-(use-package ox-pandoc)
+(use-package ox-hugo
+  :after ox)
+
+(use-package ox-pandoc
+  :after ox)
 
 (provide 'my-org)
 ;;; my-org.el ends here
