@@ -189,7 +189,9 @@
 
 (use-package all-the-icons-dired
   :blackout t
-  :hook (dired-mode . all-the-icons-dired-mode))
+  :init
+  (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
+
 
 ;; uniquify: unique buffer names
 (use-package uniquify
@@ -219,7 +221,8 @@
 
 (use-package all-the-icons-ibuffer
   :ensure t
-  :hook (ibuffer-mode . all-the-icons-ibuffer-mode))
+  :init
+  (add-hook 'ibuffer-mode-hook #'all-the-icons-ibuffer-mode))
 
 (use-package ibuffer-vc
   :config

@@ -24,14 +24,14 @@
   (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package marginalia
+  :ensure t
   ;; Either bind `marginalia-cycle' globally or only in the minibuffer
   :bind
   (("M-A" . marginalia-cycle)
     :map minibuffer-local-map
     ("M-A" . marginalia-cycle))
-  :hook
-  (all-the-icons-completion-marginalia-setup)
   :init
+  (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
   (marginalia-mode))
 
 (use-package all-the-icons-completion
@@ -123,11 +123,8 @@
          ("M-s" . consult-history)                 ;; orig. next-matching-history-element
          ("M-r" . consult-history))                ;; orig. previous-matching-history-element
 
-  ;; Enable automatic preview at point in the *Completions* buffer. This is
-  ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
-
   :init
+  (add-hook 'completions-list-mode-hook #'consult-preview-at-point-mode)
 
   ;; Optionally configure the register formatting. This improves the register preview for
   ;; `consult-register', `consult-register-load', `consult-register-store' and the Emacs built-ins.
@@ -143,14 +140,15 @@
         xref-show-definitions-function #'consult-xref)
 
   :config
-  ;; For some commands and buffer sources it is useful to configure the
-  ;; :preview-key on a per-command basis using the `consult-customize' macro.
+  ;; For some commands and buffer sources it is useful to configure the :preview-key on a
+  ;; per-command basis using the `consult-customize' macro.
   (consult-customize
    consult-theme :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
    consult--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
+
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.4 any))
 

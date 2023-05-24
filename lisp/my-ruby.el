@@ -12,23 +12,26 @@
   :elpaca nil
   :blackout "♦️")
 
-(use-package rubocop
-  :blackout
-  :hook (ruby-mode . rubocop-mode))
+;; (use-package rubocop
+;;   :blackout
+;;   :hook (ruby-mode . rubocop-mode))
 
 (use-package ruby-tools
   :blackout
-  :hook (ruby-mode . ruby-tools-mode))
+  :init
+  (add-hook 'ruby-ts-mode-hook #'ruby-tools-mode))
 
 (use-package yard-mode
   :blackout
-  :hook ruby-mode)
+  :init
+  (add-hook 'ruby-ts-mode-hook #'yard-mode))
 
 ;; NOTE: This is really useful, but less necessary with direnv mode
 (use-package chruby)
 
 (use-package projectile-rails
-  :hook projectile-mode)
+  :init
+  (add-hook 'projectile-mode-hook #'projectile-rails))
 
 (use-package haml-mode)
 (use-package rails-log-mode)
