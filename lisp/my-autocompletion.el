@@ -40,6 +40,10 @@
   :init
   (all-the-icons-completion-mode))
 
+(use-package symbol-overlay
+  :init
+  (add-hook 'prog-mode-hook #'symbol-overlay-mode))
+
 (use-package embark
   :ensure t
   :bind
