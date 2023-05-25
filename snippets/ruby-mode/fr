@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: frozen-string-literal
+# key: fr
+# binding: direct-keybinding
+# group: definitions
+# --
+
+# frozen_string_literal: true
