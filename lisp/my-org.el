@@ -136,10 +136,11 @@
   (org-journal-file-format "%Y/%m/%Y-%m-%d.org")
   (org-journal-date-format "%A, %b  %d, %Y")
   (org-journal-carryover-items
-    (s-join "|"
-      (-map (lambda (status)
-              (s-concat "TODO=\"" (s-upcase (car status)) "\""))
-        my-org-todo-active-statuses)))
+    (s-concat
+      "TODO={"
+      (s-join "\\|" (--map (s-upcase (car it)) my-org-todo-active-statuses))
+      "}"))
+  :config
   (add-to-list 'org-agenda-files (concat org-journal-dir "projects")))
 
 (use-package org-agenda
