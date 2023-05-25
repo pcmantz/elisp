@@ -107,13 +107,13 @@
 
 ;; default-text-scale
 (use-package default-text-scale
-  :elpaca nil
   :bind
   (("C-M-+" . default-text-scale-increase)
    ("C-M--" . default-text-scale-decrease)))
 
 ;; yasnippet
 (use-package yasnippet
+  :demand t
   :blackout " ✂️"
   :custom
   (yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
