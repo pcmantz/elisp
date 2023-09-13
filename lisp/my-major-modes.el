@@ -118,6 +118,12 @@
                             ("blade" . "\\.blade\\.")
                             ("ctemplate" . "\\.hbs\\."))))
 
+;; sh-mode
+(use-package sh-script
+  :elpaca nil
+  :custom
+  (sh-basic-offset 2))
+
 ;; protobuf-mode
 (use-package protobuf-mode
   :custom
