@@ -38,19 +38,19 @@
 
 ;; bindings for multiple-cursors
 (use-package multiple-cursors
-  :bind-keymap ("C-|" . multiple-cursors-keymap)
+  :bind ("C-|". pcm/multiple-cursors-transient)
   :init
-  (defvar multiple-cursors-keymap (make-sparse-keymap))
-
-  (define-key multiple-cursors-keymap (kbd "n") 'mc/mark-next-like-this)
-  (define-key multiple-cursors-keymap (kbd "p") 'mc/mark-previous-like-this)
-  (define-key multiple-cursors-keymap (kbd "a") 'mc/mark-all-like-this)
-  (define-key multiple-cursors-keymap (kbd "r") 'mc/mark-all-in-region-regexp)
-  (define-key multiple-cursors-keymap (kbd "d") 'mc/mark-next-like-this-dwim)
-
-  (define-key multiple-cursors-keymap (kbd "M-n") 'mc/mark-next-word-like-this)
-  (define-key multiple-cursors-keymap (kbd "M-p") 'mc/mark-previous-word-like-this)
-  (define-key multiple-cursors-keymap (kbd "M-a") 'mc/mark-all-words-like-this))
+  (transient-define-prefix pcm/multiple-cursors-transient ()
+    "Run multiple-cursors with a transient."
+    [["Lines"
+       ("n" "Mark next like this" mc/mark-next-like-this)
+       ("p" "Mark previous like this" mc/mark-previous-like-this)
+       ("a" "Mark all like this" mc/mark-all-like-this)
+       ("r" "Mark all in region (regexp)" mc/mark-all-in-region-regexp)]
+      ["Words"
+        ("M-n" "Mark next word like this" mc/mark-next-word-like-this)
+        ("M-p" "Mark previous word like this" mc/mark-previous-word-like-this)
+        ("M-a" "mark all words like this" mc/mark-all-words-like-this)]]))
 
 ; expand the marked region in semantic increments (negative prefix to reduce region)
 (use-package expand-region
