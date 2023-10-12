@@ -32,6 +32,9 @@
   :custom
   (org-log-into-drawer t)
   (org-log-done 'note)
+  (org-priority-highest ?A)
+  (org-priority-lowest ?E)
+  (org-priority-default ?X)
   (org-replace-disputed-keys t)
   (org-startup-folded nil)
   (org-todo-keywords '((sequence "TODO" "STARTED" "BLOCKED")
