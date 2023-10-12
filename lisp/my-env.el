@@ -28,7 +28,10 @@
   ;; Do not allow the cursor in the minibuffer prompt
   (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
   (tab-width 4)
-  (visible-bell t))
+  (visible-bell t)
+
+  ;; defined in paragraphs.el but whatever
+  (sentence-end-double-space nil))
 
 (use-package simple
   :elpaca nil
