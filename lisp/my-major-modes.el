@@ -130,6 +130,11 @@
   (c-basic-offset 2 "Set the tab width to 2.")
   (indent-tabs-mode nil "No tabs."))
 
+;;just-mode
+(use-package just-mode)
+
+(use-package justl)
+
 ;;
 ;; Fundamental mode overrides
 ;;
