@@ -65,6 +65,7 @@
 (require 'my-prodigy)
 (require 'my-ruby)
 (require 'my-sql)
+(require 'my-tex)
 
 ;; site libraries
 (require 'beautify)
