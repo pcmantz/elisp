@@ -61,11 +61,19 @@
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-  (defun with-no-drawer (func &rest args)
-    (interactive "P")
-    (let ((org-log-into-drawer (not (car args))))
-      (funcall func)))
-  (advice-add 'org-add-note :around #'with-no-drawer))
+  (add-hook 'org-mode-hook
+    (lambda ()
+      (setq time-stamp-active t
+        time-stamp-start "#\\+lastmod:[ \t]*"
+        time-stamp-end "$"
+        time-stamp-format "[%04Y-%02m-%02d %a]")
+      (add-hook 'before-save-hook 'time-stamp nil)))
+
+    (defun with-no-drawer (func &rest args)
+      (interactive "P")
+      (let ((org-log-into-drawer (not (car args))))
+        (funcall func)))
+    (advice-add 'org-add-note :around #'with-no-drawer))
 
 (use-package ob
   :elpaca nil
@@ -81,55 +89,57 @@
 
 (use-package org-capture
   :elpaca nil
-  :after (org)
+  :after (org org-journal org-chef doct)
   :bind ("<f2>" . org-capture)
-  :custom
-  (org-capture-templates
+  :config
+  ;; This will (hopefully) load doct up-front so that it doesn't evaluate every time I try and use it.
+  (setq org-capture-templates
     (doct
       '(("Journal"
-         :keys "j"
-         :function (lambda () (org-reload) (org-journal-new-entry t) (goto-char (point-min)))
-         :children ((:group "Status"
-                     :template ("* %(format-time-string org-journal-time-format) %{status-header}"
-                                 ":PROPERTIES:"
-                                 ":Mood: %^{Mood}p"
-                                 ":END:\n"
-                                 "%?")
-                     :children (("Daily Check-In" :keys "c" :status-header "Daily Check-In")
-                                ("Daily Check-Out" :keys "o" :status-header "Daily Check-Out")))
-                    ("Todo" :keys "t" :template ("* TODO %?" "%i" "%T"))
-                    ("Appointment" :keys "a" :template ("* APPT %?" "SCHEDULED %^T" "%u" "%T"))
-                    ("Source Block"
-                     :keys "s"
-                     :template ("* %^{Title}\n"
-                                "#+begin_src %?"
-                                "%i"
-                                "#+end_src"))
-                    ("Journal Entry"
-                     :keys "e"
-                     :template ("* %(format-time-string org-journal-time-format) %^{Title}\n"
-                                 "%i%?"))))
-        ("Recipes"
-         :keys "r"
-         :file "~/Documents/recipes/recipes.org"
-         :children (("Capture"
-                     :keys "c"
-                     :template ("%(org-chef-get-recipe-from-url)"))
-                    ("Manual"
-                      :keys "m"
-                      :template ("* %^{Recipe Title}"
-                                 ":PROPERTIES:"
-                                 ":source-url:"
-                                 ":servings:"
-                                 ":prep-time:"
-                                 ":cook-time:"
-                                 ":ready-in:"
-                                 ":END:\n"
-                                 "** Ingredients\n"
-                                 "%?"
-                                 "** Directions\n\n"))))))))
+          :keys "j"
+          :function (lambda () (org-reload) (org-journal-new-entry t) (goto-char (point-min)))
+          :children ((:group "Status"
+                       :template ("* %(format-time-string org-journal-time-format) %{status-header}"
+                                   ":PROPERTIES:"
+                                   ":Mood: %^{Mood}p"
+                                   ":END:\n"
+                                   "%?")
+                       :children (("Daily Check-In" :keys "c" :status-header "Daily Check-In")
+                                   ("Daily Check-Out" :keys "o" :status-header "Daily Check-Out")))
+                      ("Todo" :keys "t" :template ("* TODO %?" "%i" "%T"))
+                      ("Appointment" :keys "a" :template ("* APPT %?" "SCHEDULED %^T" "%u" "%T"))
+                      ("Source Block"
+                        :keys "s"
+                        :template ("* %^{Title}\n"
+                                    "#+begin_src %?"
+                                    "%i"
+                                    "#+end_src"))
+                      ("Journal Entry"
+                        :keys "e"
+                        :template ("* %(format-time-string org-journal-time-format) %^{Title}\n"
+                                    "%i%?"))))
+         ("Recipes"
+           :keys "r"
+           :file "~/Documents/recipes/recipes.org"
+           :children (("Capture"
+                        :keys "c"
+                        :template ("%(org-chef-get-recipe-from-url)"))
+                       ("Manual"
+                         :keys "m"
+                         :template ("* %^{Recipe Title}"
+                                     ":PROPERTIES:"
+                                     ":source-url:"
+                                     ":servings:"
+                                     ":prep-time:"
+                                     ":cook-time:"
+                                     ":ready-in:"
+                                     ":END:\n"
+                                     "** Ingredients\n"
+                                     "%?"
+                                     "** Directions\n\n"))))))))
 
-(use-package org-chef)
+(use-package org-chef
+  :demand t)
 
 (use-package org-journal
   :demand t
@@ -178,6 +188,8 @@
   (add-to-list 'same-window-regexps '("*Org Agenda*". nil)))
 
 (use-package ox-hugo
+  :ensure t
+  :pin melpa
   :after ox)
 
 (use-package ox-pandoc

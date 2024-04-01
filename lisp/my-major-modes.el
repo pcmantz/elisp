@@ -26,7 +26,9 @@
     (add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
     (add-to-list 'magit-repository-directories '("~/git" . 1))
     (add-to-list 'magit-repository-directories '("~/Documents" . 1))
-    (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)))
+    (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
+    (add-hook magit-mode-hook
+      (lambda () (add-to-list 'magit-buffer-diff-args "--algorithm=histogram")))))
 
 (defun magit-toggle-whitespace ()
   (interactive)
@@ -74,6 +76,7 @@
 
 ;; rnc-mode
 (use-package rnc-mode
+  :elpaca nil
   :custom
   (rnc-indent-level 'tab-width))
 

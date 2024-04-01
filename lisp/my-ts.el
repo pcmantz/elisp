@@ -3,13 +3,9 @@
 ;;; Commentary:
 
 ;;; Code:
-(use-package typescript
-  :mode (("\\.ts$" . ts-mode))
-  :custom
-  (typescript-indent-level 2)
-  (typescript-expr-indent-offset 0)
-  :config
-  (flycheck-add-mode 'javascript-eslint 'typescript-mode))
+
+(use-package typescript-ts-mode
+  :elpaca nil)
 
 (defvar tslint-path "tslint")
 
