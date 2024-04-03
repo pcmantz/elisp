@@ -7,7 +7,7 @@
 ;;; Code:
 
 (use-package emacs
-  :elpaca nil
+  :ensure nil
   :init
   ;; Add prompt indicator to `completing-read-multiple'.
   ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
@@ -34,7 +34,7 @@
   (sentence-end-double-space nil))
 
 (use-package simple
-  :elpaca nil
+  :ensure nil
   :bind
   ("M-z" . zap-to-char)
   :custom
@@ -58,7 +58,7 @@
 ;;
 
 ;; keep local customizations out of this file
-(setq custom-file (concat elisp-dir "my-custom-file.el"))
+(setq custom-file (concat user-emacs-directory "my-custom-file.el"))
 (if (not (file-exists-p custom-file))
     (write-region "" nil custom-file))
 (load custom-file)
@@ -77,7 +77,7 @@
 ;;
 
 (use-package files
-  :elpaca nil
+  :ensure nil
   :custom
   (backup-by-copying t) ;; don't clobber symlinks
   (version-control t)   ;; version backup files
@@ -85,10 +85,10 @@
   (kept-old-versions 2)
   (delete-old-versions t)
   (backup-directory-alist ;; Write backup files to own directory
-   `(("." . ,(expand-file-name (concat elisp-dir "backups"))))))
+   `(("." . ,(expand-file-name (concat user-emacs-directory "backups"))))))
 
 (use-package vc-hooks
-  :elpaca nil
+  :ensure nil
   :custom
   (vc-make-backup-files t))
 
@@ -96,7 +96,7 @@
 ;; TRAMP
 ;;
  ;; NOTE: To avoid recursive loads, we load tramp right here and now
-(use-package tramp :elpaca nil :demand t)
+(use-package tramp :ensure nil :demand t)
 
 ;;
 ;; display
@@ -105,7 +105,7 @@
 ;; colors! the colors!
 (use-package font-lock
   :demand t
-  :elpaca nil
+  :ensure nil
   :custom
   (font-lock-maximum-decoration t)
   :config
@@ -114,7 +114,7 @@
 
 ;; tree-sitter: when font lock isn't enough.
 (use-package treesit
-  :elpaca nil
+  :ensure nil
   :custom
   ((treesit-font-lock-level 4)))
 
@@ -122,17 +122,7 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
-  (--map (add-to-list 'treesit-language-source-alist it)
-    '('(elixir       . ("https://github.com/elixir-lang/tree-sitter-elixir" nil nil nil nil))
-      '(heex-ts-mode . ("https://github.com/phoenixframework/tree-sitter-heex" nil nil nil nil))
-      '(latex        . ("https://github.com/latex-lsp/tree-sitter-latex" nil nil nil nil))
-      '(ruby         . ("https://github.com/tree-sitter/tree-sitter-ruby" nil nil nil nil))
-      '(scss         . ("https://github.com/serenadeai/tree-sitter-scss" nil nil nil nil))
-      '(swift        . ("https://github.com/alex-pinkus/tree-sitter-swift" nil nil nil nil))
-      '(tsx          . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "tsx/src" nil nil))
-      '(typescript   . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "typescript/src" nil nil))
-      '(yaml         . ("https://github.com/ikatyang/tree-sitter-yaml" nil nil nil nil))))
-
+  (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
 ;; graphical config
@@ -200,7 +190,7 @@
 
 ;; uniquify: unique buffer names
 (use-package uniquify
-  :elpaca nil
+  :ensure nil
   :demand t
   :custom
   (uniquify-buffer-name-style 'forward)
@@ -217,7 +207,7 @@
 
 ;; buffer listing
 (use-package ibuffer
-  :elpaca nil
+  :ensure nil
   :bind ("C-x C-b" . ibuffer)
   :custom
   (ibuffer-default-sorting-mode 'major-mode)
@@ -235,7 +225,7 @@
 
 ;; text display config
 (use-package paren
-  :elpaca nil
+  :ensure nil
   :config
   (show-paren-mode t))
 
@@ -267,7 +257,7 @@
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
 (use-package whitespace
-  :elpaca nil
+  :ensure nil
   :demand t
   :bind ("C-x W" . 'whitespace-mode)
   :custom

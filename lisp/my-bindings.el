@@ -9,7 +9,7 @@
 ;;
 
 (use-package files
-  :elpaca nil
+  :ensure nil
   :bind ("<f5>" . revert-buffer))
 
 (bind-key "<f11>" 'toggle-frame-fullscreen)
@@ -19,7 +19,7 @@
 ;; (unbind-key "<f2> <f2>") ;; whatever this is is frustrating
 
 (use-package isearch
-  :elpaca nil
+  :ensure nil
   :bind
   (( "C-s" . isearch-forward-regexp)
    ( "C-r" . isearch-backward-regexp)
@@ -27,11 +27,11 @@
    ( "C-M-r" . isearch-backward)))
 
 (use-package misc
-  :elpaca nil
+  :ensure nil
   :bind ("M-Z" . zap-up-to-char))
 
 (use-package window
-  :elpaca nil
+  :ensure nil
   :bind (("C-x K" . kill-buffer-and-window)))
 
 (bind-key "C-x F" 'msg-buffer-filename)
@@ -62,7 +62,7 @@
 
 ;; windmove for navigating buffers
 (use-package windmove
-  :elpaca nil
+  :ensure nil
   :config (windmove-default-keybindings))
 
 ;; ace-window for navigating buffers. Let's give this a try.
@@ -74,7 +74,7 @@
 
 ;; winner-mode for window undo/redo
 (use-package winner
-  :elpaca nil
+  :ensure nil
   :config
   (winner-mode t))
 
@@ -99,7 +99,7 @@
   (persp-sort 'access)
   :config
   ;; setq here to ensure it gets set immediately before `persp-state-load'
-  (setq persp-state-default-file (concat elisp-dir "perspective"))
+  (setq persp-state-default-file (concat user-emacs-directory "perspective"))
   (persp-mode)
   (add-hook 'persp-switch-hook #'persp-state-save)
   (add-hook 'kill-emacs-hook #'persp-state-save)
@@ -119,7 +119,7 @@
   (yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
   :config
   (yas-global-mode)
-  (yas-load-directory (concat elisp-dir "/snippets"))
+  (yas-load-directory (concat user-emacs-directory "/snippets"))
   (set-default 'yas--dont-activate
     #'(lambda ()
         (or buffer-read-only

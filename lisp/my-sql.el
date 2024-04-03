@@ -7,7 +7,7 @@
 ;;; Code:
 
 (use-package sql
-  :elpaca nil)
+  :ensure nil)
 
 (add-hook 'sql-interactive-mode-hook
           (lambda () (toggle-truncate-lines t)))

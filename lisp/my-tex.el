@@ -5,7 +5,7 @@
 ;;; Code:
 
 (use-package tex
-  :elpaca nil
+  :ensure nil
   :ensure auctex)
 
 (provide 'my-tex)

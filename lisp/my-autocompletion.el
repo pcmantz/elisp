@@ -13,7 +13,7 @@
   (vertico-resize t))
 
 (use-package savehist
-  :elpaca nil
+  :ensure nil
   :init
   (savehist-mode))
 
@@ -35,7 +35,7 @@
   (marginalia-mode))
 
 (use-package all-the-icons-completion
-  :elpaca
+  :ensure
   (:host github :repo "iyefrat/all-the-icons-completion")
   :init
   (all-the-icons-completion-mode))
@@ -160,7 +160,7 @@
   (setq consult-project-function (lambda (_) (projectile-project-root))))
 
 (use-package consult-ag
-  :elpaca
+  :ensure
   (:host github :repo "yadex205/consult-ag")
   :bind
   ("M-s a" . consult-ag))

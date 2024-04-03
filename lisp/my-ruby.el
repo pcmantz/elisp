@@ -6,7 +6,7 @@
 
 (use-package ruby-mode
   :after (bind-key)
-  :elpaca nil
+  :ensure nil
   :blackout "♦️"
   :config
   (add-hook 'ruby-base-mode-hook

@@ -4,24 +4,22 @@
 
 ;;; Code:
 
-;; Set up local package directories
-(defvar elisp-dir
-  (file-name-directory (or (buffer-file-name) load-file-name))
-  "Location where all the Elisp is held.")
-
-(add-to-list 'load-path (concat elisp-dir "site"))
-(add-to-list 'load-path (concat elisp-dir "lisp"))
+(add-to-list 'load-path (concat user-emacs-directory "site"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 ;; use elpaca for package management
 (require 'my-elpaca)
 
 ;; global requirements
-(use-package cl-lib :elpaca nil :demand t)
+(use-package cl-lib :ensure nil :demand t)
+
+(use-package bind-key :demand t)
 (use-package blackout :demand t)
 (use-package dash :demand t)
-(use-package s :demand t)
-(use-package bind-key :demand t)
 (use-package f :demand t)
+(use-package s :demand t)
+
+(elpaca-wait)
 
 ;; miscellaneous requirements
 (use-package inflections)

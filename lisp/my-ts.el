@@ -5,7 +5,7 @@
 ;;; Code:
 
 (use-package typescript-ts-mode
-  :elpaca nil)
+  :ensure nil)
 
 (defvar tslint-path "tslint")
 

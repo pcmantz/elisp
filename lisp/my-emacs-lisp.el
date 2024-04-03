@@ -7,7 +7,7 @@
 ;;; Code:
 
 (use-package elisp-mode
-  :elpaca nil
+  :ensure nil
   :config
   (setq indent-tabs-mode nil))
 

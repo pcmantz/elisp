@@ -26,7 +26,7 @@
   (flycheck-temp-prefix ".flycheck")
   :config
   (flycheck-define-checker ruby-reek
-    "A Ruby smeel checker using reek
+    "A Ruby smell checker using reek
 See URL `https://github.com/troessner/reek'."
     :command ("reek" "--format=xml"
                source-original)

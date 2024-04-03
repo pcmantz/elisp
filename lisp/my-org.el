@@ -76,7 +76,7 @@
     (advice-add 'org-add-note :around #'with-no-drawer))
 
 (use-package ob
-  :elpaca nil
+  :ensure nil
   :after (org)
   :config
   ;; active Org-babel languages
@@ -88,7 +88,7 @@
 (use-package doct)
 
 (use-package org-capture
-  :elpaca nil
+  :ensure nil
   :after (org org-journal org-chef doct)
   :bind ("<f2>" . org-capture)
   :config
@@ -157,7 +157,7 @@
   (add-to-list 'org-agenda-files (concat org-journal-dir "projects")))
 
 (use-package org-agenda
-  :elpaca nil
+  :ensure nil
   :bind
   (("C-c a" . org-agenda)
     :map org-agenda-mode-map
@@ -187,10 +187,10 @@
          (org-agenda-overriding-header "Unscheduled TODO entries: ")))))
   (add-to-list 'same-window-regexps '("*Org Agenda*". nil)))
 
-(use-package ox-hugo
-  :ensure t
-  :pin melpa
-  :after ox)
+;; (use-package ox-hugo
+;;   :ensure t
+;;   :pin melpa
+;;   :after ox)
 
 (use-package ox-pandoc
   :after ox)

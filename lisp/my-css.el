@@ -12,7 +12,7 @@
   (css-set-offset 2))
 
 (use-package css-mode
-  :elpaca nil
+  :ensure nil
   :custom
   (css-set-offset 2))
 

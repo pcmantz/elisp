@@ -60,7 +60,7 @@
 
 ;; diff-mode
 (use-package diff-mode
-  :elpaca nil
+  :ensure nil
   :custom
   (diff-switches "-u")
   :config
@@ -69,14 +69,14 @@
 
 ;; yaml-mode
 (use-package yaml-mode
-  :elpaca nil
+  :ensure nil
   :mode
   (("\\.ya?ml$" . yaml-mode))
   :custom (yaml-indent-offset 2))
 
 ;; rnc-mode
 (use-package rnc-mode
-  :elpaca nil
+  :ensure nil
   :custom
   (rnc-indent-level 'tab-width))
 
@@ -123,7 +123,7 @@
 
 ;; sh-mode
 (use-package sh-script
-  :elpaca nil
+  :ensure nil
   :custom
   (sh-basic-offset 2))
 

@@ -16,7 +16,7 @@
 (set-perl-mode-to-cperl-mode)
 
 (use-package cperl-mode
-  :elpaca nil
+  :ensure nil
   :mode (("\\.t$" . cperl-mode))
   :custom
   (cperl-electric-keywords nil)
@@ -35,7 +35,7 @@
 ;; code copied from Emacs::PDE
 ;; http://search.cpan.org/~yewenbin/Emacs-PDE-0.2.16/
 (use-package perltidy
-  :elpaca nil
+  :ensure nil
   :bind
   (:map cperl-mode-map
    ("C-M-\\" . perltidy-region)
