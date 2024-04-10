@@ -114,7 +114,7 @@
 ;; yasnippet
 (use-package yasnippet
   :demand t
-  :blackout " ✂️"
+  :delight " ✂️"
   :custom
   (yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
   :config

@@ -61,7 +61,7 @@
 (setq custom-file (concat user-emacs-directory "my-custom-file.el"))
 (if (not (file-exists-p custom-file))
     (write-region "" nil custom-file))
-(load custom-file)
+(add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 
 ;; path (via exec-path-from-shell)
 (use-package exec-path-from-shell
@@ -183,7 +183,7 @@
   :defer 0.5)
 
 (use-package all-the-icons-dired
-  :blackout t
+  :delight
   :init
   (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
 
@@ -240,18 +240,15 @@
   :bind-keymap
   (("C-c p" . projectile-command-map)
    ("s-p" . projectile-command-map))
-  :custom
-  (projectile-dynamic-mode-line t)
-  (projectile-mode-line-prefix " 🎯")
-  :init
-  (projectile-mode t)
+  :delight " 🎯"
   :config
   (defun projectile-multi-term-in-root ()
     "Invoke `multi-term' in the project's root."
     (interactive)
     (projectile-with-default-dir (projectile-project-root) (multi-term)))
 
-  (define-key projectile-command-map (kbd "x m") 'projectile-multi-term-in-root))
+  (define-key projectile-command-map (kbd "x m") 'projectile-multi-term-in-root)
+  (projectile-mode t))
 
 
 ;; whitespace configuration
@@ -266,7 +263,7 @@
   (add-hook 'before-save-hook 'whitespace-cleanup))
 
 (use-package editorconfig
-  :blackout t
+  :diminish " 🖋️⚙️"
   :config
   (editorconfig-mode 1))
 

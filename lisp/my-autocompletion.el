@@ -7,20 +7,19 @@
 ;;; Code:
 
 (use-package vertico
-  :init
-  (vertico-mode)
   :custom
-  (vertico-resize t))
+  (vertico-resize t)
+  (vertico-mode))
 
 (use-package savehist
   :ensure nil
-  :init
+  :config
   (savehist-mode))
 
 (use-package orderless
+  :ensure t
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package marginalia
@@ -30,18 +29,18 @@
   (("M-A" . marginalia-cycle)
     :map minibuffer-local-map
     ("M-A" . marginalia-cycle))
-  :init
+  :config
   (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
   (marginalia-mode))
 
 (use-package all-the-icons-completion
   :ensure
   (:host github :repo "iyefrat/all-the-icons-completion")
-  :init
+  :config
   (all-the-icons-completion-mode))
 
 (use-package symbol-overlay
-  :init
+  :config
   (add-hook 'prog-mode-hook #'symbol-overlay-mode))
 
 (use-package embark
@@ -53,7 +52,6 @@
   :init
   ;; Replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
-
 
   ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
   ;; strategy, if you want to see the documentation from multiple providers.

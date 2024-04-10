@@ -19,7 +19,7 @@
   (global-origami-mode))
 
 (use-package flycheck
-  :blackout " 🪰✅"
+  :delight " 🪰✅"
   :custom
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-idle-change-delay 2)
@@ -76,7 +76,7 @@ See URL `https://github.com/troessner/reek'."
 
 ;; company
 (use-package company
-  :blackout " 🏭"
+  :delight " 🏭"
   :custom
   (company-idle-delay 0.5)
   :config

@@ -7,14 +7,14 @@
 (use-package ruby-mode
   :after (bind-key)
   :ensure nil
-  :blackout "♦️"
+  :delight "♦️"
   :config
   (add-hook 'ruby-base-mode-hook
     (lambda ()
       (bind-key "C-c r" 'pcm/ruby-refactor-transient))))
 
 (use-package ruby-tools
-  :blackout
+  :delight
   :config
   (add-hook 'ruby-base-mode-hook #'ruby-tools-mode))
 
@@ -41,12 +41,12 @@ https://johnhame.link/posts/tweaking-emacs-for-ruby-development-in-2023/"
         ("TAB" "Switch to REPL" ruby-switch-to-inf)]]))
 
 (use-package rubocop
-  :blackout
+  :delight
   :config
   (add-hook 'ruby-base-mode-hook #'rubocop-mode))
 
 (use-package yard-mode
-  :blackout
+  :delight
   :config
   (add-hook 'ruby-base-mode-hook #'yard-mode))
 
