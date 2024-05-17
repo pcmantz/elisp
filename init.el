@@ -1,4 +1,4 @@
-;;; init.el --- config script for elisp packages
+;;; init.el --- config script for elisp packages -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -9,7 +9,6 @@
 
 ;; use elpaca for package management
 (require 'my-elpaca)
-
 (elpaca-wait)
 
 ;;
@@ -18,12 +17,14 @@
 (use-package cl-lib :ensure nil :demand t)
 (elpaca-wait)
 
-;; (use-package bind-key :ensure t :demand t)
-(use-package delight :ensure t :demand t)
-(use-package dash :ensure t :demand t)
-(use-package f :ensure t :demand t)
-(use-package s :ensure t :demand t)
+(use-package dash :demand t)
+(use-package f :demand t)
+(use-package s :demand t)
 
+(use-package bind-key :demand t)
+(elpaca-wait)
+
+(use-package delight :demand t)
 (elpaca-wait)
 
 ;; miscellaneous requirements
@@ -41,10 +42,10 @@
 (require 'my-defuns)
 (require 'my-env)
 (require 'my-bindings)
-;; (require 'my-autocompletion)
+(require 'my-autocompletion)
 
 ;; org mode needs to be loaded early
-;; (require 'my-org)
+(require 'my-org)
 
 (elpaca-wait)
 
@@ -56,23 +57,25 @@
 
 (elpaca-wait)
 
-;; (require 'my-cc)
-;; (require 'my-clojure)
-;; (require 'my-css)
-;; (require 'my-elixir)
-;; (require 'my-emacs-lisp)
-;; (require 'my-haskell)
-;; (require 'my-java)
-;; (require 'my-js)
-;; (require 'my-perl)
-;; (require 'my-prodigy)
-;; (require 'my-ruby)
-;; (require 'my-sql)
-;; (require 'my-tex)
+(require 'my-cc)
+(require 'my-clojure)
+(require 'my-css)
+(require 'my-elixir)
+(require 'my-emacs-lisp)
+(require 'my-haskell)
+(require 'my-java)
+(require 'my-js)
+(require 'my-perl)
+(require 'my-prodigy)
+(require 'my-ruby)
+(require 'my-sql)
+(require 'my-tex)
+
+(elpaca-wait)
 
 ;; site libraries
-;; (require 'beautify)
-;; (require 'xmlformat)
+(require 'beautify)
+(require 'xmlformat)
 
 ;;
 ;; startup preferences

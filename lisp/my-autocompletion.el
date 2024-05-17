@@ -7,23 +7,26 @@
 ;;; Code:
 
 (use-package vertico
+  :demand t
+  :init
+  (vertico-mode)
   :custom
-  (vertico-resize t)
-  (vertico-mode))
+  (vertico-resize t))
 
 (use-package savehist
   :ensure nil
+  :demand t
   :config
   (savehist-mode))
 
 (use-package orderless
-  :ensure t
+  :demand t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package marginalia
-  :ensure t
+  :demand t
   ;; Either bind `marginalia-cycle' globally or only in the minibuffer
   :bind
   (("M-A" . marginalia-cycle)
@@ -34,17 +37,19 @@
   (marginalia-mode))
 
 (use-package all-the-icons-completion
+  :demand t
   :ensure
   (:host github :repo "iyefrat/all-the-icons-completion")
   :config
   (all-the-icons-completion-mode))
 
 (use-package symbol-overlay
+  :demand t
   :config
   (add-hook 'prog-mode-hook #'symbol-overlay-mode))
 
 (use-package embark
-  :ensure t
+  :demand t
   :bind
   (("C-." . embark-act)
    ("M-." . embark-dwim)
@@ -158,13 +163,14 @@
   (setq consult-project-function (lambda (_) (projectile-project-root))))
 
 (use-package consult-ag
+  :demand t
   :ensure
   (:host github :repo "yadex205/consult-ag")
   :bind
   ("M-s a" . consult-ag))
 
 (use-package embark-consult
-  :ensure t
+  :demand t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 

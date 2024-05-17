@@ -42,7 +42,7 @@
   (org-deadline-warning-days 14)
   (org-refile-use-outline-path t) ; use full outline paths for refile targets
   (org-refile-targets '((nil :maxlevel . 9)
-                        (org-agenda-files :maxlevel . 9)))
+                         (org-agenda-files :maxlevel . 9)))
   :init
   (defvar org-todo-state-map (make-sparse-keymap))
   (dolist
@@ -68,6 +68,8 @@
         time-stamp-end "$"
         time-stamp-format "[%04Y-%02m-%02d %a]")
       (add-hook 'before-save-hook 'time-stamp nil)))
+
+  (add-hook 'org-mode-hook (lambda () (setq tab-width 8)))
 
     (defun with-no-drawer (func &rest args)
       (interactive "P")

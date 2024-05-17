@@ -78,6 +78,7 @@
 
 (use-package files
   :ensure nil
+  :demand t
   :custom
   (backup-by-copying t) ;; don't clobber symlinks
   (version-control t)   ;; version backup files
@@ -88,6 +89,7 @@
    `(("." . ,(expand-file-name (concat user-emacs-directory "backups"))))))
 
 (use-package vc-hooks
+  :demand t
   :ensure nil
   :custom
   (vc-make-backup-files t))
@@ -119,6 +121,7 @@
   ((treesit-font-lock-level 4)))
 
 (use-package treesit-auto
+  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
@@ -158,6 +161,7 @@
                             `([,(cdr char-regexp) 0 font-shape-gstring])))))
 
 (use-package metalheart-theme
+  :ensure t
   :if (display-graphic-p)
   :config
   (load-theme 'metalheart)
@@ -179,10 +183,12 @@
 
 ;; all-the-icons
 (use-package all-the-icons
+  :ensure t
   :demand t
   :defer 0.5)
 
 (use-package all-the-icons-dired
+  :ensure t
   :delight
   :init
   (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
@@ -200,6 +206,7 @@
 
 ;; dired
 (use-package dired-subtree
+  :ensure t
   :bind
   (:map dired-mode-map
         ("i" . dired-subtree-insert)
@@ -220,6 +227,7 @@
   (add-hook 'ibuffer-mode-hook #'all-the-icons-ibuffer-mode))
 
 (use-package ibuffer-vc
+  :ensure t
   :config
   (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root))
 
@@ -237,6 +245,7 @@
 
 ;; projectile: for managing projects
 (use-package projectile
+  :ensure t
   :bind-keymap
   (("C-c p" . projectile-command-map)
    ("s-p" . projectile-command-map))
@@ -263,7 +272,7 @@
   (add-hook 'before-save-hook 'whitespace-cleanup))
 
 (use-package editorconfig
-  :diminish " 🖋️⚙️"
+  :delight " 🖋️⚙️"
   :config
   (editorconfig-mode 1))
 

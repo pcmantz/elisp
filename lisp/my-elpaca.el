@@ -1,4 +1,4 @@
-;;; my-elpaca --- Summary
+;;; my-elpaca --- Bootstrap elpaca as a package manager -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -47,10 +47,10 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
-;; Install use-package support
 (elpaca elpaca-use-package
-  ;; Enable use-package :ensure support for Elpaca.
-  (elpaca-use-package-mode))
+  (require 'elpaca-use-package)
+  (elpaca-use-package-mode)
+  (setq use-package-always-ensure t))
 
 ;; Block until current queue processed.
 (elpaca-wait)

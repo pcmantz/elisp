@@ -11,6 +11,12 @@
 ;; standalone applications
 ;;
 
+;; elisp
+
+(use-package elisp-mode
+  :ensure nil
+  :demand t)
+
 ;; magit
 (use-package magit
   :bind
@@ -19,16 +25,13 @@
   :init
   (add-to-list 'same-window-regexps '("^magit:[^z-a]*" . nil))
   :config
-  (progn
-    (if (fboundp 'magit-completing-read-function)
-        (setq magit-completing-read-function 'helm-comp-read))
-    ;; (rx (and line-start "*magit" (zero-or-one (and "-" (or "refs"))) ":" (0+ anything)  "*"))
-    (add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
-    (add-to-list 'magit-repository-directories '("~/git" . 1))
-    (add-to-list 'magit-repository-directories '("~/Documents" . 1))
-    (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
-    (add-hook magit-mode-hook
-      (lambda () (add-to-list 'magit-buffer-diff-args "--algorithm=histogram")))))
+  ;; (rx (and line-start "*magit" (zero-or-one (and "-" (or "refs"))) ":" (0+ anything)  "*"))
+  (add-to-list 'same-window-regexps '("^\\*magit\\(?:-\\(?:refs\\)\\)?:\\(?:.\\|\n\\)*\\*" . nil))
+  (add-to-list 'magit-repository-directories '("~/git" . 1))
+  (add-to-list 'magit-repository-directories '("~/Documents" . 1))
+  (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
+  (add-hook magit-mode-hook
+    (lambda () (add-to-list 'magit-buffer-diff-args "--algorithm=histogram"))))
 
 (defun magit-toggle-whitespace ()
   (interactive)
