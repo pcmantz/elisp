@@ -1,5 +1,4 @@
-;; my-formatters -- external programs for formatting code
-
+;; my-formatters -- external programs for formatting code -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
