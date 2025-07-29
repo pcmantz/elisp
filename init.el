@@ -74,7 +74,6 @@
 (elpaca-wait)
 
 ;; site libraries
-(require 'beautify)
 (require 'xmlformat)
 
 ;;
