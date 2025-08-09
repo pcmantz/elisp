@@ -17,6 +17,18 @@
   :ensure nil
   :demand t)
 
+(use-package transient
+  :ensure t
+  :demand t)
+
+(use-package transient-dwim
+  :ensure t
+  :bind ("M-=" . transient-dwim-dispatch))
+
+(use-package transient-compile
+  :ensure
+  (:host github :repo "gavv/transient-compile"))
+
 ;; magit
 (use-package magit
   :bind
@@ -99,7 +111,7 @@
 
 (use-package plantuml-mode
   :mode
-  (("\\.(?:plant)uml$" . plantuml-mode))
+  (("\\.(?:p(?:lant))uml$" . plantuml-mode))
   :custom
   (plantuml-executable-path "/usr/local/bin/plantuml")
   (plantuml-default-exec-mode 'executable))
@@ -131,10 +143,10 @@
   (sh-basic-offset 2))
 
 ;; protobuf-mode
-(use-package protobuf-mode
-  :custom
-  (c-basic-offset 2 "Set the tab width to 2.")
-  (indent-tabs-mode nil "No tabs."))
+;; (use-package protobuf-mode
+;;   :custom
+;;   (c-basic-offset 2 "Set the tab width to 2.")
+;;   (indent-tabs-mode nil "No tabs."))
 
 ;;just-mode
 (use-package just-mode)

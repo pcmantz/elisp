@@ -58,10 +58,15 @@
 ;;
 
 ;; keep local customizations out of this file
-(setq custom-file (concat user-emacs-directory "my-custom-file.el"))
-(if (not (file-exists-p custom-file))
-    (write-region "" nil custom-file))
-(add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
+(use-package cus-edit
+  :ensure nil
+  :custom
+  (custom-file (concat user-emacs-directory "my-custom-file.el"))
+  :hook
+  (elpaca-after-init . (lambda () (load custom-file 'noerror)))
+  :config
+  (if (not (file-exists-p custom-file))
+    (write-region "" nil custom-file)))
 
 ;; path (via exec-path-from-shell)
 (use-package exec-path-from-shell
@@ -259,6 +264,22 @@
   (define-key projectile-command-map (kbd "x m") 'projectile-multi-term-in-root)
   (projectile-mode t))
 
+;; mise: load per-project tasks and environment variables
+(use-package mise
+  :hook (after-init . global-mise-mode))
+
+;; aidermacs: Use Aider for ai-powered pair programming
+(use-package aidermacs
+  :after (transient-dwim)
+  :bind ("C-<f1>" . aidermacs-transient-menu)
+  :custom
+  (aidermacs-default-chat-mode 'architect))
+
+(use-package efrit
+  :ensure
+  (:host github :repo "steveyegge/efrit")
+  :custom
+  (efrit-model "claude-sonnet-4-20250514"))
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
