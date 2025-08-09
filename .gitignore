@@ -38,3 +38,6 @@
 /tree-sitter/
 /url/
 /var/
+
+projects.eld
+.aider*
