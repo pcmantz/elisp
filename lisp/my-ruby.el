@@ -66,4 +66,5 @@ https://johnhame.link/posts/tweaking-emacs-for-ruby-development-in-2023/"
 (use-package slim-mode)
 
 (provide 'my-ruby)
-;;;  my-ruby.el ends here
+
+;;; my-ruby.el ends here
