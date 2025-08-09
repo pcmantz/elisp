@@ -62,6 +62,7 @@
 (require 'my-css)
 (require 'my-elixir)
 (require 'my-emacs-lisp)
+(require 'my-formatters)
 (require 'my-haskell)
 (require 'my-java)
 (require 'my-js)

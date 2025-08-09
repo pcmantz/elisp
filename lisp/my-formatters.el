@@ -27,11 +27,15 @@
     :lighter " P"
     :args '("--parser" "babel"))
 
+  (reformatter-define prettier-ts
+    :program "prettier"
+    :lighter " P"
+    :args '("--parser" "typescript"))
+
   (reformatter-define prettier-css
     :program "prettier"
     :lighter " P"
     :args '("--parser" "scss"))
-
 
   (reformatter-define prettier-html
     :program "prettier"
