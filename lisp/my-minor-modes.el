@@ -69,8 +69,6 @@ See URL `https://github.com/troessner/reek'."
   ;; Enable flycheck globally
   (global-flycheck-mode))
 
-(use-package flycheck-status-emoji)
-
 ;; pandoc-mode
 (use-package pandoc-mode)
 
