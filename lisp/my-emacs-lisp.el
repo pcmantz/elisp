@@ -1,4 +1,4 @@
-;;;; my-emacs-lisp --- Summary
+;;;; my-emacs-lisp --- Emacs Lisp Configuration  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

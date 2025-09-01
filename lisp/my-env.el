@@ -1,4 +1,4 @@
-;; my-env --- Basic environment configuration
+;; my-env --- Basic environment configuration  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

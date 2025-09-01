@@ -1,4 +1,4 @@
-;; my-ruby --- Configurations for Ruby
+;; my-ruby --- Configurations for Ruby  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

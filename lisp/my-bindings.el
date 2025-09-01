@@ -1,4 +1,4 @@
-;; my-bindings --- Binding for Emacs
+;; my-bindings --- Binding for Emacs  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

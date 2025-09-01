@@ -1,4 +1,4 @@
-;; my-haskell.el
+;; my-haskell.el --- Haskell Configuration  -*- lexical-binding: t; -*-
 
 ;; haskell-mode
 (use-package haskell-mode

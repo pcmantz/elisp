@@ -1,4 +1,4 @@
-;; my-js --- Javascript configuration
+;;; my-js --- Javascript configuration  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

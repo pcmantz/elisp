@@ -1,15 +1,12 @@
-;; my-major-modes --- Major modes in common use
+;; my-major-modes --- Major modes in common use  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
-;; grab bag file for major modes that don't warrant their own config file
-;; (yet)
+;; grab bag file for major modes that don't warrant their own config file (yet)
 
 ;;; Code:
 
-;;
 ;; standalone applications
-;;
 
 ;; elisp
 

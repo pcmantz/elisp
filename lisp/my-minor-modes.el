@@ -1,7 +1,8 @@
-;; my-minor-modes --- Miscellaneous minor modes that aren't complicated enough
-;; to warrant their own file
+;; my-minor-modes --- Miscellaneous minor modes  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
+
+;; Miscellaneous minor modes that aren't complicated enough to warrant their file
 
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;; my-ts --- Typescript configuration
+;; my-ts --- Typescript configuration  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

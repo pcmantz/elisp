@@ -1,4 +1,4 @@
-;; my-coffee --- Coffescript configuration
+;; my-coffee --- Coffescript configuration  -*- lexical-binding: t; -*-
 
 (use-package coffee-mode
   :custom

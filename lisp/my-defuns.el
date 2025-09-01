@@ -1,4 +1,4 @@
-;; my-defuns.el -- helpful functions for every-day usage
+;; my-defuns.el -- helpful functions for every-day usage  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

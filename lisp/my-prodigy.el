@@ -1,6 +1,8 @@
-;; my-prodigy --- Config for prodigy.el
+;;; my-prodigy --- Config for prodigy.el  -*- lexical-binding: t; -*-
 
-;;; Commentary
+;;; Commentary:
+
+;;; Code:
 
 (use-package prodigy
   :config

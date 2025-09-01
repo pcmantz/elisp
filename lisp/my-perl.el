@@ -1,4 +1,4 @@
-;; my-perl --- Configuration for Perl
+;; my-perl --- Configuration for Perl  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

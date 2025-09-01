@@ -1,4 +1,4 @@
-;; my-org.el ---  org-mode configuration
+;; my-org.el --- org-mode configurationx  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
