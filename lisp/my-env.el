@@ -268,19 +268,6 @@
 (use-package mise
   :hook (after-init . global-mise-mode))
 
-;; aidermacs: Use Aider for ai-powered pair programming
-(use-package aidermacs
-  :after (transient-dwim)
-  :bind ("C-<f1>" . aidermacs-transient-menu)
-  :custom
-  (aidermacs-default-chat-mode 'architect))
-
-(use-package efrit
-  :ensure
-  (:host github :repo "steveyegge/efrit")
-  :custom
-  (efrit-model "claude-sonnet-4-20250514"))
-
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
 (use-package whitespace
