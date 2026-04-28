@@ -14,7 +14,8 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 
 (setq ring-bell-function #'ignore
-      inhibit-startup-screen t)
+      inhibit-startup-screen t
+      custom-safe-themes t)
 
 (provide 'early-init)
 ;;; early-init.el ends here
