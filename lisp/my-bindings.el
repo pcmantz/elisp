@@ -13,6 +13,7 @@
   :bind ("<f5>" . revert-buffer))
 
 (bind-key "<f11>" 'toggle-frame-fullscreen)
+(bind-key "<f13>" 'execute-extended-command)
 
 (unbind-key "C-z")       ;; stopping emacs is useless
 (unbind-key "C-x C-c")   ;; don't make it easy to kill emacs
