@@ -98,12 +98,7 @@
   (persp-show-modestring nil)
   (persp-sort 'access)
   :config
-  ;; setq here to ensure it gets set immediately before `persp-state-load'
-  (setq persp-state-default-file (concat user-emacs-directory "perspective"))
-  (persp-mode)
-  (add-hook 'persp-switch-hook #'persp-state-save)
-  (add-hook 'kill-emacs-hook #'persp-state-save)
-  (persp-state-load persp-state-default-file))
+  (persp-mode))
 
 ;; default-text-scale
 (use-package default-text-scale
