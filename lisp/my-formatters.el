@@ -55,7 +55,12 @@
   (reformatter-define prettier-graphql
     :program "prettier"
     :lighter " P"
-    :args '("--parser" "graphql")))
+    :args '("--parser" "graphql"))
+
+  (reformatter-define prettier-yml
+    :program "prettier"
+    :lighter " P"
+    :args '("--parser" "yaml")))
 
 (provide 'my-formatters)
 ;;; my-formatters ends here
