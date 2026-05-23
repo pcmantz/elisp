@@ -6,10 +6,6 @@
 
 ;;; Code:
 
-;; standalone applications
-
-;; elisp
-
 (use-package elisp-mode
   :ensure nil
   :demand t)
@@ -31,6 +27,8 @@
   :bind
   ("C-x g" . magit-status)
   ("C-c b" . magit-blame)
+  :custom
+  (magit-status-show-untracked-files 'all)
   :init
   (add-to-list 'same-window-regexps '("^magit:[^z-a]*" . nil))
   :config
@@ -58,17 +56,14 @@
   (setq magit-diff-arguments (remove "-w" magit-diff-arguments))
   (magit-refresh))
 
-;; multi-term
-(use-package multi-term
-  :custom
-  (multi-term-program "/bin/bash")
-  :config
-  (progn
-    (add-hook 'term-mode-hook (lambda () (yas-minor-mode -1)))))
+(use-package git-modes)
 
-;;
-;; markup modes
-;;
+(use-package diff-hl
+  :config (global-diff-hl-mode))
+
+;; vterm
+(use-package vterm :ensure t)
+(use-package multi-vterm)
 
 ;; diff-mode
 (use-package diff-mode
@@ -79,32 +74,6 @@
   (set-face-foreground 'diff-added "green4")
   (set-face-foreground 'diff-removed "red3"))
 
-;; yaml-mode
-(use-package yaml-mode
-  :ensure nil
-  :mode
-  (("\\.ya?ml$" . yaml-mode))
-  :custom (yaml-indent-offset 2))
-
-;; rnc-mode
-(use-package rnc-mode
-  :ensure nil
-  :custom
-  (rnc-indent-level 'tab-width))
-
-;; csv-mode
-(use-package csv-mode
-  :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode))
-
-;; markdown-mode
-(use-package markdown-mode
-  :mode  (("\\.md$" . markdown-mode)
-          ("\\.markdown$" . markdown-mode)))
-
-;; hcl-mode
-(use-package hcl-mode
-  :mode (("\\.tf(?:state)" . hcl-mode)
-         ("\\.json" . hcl-mode)))
 
 (use-package plantuml-mode
   :mode
@@ -133,27 +102,12 @@
                             ("blade" . "\\.blade\\.")
                             ("ctemplate" . "\\.hbs\\."))))
 
-;; sh-mode
 (use-package sh-script
   :ensure nil
   :custom
   (sh-basic-offset 2))
 
-;; protobuf-mode
-;; (use-package protobuf-mode
-;;   :custom
-;;   (c-basic-offset 2 "Set the tab width to 2.")
-;;   (indent-tabs-mode nil "No tabs."))
-
-;;just-mode
-(use-package just-mode)
-
-(use-package justl)
-
-;;
 ;; Fundamental mode overrides
-;;
-
 (defun comint-delchar-or-eof-or-kill-buffer (arg)
   (interactive "p")
   (if (null (get-buffer-process (current-buffer)))
@@ -164,14 +118,9 @@
           (lambda () (define-key shell-mode-map (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer))
           t)
 
+(use-package beads :ensure (:host github :repo "ChristianTietze/beads.el"))
 
 ;; Miscellaneous modes
-(use-package apache-mode)
-(use-package docker-compose-mode)
-(use-package dockerfile-mode)
-(use-package gradle-mode)
-(use-package graphviz-dot-mode)
-(use-package groovy-mode)
 (use-package php-mode)
 
 (provide 'my-major-modes)

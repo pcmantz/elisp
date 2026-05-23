@@ -49,11 +49,9 @@
 
 (elpaca-wait)
 
-;; minor modes
 (require 'my-minor-modes)
-
-;; major modes
 (require 'my-major-modes)
+(require 'my-data-modes)
 
 (elpaca-wait)
 
