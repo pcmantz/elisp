@@ -29,6 +29,7 @@
 
 (use-package vtermux
   :ensure nil
+  :elpaca (vtermux :host nil :repo "~/git/vtermux")
   :after vterm
   :config
   ;; shells
