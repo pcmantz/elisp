@@ -15,24 +15,18 @@
 ;; global requirements
 ;;
 (use-package cl-lib :ensure nil :demand t)
-(elpaca-wait)
 
 (use-package dash :demand t)
 (use-package f :demand t)
 (use-package s :demand t)
 
 (use-package bind-key :demand t)
-(elpaca-wait)
-
 (use-package delight :demand t)
-(elpaca-wait)
 
 ;; miscellaneous requirements
 (use-package inflections)
 (use-package reformatter)
 (use-package string-inflection)
-
-(elpaca-wait)
 
 ;;
 ;; load custom modules
@@ -46,37 +40,40 @@
 
 ;; org mode needs to be loaded early
 (require 'my-org)
-
 (elpaca-wait)
 
 (require 'my-minor-modes)
 (require 'my-major-modes)
 (require 'my-data-modes)
 
-(elpaca-wait)
+(require 'my-emacs-lisp)
 
 (require 'my-cc)
 (require 'my-clojure)
 (require 'my-css)
 (require 'my-elixir)
-(require 'my-emacs-lisp)
-(require 'my-formatters)
 (require 'my-haskell)
 (require 'my-java)
 (require 'my-js)
 (require 'my-perl)
-(require 'my-prodigy)
 (require 'my-ruby)
+(require 'my-rust)
 (require 'my-sql)
 (require 'my-tex)
 (require 'my-ts)
-(require 'my-vtermux)
-(require 'my-mcp)
+
+(require 'my-formatters)
+(require 'my-prodigy)
 
 (elpaca-wait)
 
 ;; site libraries
 (require 'xmlformat)
+
+;; modules that depend on elpaca-installed packages
+(require 'my-vtermux)
+(require 'my-mcp)
+(elpaca-wait)
 
 ;;
 ;; startup preferences
