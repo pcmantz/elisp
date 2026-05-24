@@ -1,5 +1,7 @@
 # Agent Instructions
 
+This is a **version-controlled Emacs configuration directory**. A symlink from the recognized Emacs config location (~/.config/emacs or similar) points to this repo. Changes made here take effect **the next time Emacs starts**, not immediately.
+
 This project uses **bd** (beads) for issue tracking. Run `bd prime` for full workflow context.
 
 ## Quick Reference
@@ -35,6 +37,31 @@ cp -rf source dest          # NOT: cp -r source dest
 - `ssh` - use `-o BatchMode=yes` to fail instead of prompting
 - `apt-get` - use `-y` flag
 - `brew` - use `HOMEBREW_NO_AUTO_UPDATE=1` env var
+
+## Directory Survey
+
+This is an **Emacs configuration directory**. Structure overview:
+
+- `init.el` — Main entry point (loads `lisp/` and `site/` modules)
+- `early-init.el` — Pre-graphical startup config (disable GUI chrome, speed up init)
+- `lisp/` — Modular per-concern config files (all loaded via `require`)
+  - `my-elpaca.el` — Bootstraps **elpaca** as the package manager
+  - `my-env.el` — Environment, backups, display, themes, projectile, whitespace, editorconfig
+  - `my-defuns.el` — Utility interactive functions
+  - `my-bindings.el` — Keybinding overrides
+  - `my-autocompletion.el` — **Vertico** + **Orderless** + **Marginalia** completion stack
+  - `my-org.el` — Org mode configuration
+  - `my-minor-modes.el` — Origami, Flycheck, multiple-cursors, company, etc.
+  - `my-major-modes.el` — Magit, transient, elisp-mode
+  - `my-formatters.el` — Code formatter setup
+  - `my-mcp.el` — MCP server (unix socket)
+  - Per-language configs: `my-cc.el`, `my-clojure.el`, `my-coffee.el`, `my-css.el`, `my-elixir.el`, `my-emacs-lisp.el`, `my-haskell.el`, `my-java.el`, `my-js.el`, `my-lua.el`, `my-perl.el`, `my-ruby.el`, `my-rust.el`, `my-sql.el`, `my-tex.el`, `my-ts.el`, `my-data-modes.el`, `my-vtermux.el`, `my-prodigy.el`
+- `site/` — Site-local libraries (vendored `.el` files)
+- `elpaca/` — Package manager repos and builds (gitignored)
+- `backups/` — Backup files
+- `snippets/` — Snippet files
+
+**Key tools used:** `use-package` for declarative config, `elpaca` for package management, Fira Code ligatures, tree-sitter, `metalheart` theme.
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:ca08a54f -->
 ## Beads Issue Tracker
