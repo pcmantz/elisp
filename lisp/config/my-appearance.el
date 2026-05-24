@@ -92,5 +92,10 @@
   :init
   (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
 
+;; UI toggles (may be obsolete due to early-init.el)
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
 (provide 'my-appearance)
 ;;; my-appearance.el ends here

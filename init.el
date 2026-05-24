@@ -38,6 +38,9 @@
 (require 'my-defuns)
 (require 'my-env)
 (require 'my-appearance)
+(require 'my-backups)
+(require 'my-navigation)
+(require 'my-projects)
 (require 'my-bindings)
 (require 'my-autocompletion)
 

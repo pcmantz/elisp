@@ -43,11 +43,6 @@
   (transient-mark-mode t)
   (indent-tabs-mode nil))
 
-;; Graphical stuff I'm never going to use. may be obsolete due to early-init.el
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
 ;; encoding
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -78,69 +73,10 @@
   (exec-path-from-shell-initialize))
 
 ;;
-;; backups
-;;
-
-(use-package files
-  :ensure nil
-  :demand t
-  :custom
-  (backup-by-copying t) ;; don't clobber symlinks
-  (version-control t)   ;; version backup files
-  (kept-new-versions 6)
-  (kept-old-versions 2)
-  (delete-old-versions t)
-  (backup-directory-alist ;; Write backup files to own directory
-   `(("." . ,(expand-file-name (concat user-emacs-directory "backups"))))))
-
-(use-package vc-hooks
-  :demand t
-  :ensure nil
-  :custom
-  (vc-make-backup-files t))
-
-;;
 ;; TRAMP
 ;;
  ;; NOTE: To avoid recursive loads, we load tramp right here and now
 (use-package tramp :ensure nil :demand t)
-
-;; uniquify: unique buffer names
-(use-package uniquify
-  :ensure nil
-  :demand t
-  :custom
-  (uniquify-buffer-name-style 'forward)
-  (uniquify-separator "/")
-  (uniquify-after-kill-buffer-p t)
-  (uniquify-ignore-buffers-re "^\\*"))
-
-;; dired
-(use-package dired-subtree
-  :ensure t
-  :bind
-  (:map dired-mode-map
-        ("i" . dired-subtree-insert)
-        (";" . dired-subtree-remove)))
-
-;; buffer listing
-(use-package ibuffer
-  :ensure nil
-  :bind ("C-x C-b" . ibuffer)
-  :custom
-  (ibuffer-default-sorting-mode 'major-mode)
-  (ibuffer-always-show-last-buffer t)
-  (ibuffer-view-ibuffer t))
-
-(use-package all-the-icons-ibuffer
-  :ensure t
-  :init
-  (add-hook 'ibuffer-mode-hook #'all-the-icons-ibuffer-mode))
-
-(use-package ibuffer-vc
-  :ensure t
-  :config
-  (add-hook 'ibuffer-mode-hook 'ibuffer-vc-set-filter-groups-by-vc-root))
 
 ;; text display config
 (use-package paren
@@ -153,20 +89,6 @@
 ;;
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; projectile: for managing projects
-(use-package projectile
-  :ensure t
-  :bind-keymap
-  (("C-c p" . projectile-command-map)
-   ("s-p" . projectile-command-map))
-  :delight " 🎯"
-  :config
-  (projectile-mode t))
-
-;; mise: load per-project tasks and environment variables
-(use-package mise
-  :hook (after-init . global-mise-mode))
 
 ;; whitespace configuration
 ;; TODO: Make individual customizations for major modes
