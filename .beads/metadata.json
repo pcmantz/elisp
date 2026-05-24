@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "elisp",
+  "project_id": "b54c1dcc-8e21-4520-b2b9-062d8cb016bc"
+}
