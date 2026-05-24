@@ -6,14 +6,7 @@
 
 ;;; Code:
 
-(use-package elixir-mode
-  :init
-  (add-to-list 'interpreter-mode-alist '("elixir" . elixir-mode)))
-
 (use-package elixir-yasnippets)
-
-(use-package heex-ts-mode)
-
 (provide 'my-elixir)
 
 ;;; my-elixir.el ends here
