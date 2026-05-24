@@ -23,8 +23,7 @@
           ("\\.markdown$" . markdown-mode)))
 
 (use-package hcl-mode
-  :mode (("\\.tf(?:state)" . hcl-mode)
-         ("\\.json" . hcl-mode)))
+  :mode (("\\.tf(?:state)" . hcl-mode)))
 
 (use-package ansible-vault)
 (use-package apache-mode)
