@@ -34,5 +34,5 @@
 (use-package groovy-mode)
 (use-package pkl-mode)
 
-(provide 'my-data-modes)
+(provide 'my-misc-data-modes)
 ;;; my-data-modes ends here

@@ -11,7 +11,7 @@
   :config
   (add-hook 'ruby-base-mode-hook
     (lambda ()
-      (bind-key "C-c r" 'pcm/ruby-refactor-transient))))
+      (bind-key "C-c r" 'pcm/ruby-refactor-transient ruby-base-mode-map))))
 
 (use-package ruby-tools
   :delight

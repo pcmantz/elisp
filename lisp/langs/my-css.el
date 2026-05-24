@@ -8,6 +8,7 @@
 
 ;; scss-mode
 (use-package scss-mode
+  :after flymake
   :custom
   (css-set-offset 2))
 

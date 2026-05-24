@@ -4,8 +4,11 @@
 
 ;;; Code:
 
+(add-to-list 'load-path (concat user-emacs-directory "lisp/config"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp/tools"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp/langs"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp/org"))
 (add-to-list 'load-path (concat user-emacs-directory "site"))
-(add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 ;; use elpaca for package management
 (require 'my-elpaca)
@@ -22,12 +25,11 @@
 
 (use-package bind-key :demand t)
 (use-package delight :demand t)
+(elpaca-wait)
 
 ;; miscellaneous requirements
 (use-package inflections)
-(use-package reformatter)
 (use-package string-inflection)
-
 ;;
 ;; load custom modules
 ;;
@@ -43,11 +45,17 @@
 (elpaca-wait)
 
 (require 'my-minor-modes)
-(require 'my-major-modes)
-(require 'my-data-modes)
 
+;; tools & formatters needed by language modules
+(require 'my-formatters)
+(require 'my-prodigy)
+(require 'my-terminal)
+(require 'my-vc)
+(require 'my-mcp)
+(elpaca-wait)
+
+;; language modes
 (require 'my-emacs-lisp)
-
 (require 'my-cc)
 (require 'my-clojure)
 (require 'my-css)
@@ -61,19 +69,13 @@
 (require 'my-sql)
 (require 'my-tex)
 (require 'my-ts)
-
-(require 'my-formatters)
-(require 'my-prodigy)
+(require 'my-misc-data-modes)
+(require 'my-misc-major-modes)
 
 (elpaca-wait)
 
 ;; site libraries
 (require 'xmlformat)
-
-;; modules that depend on elpaca-installed packages
-(require 'my-vtermux)
-(require 'my-mcp)
-(elpaca-wait)
 
 ;;
 ;; startup preferences

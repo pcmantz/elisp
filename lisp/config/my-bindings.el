@@ -40,7 +40,8 @@
 ;; bindings for multiple-cursors
 (use-package multiple-cursors
   :bind ("C-|". pcm/multiple-cursors-transient)
-  :init
+  :after transient
+  :config
   (transient-define-prefix pcm/multiple-cursors-transient ()
     "Run multiple-cursors with a transient."
     [["Lines"

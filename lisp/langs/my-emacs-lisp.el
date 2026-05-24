@@ -8,6 +8,7 @@
 
 (use-package elisp-mode
   :ensure nil
+  :demand t
   :config
   (setq indent-tabs-mode nil))
 

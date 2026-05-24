@@ -116,8 +116,7 @@
   :custom
   (font-lock-maximum-decoration t)
   :config
-  (global-font-lock-mode t)
-  (ansi-color-for-comint-mode-on))
+  (global-font-lock-mode t))
 
 ;; tree-sitter: when font lock isn't enough.
 (use-package treesit
@@ -256,12 +255,6 @@
    ("s-p" . projectile-command-map))
   :delight " 🎯"
   :config
-  (defun projectile-multi-term-in-root ()
-    "Invoke `multi-term' in the project's root."
-    (interactive)
-    (projectile-with-default-dir (projectile-project-root) (multi-term)))
-
-  (define-key projectile-command-map (kbd "x m") 'projectile-multi-term-in-root)
   (projectile-mode t))
 
 ;; mise: load per-project tasks and environment variables
