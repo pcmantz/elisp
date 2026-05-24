@@ -1,4 +1,5 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; rnc-mode.el --- RELAX NG Compact syntax major mode  -*- lexical-binding: t; -*-
+
 ;;   A major mode for editing RELAX NG Compact syntax.
 ;;   Version: 1.0b3
 ;;   Date: 2002-12-05
