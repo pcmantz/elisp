@@ -37,6 +37,7 @@
 ;; global scope modules
 (require 'my-defuns)
 (require 'my-env)
+(require 'my-appearance)
 (require 'my-bindings)
 (require 'my-autocompletion)
 
