@@ -5,11 +5,11 @@
 ;;; Code:
 
 (use-package mcp-server
+  :demand t
   :elpaca (mcp-server :host github :repo "rhblind/emacs-mcp-server"
                       :files ("*.el" "tools/*.el" "mcp-wrapper.py" "mcp-wrapper.sh"))
-  :demand t
-  :config
-  (mcp-server-start-unix))
+  :init
+  (add-hook 'emacs-startup-hook #'mcp-server-start-unix))
 
 (provide 'my-mcp)
 ;;; my-mcp.el ends here
