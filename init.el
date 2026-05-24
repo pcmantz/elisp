@@ -69,6 +69,9 @@
 (require 'my-ruby)
 (require 'my-sql)
 (require 'my-tex)
+(require 'my-ts)
+(require 'my-vtermux)
+(require 'my-mcp)
 
 (elpaca-wait)
 
