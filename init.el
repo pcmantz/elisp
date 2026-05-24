@@ -25,6 +25,7 @@
 
 (use-package bind-key :demand t)
 (use-package delight :demand t)
+;; subsequent packages rely on bind-key and delight being available
 (elpaca-wait)
 
 ;; miscellaneous requirements
@@ -46,7 +47,6 @@
 
 ;; org mode needs to be loaded early
 (require 'my-org)
-(elpaca-wait)
 
 (require 'my-minor-modes)
 
@@ -56,10 +56,10 @@
 (require 'my-terminal)
 (require 'my-vc)
 (require 'my-mcp)
-(elpaca-wait)
 
 ;; language modes
 (require 'my-emacs-lisp)
+(require 'my-treesitter)
 (require 'my-cc)
 (require 'my-clojure)
 (require 'my-css)
@@ -75,8 +75,6 @@
 (require 'my-ts)
 (require 'my-misc-data-modes)
 (require 'my-misc-major-modes)
-
-(elpaca-wait)
 
 ;; site libraries
 (require 'xmlformat)
