@@ -1,0 +1,7 @@
+# mise.toml
+
+[task_config]
+includes = ["bin"]
+
+[tools]
+usage = "latest"
