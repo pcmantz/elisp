@@ -1,0 +1,159 @@
+#!/usr/bin/env -S usage bash
+#MISE description="Installs emacs config to XDG config location (~/.config/emacs)."
+#USAGE flag "-n --dry-run" help="Print what would be done without making changes"
+#USAGE flag "--home <dir>" help="Override the Emacs home directory" env="EMACS_HOME"
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+# ── OS detection ──────────────────────────────────────────────────────────────
+
+detect_os() {
+    case "$(uname -s)" in
+        Darwin*)  echo "macos" ;;
+        Linux*)   echo "linux" ;;
+        CYGWIN*|MINGW*|MSYS*) echo "windows-msys" ;;
+        *)        echo "unknown" ;;
+    esac
+}
+
+# ── Emacs home directory ─────────────────────────────────────────────────────
+
+resolve_emacs_home() {
+    local os="$1"
+    case "$os" in
+        windows-msys)
+            if [ -n "${HOME:-}" ]; then
+                echo "$HOME"
+            elif [ -n "${APPDATA:-}" ]; then
+                echo "$APPDATA"
+            else
+                echo "$HOME"
+            fi
+            ;;
+        *)
+            echo "$HOME"
+            ;;
+    esac
+}
+
+# ── Path removal ─────────────────────────────────────────────────────────────
+
+remove_path() {
+    local dry="$1" path="$2" label="${3:-$path}"
+
+    if [ -L "$path" ]; then
+        if [ "$dry" = true ]; then
+            echo "  [dry-run] Would remove symlink: $label"
+        else
+            echo "  Removing symlink: $label"
+            rm "$path"
+        fi
+    elif [ -d "$path" ]; then
+        if [ "$dry" = true ]; then
+            echo "  [dry-run] Would remove directory: $label/"
+        else
+            echo "  Removing directory: $label/"
+            rm -rf "$path"
+        fi
+    elif [ -e "$path" ]; then
+        if [ "$dry" = true ]; then
+            echo "  [dry-run] Would remove file: $label"
+        else
+            echo "  Removing file: $label"
+            rm -f "$path"
+        fi
+    fi
+}
+
+# ── Symlink / junction ────────────────────────────────────────────────────────
+
+link_config() {
+    local dry="$1" os="$2" source="$3" target="$4"
+
+    if [ "$dry" = true ]; then
+        echo "  [dry-run] Would link: $target -> $source"
+        return
+    fi
+
+    echo "  Linking: $target -> $source"
+
+    mkdir -p "$(dirname "$target")"
+
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        rm -rf "$target"
+    fi
+
+    case "$os" in
+        windows-msys) link_windows "$source" "$target" ;;
+        *)            ln -sfn "$source" "$target" ;;
+    esac
+}
+
+link_windows() {
+    local source="$1" target="$2"
+
+    local src_win
+    src_win="$(cygpath -w "$source" 2>/dev/null)" || src_win="$source"
+    local tgt_win
+    tgt_win="$(cygpath -w "$target" 2>/dev/null)" || tgt_win="$target"
+
+    if command -v cmd.exe >/dev/null 2>&1; then
+        if cmd.exe /c "mklink /J \"$tgt_win\" \"$src_win\"" 2>/dev/null; then
+            return
+        fi
+        if cmd.exe /c "mklink /D \"$tgt_win\" \"$src_win\"" 2>/dev/null; then
+            return
+        fi
+        echo "  WARNING: Could not create junction or symlink on Windows (may need Developer Mode)."
+        echo "           Copying config directory instead."
+        cp -rf "$source" "$target"
+        return
+    fi
+
+    ln -sfn "$source" "$target"
+}
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+
+main() {
+    local dry_run=false
+    [ "${usage_dry_run:-}" = "true" ] && dry_run=true
+
+    local os
+    os="$(detect_os)"
+
+    local ehome
+    ehome="${usage_home:-$(resolve_emacs_home "$os")}"
+
+    echo "     OS: $os"
+    echo "  Home: $ehome"
+    [ "$dry_run" = true ] && echo "  Mode: dry-run (no changes will be made)"
+    echo
+
+    echo "Removing legacy init files..."
+    remove_path "$dry_run" "$ehome/.emacs.el" "~/.emacs.el"
+    remove_path "$dry_run" "$ehome/.emacs"    "~/.emacs"
+    if [ "$os" = "windows-msys" ]; then
+        remove_path "$dry_run" "$ehome/_emacs" "~/_emacs"
+    fi
+    remove_path "$dry_run" "$ehome/.emacs.d"  "~/.emacs.d"
+
+    echo
+    echo "Creating XDG config symlink..."
+    link_config "$dry_run" "$os" "$REPO_ROOT" "$ehome/.config/emacs"
+
+    echo
+    if [ "$dry_run" = true ]; then
+        echo "Dry run complete. Run without -n to apply changes."
+    else
+        echo "Done. Emacs will load config from $ehome/.config/emacs"
+        echo "      which points to $REPO_ROOT"
+    fi
+}
+
+main "$@"
+
+;; Local Variables:
+;; mode: bash-ts
+;; End:
