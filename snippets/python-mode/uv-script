@@ -1,0 +1,22 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: uv-script
+# key: uv-script
+# binding: direct-keybinding
+# group: definitions
+# --
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.10"
+# ///
+
+$0
+
+class `(let ((base (file-name-base (buffer-file-name)))) (replace-regexp-in-string "_" "" (replace-regexp-in-string "-" "" (capitalize base))))`:
+    def __init__(self):
+        pass
+
+    def run(self):
+        pass
+
+if __name__ == '__main__':
+    `(let ((base (file-name-base (buffer-file-name)))) (replace-regexp-in-string "_" "" (replace-regexp-in-string "-" "" (capitalize base))))`().run()
