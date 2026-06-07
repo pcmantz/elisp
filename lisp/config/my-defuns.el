@@ -40,6 +40,19 @@
     (find-alternate-file (concat "/sudo::" file-name))
     (goto-char p)))
 
+(defun pcm-open-project (dir)
+  "Open DIR in a new perspective named after the directory.
+If DIR is a git repository, split the window and open magit-status."
+  (interactive "DProject directory: ")
+  (let ((name (file-name-nondirectory (directory-file-name dir))))
+    (persp-switch name)
+    (dired dir)
+    (when (locate-dominating-file dir ".git")
+      (split-window-right)
+      (split-window-right)
+      (split-windo-below)
+      (magit-status dir))))
+
 ;;
 ;; elisp utils
 ;;
