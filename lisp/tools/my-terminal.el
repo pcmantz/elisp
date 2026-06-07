@@ -23,23 +23,27 @@
   :config
   (ansi-color-for-comint-mode-on))
 
+(use-package ghostel :ensure t :demand t)
 (use-package vterm :ensure t :demand t)
-
-(use-package multi-vterm)
 
 (use-package vtermux
   :ensure nil
+  :demand t
+  :after (vterm ghostel)
   :elpaca (vtermux :host nil :repo "~/git/vtermux")
-  :after vterm
+  :bind ("C-c v" . vtermux-run)
   :config
   ;; shells
   (vtermux-define bash)
   (vtermux-define zsh)
 
   ;; dev tools
-  (vtermux-define pitchfork :args "tui")
+  (vtermux-define pitchfork :args '("tui"))
   (vtermux-define claude)
-  (vtermux-define opencode :args "-m")
+  (vtermux-define opencode
+    :program "opencode"
+    :directory :project
+    :args (lambda (dir) (list "attach" "http://localhost:4096" "--dir" dir)))
 
   ;; ops tools
   (vtermux-define btop)
