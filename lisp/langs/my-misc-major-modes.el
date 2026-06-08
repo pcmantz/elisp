@@ -38,5 +38,17 @@
 
 (use-package php-mode)
 
+(use-package go-mode)
+
+(use-package jinja2-mode)
+
+(use-package nix-mode)
+
+(use-package jenkinsfile-mode)
+
+(use-package crontab-mode)
+
+(use-package nginx-mode)
+
 (provide 'my-misc-major-modes)
 ;;; my-web.el ends here
