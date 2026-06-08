@@ -6,19 +6,6 @@
 
 ;;; Code:
 
-;; I don't use this and I want to use origami
-(unbind-key "C-o")
-
-(use-package origami
-  :bind
-    ("C-o o" . origami-recursively-toggle-node)
-    ("C-o O" . origami-open-node-recursively)
-    ("C-o c" . origami-close-node-recursively)
-    ("C-o C" . origami-close-all-nodes)
-    ("C-o A" . origami-open-all-nodes)
-  :config
-  (global-origami-mode))
-
 (use-package flycheck
   :delight " 🪰✅"
   :custom
