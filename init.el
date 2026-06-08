@@ -44,6 +44,7 @@
 (require 'my-projects)
 (require 'my-bindings)
 (require 'my-autocompletion)
+(require 'my-consult)
 
 ;; org mode needs to be loaded early
 (require 'my-org)

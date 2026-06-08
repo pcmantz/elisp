@@ -60,13 +60,5 @@ See URL `https://github.com/troessner/reek'."
 ;; pandoc-mode
 (use-package pandoc-mode)
 
-;; company
-(use-package company
-  :delight " 🏭"
-  :custom
-  (company-idle-delay 0.5)
-  :config
-  (global-company-mode))
-
 (provide 'my-minor-modes)
 ;;; my-minor-modes.el ends here
