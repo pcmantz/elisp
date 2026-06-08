@@ -52,6 +52,11 @@
   (corfu-auto-delay 0.5)
   (corfu-auto-prefix 2))
 
+(use-package nerd-icons-corfu
+  :after nerd-icons
+  :config
+  (nerd-icons-corfu-mode))
+
 (use-package cape
   :demand t
   :config

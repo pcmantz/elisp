@@ -107,5 +107,8 @@
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
 
+(use-package nerd-icons
+  :demand t)
+
 (provide 'my-env)
 ;;; my-env.el ends here
