@@ -11,7 +11,7 @@
   (plantuml-executable-path "/usr/local/bin/plantuml")
   (plantuml-default-exec-mode 'executable))
 
-(use-package flycheck-plantuml)
+(use-package flycheck-plantuml :after (plantuml-mode))
 
 (use-package web-mode
   :mode
@@ -36,19 +36,9 @@
   :custom
   (sh-basic-offset 2))
 
-(use-package php-mode)
-
+;; Programming languages
 (use-package go-mode)
-
-(use-package jinja2-mode)
-
-(use-package nix-mode)
-
-(use-package jenkinsfile-mode)
-
-(use-package crontab-mode)
-
-(use-package nginx-mode)
+(use-package php-mode)
 
 (provide 'my-misc-major-modes)
 ;;; my-web.el ends here

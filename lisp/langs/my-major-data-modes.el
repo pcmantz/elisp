@@ -27,11 +27,16 @@
 
 (use-package ansible-vault)
 (use-package apache-mode)
+(use-package crontab-mode)
 (use-package docker-compose-mode)
 (use-package dockerfile-mode)
 (use-package gradle-mode)
 (use-package graphviz-dot-mode)
 (use-package groovy-mode)
+(use-package jenkinsfile-mode)
+(use-package jinja2-mode)
+(use-package nginx-mode)
+(use-package nix-mode)
 (use-package pkl-mode)
 
 (provide 'my-misc-data-modes)

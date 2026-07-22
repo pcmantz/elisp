@@ -14,6 +14,7 @@
 
 (bind-key "<f11>" 'toggle-frame-fullscreen)
 (bind-key "<f13>" 'execute-extended-command)
+(bind-key "C-x F" 'msg-buffer-filename)
 
 (unbind-key "C-z")       ;; stopping emacs is useless
 (unbind-key "C-x C-c")   ;; don't make it easy to kill emacs
@@ -34,8 +35,6 @@
 (use-package window
   :ensure nil
   :bind (("C-x K" . kill-buffer-and-window)))
-
-(bind-key "C-x F" 'msg-buffer-filename)
 
 ;; bindings for multiple-cursors
 (use-package multiple-cursors
@@ -123,7 +122,8 @@
           (and yas-snippet-dirs
             (null (yas--get-snippet-tables)))))))
 
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :after (yasnippet))
 
 (use-package dash-at-point
   :bind

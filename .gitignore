@@ -12,34 +12,38 @@
 /ido.last
 /lisp/my-custom-file.el
 /my-custom-file.el
+
+# caches
+/.lsp-session-*
+/forge-database.sqlite
+/history
+/network-security.data
+/perspective
+/projectile-*
+/projectile-bookmarks.eld
+/projectile.cache
+/projects
+/projects.eld
+/rake.cache
 /recentf
 /session.*
 /smex-items
 /tramp
 /workgroups
-/perspective
-/history
-/projects
 
 # various temp dirs
-/.lsp-session-*
 /auto-save-list/
 /eln-cache/
 /elpa/
 /elpaca/
 /eshell/
-/forge-database.sqlite
-/network-security.data
-/projectile-bookmarks.eld
-/projectile.cache
-/rake.cache
 /request/
 /transient/
 /tree-sitter/
 /url/
 /var/
 
-projects.eld
+# AI-related files
 .aider*
 
 # Beads / Dolt files (added by bd init)

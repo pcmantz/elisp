@@ -1,4 +1,4 @@
-;; my-org.el --- org-mode configurationx  -*- lexical-binding: t; -*-
+;; my-org.el --- org-mode configuration  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -40,7 +40,7 @@
   (org-todo-keywords '((sequence "TODO" "STARTED" "BLOCKED")
                        (sequence "DONE" "CANCELLED")))
   (org-deadline-warning-days 14)
-  (org-refile-use-outline-path t) ; use full outline paths for refile targets
+  (org-refile-use-outline-path t)
   (org-refile-targets '((nil :maxlevel . 9)
                          (org-agenda-files :maxlevel . 9)))
   :init
@@ -81,7 +81,6 @@
   :ensure nil
   :after (org)
   :config
-  ;; active Org-babel languages
   (org-babel-do-load-languages
     'org-babel-load-languages
     '(;; other Babel languages
@@ -94,7 +93,6 @@
   :after (org org-journal org-chef doct)
   :bind ("<f2>" . org-capture)
   :config
-  ;; This will (hopefully) load doct up-front so that it doesn't evaluate every time I try and use it.
   (setq org-capture-templates
     (doct
       '(("Journal"
@@ -141,6 +139,7 @@
                                      "** Directions\n\n"))))))))
 
 (use-package org-chef
+  :after (org)
   :demand t)
 
 (use-package org-journal
@@ -160,6 +159,7 @@
 
 (use-package org-agenda
   :ensure nil
+  :after (org)
   :bind
   (("C-c a" . org-agenda)
     :map org-agenda-mode-map
@@ -189,13 +189,8 @@
          (org-agenda-overriding-header "Unscheduled TODO entries: ")))))
   (add-to-list 'same-window-regexps '("*Org Agenda*". nil)))
 
-;; (use-package ox-hugo
-;;   :ensure t
-;;   :pin melpa
-;;   :after ox)
-
 (use-package ox-pandoc
-  :after ox)
+  :after (ox pandoc))
 
 (provide 'my-org)
 ;;; my-org.el ends here
