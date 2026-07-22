@@ -110,10 +110,10 @@
 (use-package nerd-icons
   :demand t)
 
-(use-package nerd-icons-dired)
-(use-package nerd-icons-ibuffer)
-(use-package nerd-icons-grep)
-(use-package nerd-icons-xref)
+(use-package nerd-icons-dired :after (nerd-icons))
+(use-package nerd-icons-ibuffer :after (nerd-icons))
+(use-package nerd-icons-grep :after (nerd-icons))
+(use-package nerd-icons-xref :after (nerd-icons))
 
 (provide 'my-env)
 ;;; my-env.el ends here

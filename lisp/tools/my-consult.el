@@ -120,15 +120,9 @@
   (autoload 'projectile-project-root "projectile")
   (setq consult-project-function (lambda (_) (projectile-project-root))))
 
-(use-package consult-ag
-  :demand t
-  :ensure
-  (:host github :repo "yadex205/consult-ag")
-  :bind
-  ("M-s a" . consult-ag))
-
 (use-package embark-consult
   :demand t
+  :after (embark consult)
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 

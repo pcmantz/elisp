@@ -50,7 +50,7 @@ If DIR is a git repository, split the window and open magit-status."
     (when (locate-dominating-file dir ".git")
       (split-window-right)
       (split-window-right)
-      (split-windo-below)
+      (split-window-below)
       (magit-status dir))))
 
 ;;
