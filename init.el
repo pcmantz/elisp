@@ -61,6 +61,10 @@
 (require 'my-elixir)
 (require 'my-ruby)
 (require 'my-rust)
+(require 'my-sql)
+
+(require 'my-major-data-modes)
+(require 'my-major-language-modes)
 
 ;;
 ;; startup preferences
