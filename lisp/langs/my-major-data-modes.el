@@ -25,6 +25,10 @@
 (use-package hcl-mode
   :mode (("\\.tf(?:state)" . hcl-mode)))
 
+(use-package poly-ansible
+  :after (jinja2-mode)
+  :mode (("\\.ya?ml.j2" . poly-ansible-mode)))
+
 (use-package ansible-vault)
 (use-package apache-mode)
 (use-package crontab-mode)
@@ -39,5 +43,5 @@
 (use-package nix-mode)
 (use-package pkl-mode)
 
-(provide 'my-misc-data-modes)
+(provide 'my-major-data-modes)
 ;;; my-data-modes ends here
