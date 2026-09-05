@@ -41,9 +41,9 @@
   (vtermux-define pitchfork :args '("tui"))
   (vtermux-define claude)
   (vtermux-define opencode
-    :program "opencode"
+    :program "opencode-attach-or-session"
     :directory :project
-    :args (lambda (dir) (list "attach" "http://localhost:4096" "--dir" dir)))
+    :args (lambda (dir) (list "--dir" dir)))
 
   ;; ops tools
   (vtermux-define btop)
