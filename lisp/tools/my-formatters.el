@@ -60,7 +60,12 @@
   (reformatter-define prettier-yml
     :program "prettier"
     :lighter " P"
-    :args '("--parser" "yaml")))
+    :args '("--parser" "yaml"))
+
+  (reformatter-define rustfmt
+    :program "rustfmt"
+    :lighter " 🦀"
+    :args '()))
 
 (provide 'my-formatters)
 ;;; my-formatters ends here
