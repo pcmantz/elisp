@@ -1,4 +1,4 @@
-;; my-misc-major-modes --- Miscellaneous major modes  -*- lexical-binding: t; -*-
+;; my-major-language-modes --- Miscellaneous major modes  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -40,5 +40,5 @@
 (use-package go-mode)
 (use-package php-mode)
 
-(provide 'my-misc-major-modes)
+(provide 'my-major-language-modes)
 ;;; my-web.el ends here
