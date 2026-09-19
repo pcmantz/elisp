@@ -46,6 +46,8 @@
 
 ;; tools
 (require 'my-consult)
+(require 'my-eldoc)
+(require 'my-eglot)
 (require 'my-minor-modes)
 (require 'my-projects)
 (require 'my-terminal)

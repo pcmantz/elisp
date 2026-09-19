@@ -12,6 +12,8 @@
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-idle-change-delay 2)
   (flycheck-temp-prefix ".flycheck")
+  (flycheck-eglot-exclusive nil)
+  (flycheck-lsp-exclusive nil)
   :config
   (flycheck-define-checker ruby-reek
     "A Ruby smell checker using reek
@@ -55,7 +57,9 @@ See URL `https://github.com/troessner/reek'."
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
   ;; Enable flycheck globally
-  (global-flycheck-mode))
+  (global-flycheck-mode 1)
+  (global-flycheck-eglot-mode 1)
+  (global-flycheck-lsp-mode 1))
 
 ;; pandoc-mode
 (use-package pandoc-mode)
