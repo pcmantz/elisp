@@ -12,6 +12,7 @@
    ("s-p" . projectile-command-map))
   :delight " 🎯"
   :config
+  (projectile-enable-caching t)
   (projectile-mode t))
 
 ;; mise: load per-project tasks and environment variables
