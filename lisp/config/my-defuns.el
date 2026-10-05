@@ -24,9 +24,9 @@
   (set-frame-parameter nil 'fullscreen
                        (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
 
-(defun dos2unix (buffer)
+(defun dos2unix ()
   "Automate M-% C-q C-m RET C-q C-j RET ."
-  (interactive "*b")
+  (interactive "*")
   (save-excursion
     (goto-char (point-min))
     (while (search-forward (string ?\C-m) nil t)
