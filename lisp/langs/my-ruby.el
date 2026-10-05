@@ -59,7 +59,7 @@ https://johnhame.link/posts/tweaking-emacs-for-ruby-development-in-2023/"
 
 (use-package projectile-rails
   :init
-  (add-hook 'projectile-mode-hook #'projectile-rails))
+  (add-hook 'projectile-mode-hook #'projectile-rails-mode))
 
 (use-package haml-mode)
 (use-package rails-log-mode)
