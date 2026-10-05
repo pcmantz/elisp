@@ -54,7 +54,7 @@ https://johnhame.link/posts/tweaking-emacs-for-ruby-development-in-2023/"
   :config
   (add-hook 'after-init-hook 'inf-ruby-switch-setup)
   (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter-and-focus)
-  (add-hook 'ruby-base-mode 'inf-ruby-minor-mode)
+  (add-hook 'ruby-base-mode-hook #'inf-ruby-minor-mode)
   (inf-ruby-enable-auto-breakpoint))
 
 (use-package projectile-rails
