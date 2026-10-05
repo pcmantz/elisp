@@ -32,6 +32,8 @@
   :after (vterm ghostel)
   :elpaca (vtermux :host nil :repo "~/git/vtermux")
   :bind ("C-c v" . vtermux-run)
+  :custom
+  (vtermux-backend 'ghostel)
   :config
   ;; shells
   (vtermux-define bash)
@@ -41,9 +43,7 @@
   (vtermux-define pitchfork :args '("tui"))
   (vtermux-define claude)
   (vtermux-define opencode
-    :program "opencode-attach-or-session"
-    :directory :project
-    :args (lambda (dir) (list "--dir" dir)))
+    :directory :project)
 
   ;; ops tools
   (vtermux-define btop)
