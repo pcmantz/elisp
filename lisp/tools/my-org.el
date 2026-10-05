@@ -37,6 +37,7 @@
   (org-priority-default ?X)
   (org-replace-disputed-keys t)
   (org-startup-folded nil)
+  (org-use-fast-todo-selection t)
   (org-todo-keywords '((sequence "TODO" "STARTED" "BLOCKED")
                        (sequence "DONE" "CANCELLED")))
   (org-deadline-warning-days 14)
