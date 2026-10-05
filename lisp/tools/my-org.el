@@ -188,7 +188,8 @@
              (org-agenda-skip-entry-if (quote scheduled) (quote deadline)
                (quote regexp) "<[^>\n]+>")))
          (org-agenda-overriding-header "Unscheduled TODO entries: ")))))
-  (add-to-list 'same-window-regexps '("*Org Agenda*". nil)))
+  :config
+  (add-to-list 'same-window-regexps '("*Org Agenda*" . nil)))
 
 (use-package ox-pandoc
   :after (ox pandoc))
