@@ -28,7 +28,6 @@
 (use-package eglot
   :hook
   (rust-mode . eglot-ensure)
-  (eglot-managed-mode . eldoc-box-hover-mode)
   :config
   ;; rust-analyzer triggers on-type formatting on . = < > { ( | + and eglot
   ;; requests it synchronously, so each one blocks until the server answers.
