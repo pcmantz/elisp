@@ -1,0 +1,188 @@
+#!/usr/bin/env -S usage bash
+#MISE description="Purges gitignored builds, caches, state, and backups from the Emacs config repo."
+#USAGE flag "-n --dry-run" help="Print what would be done without making changes"
+#USAGE flag "--backups" help="Also purge the backups/ directory"
+#USAGE flag "--state" help="Also purge state files (bookmarks, recentf, perspectives, caches, history)"
+#USAGE flag "--purge" help="Purge everything above plus elpaca sources/cache (forces full re-clone on next start)"
+#USAGE flag "--uninstall" help="Also remove the ~/.config/emacs symlink that bin/install created"
+#USAGE flag "--home <dir>" help="Override the Emacs home directory" env="EMACS_HOME"
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+shopt -s nullglob
+
+remove_path() {
+    local dry="$1" path="$2" label="${3:-$path}"
+
+    if [ "$dry" = true ]; then
+        if [ -L "$path" ]; then
+            echo "  [dry-run] Would remove symlink: $label"
+        elif [ -d "$path" ]; then
+            echo "  [dry-run] Would remove directory: $label/"
+        elif [ -e "$path" ]; then
+            echo "  [dry-run] Would remove file: $label"
+        else
+            echo "  [dry-run] Would remove: $label (not present)"
+        fi
+        return
+    fi
+
+    if [ -L "$path" ]; then
+        echo "  Removing symlink: $label"
+        rm -f "$path"
+    elif [ -d "$path" ]; then
+        echo "  Removing directory: $label/"
+        rm -rf "$path"
+    elif [ -e "$path" ]; then
+        echo "  Removing file: $label"
+        rm -f "$path"
+    fi
+}
+
+# ── Path sets ──────────────────────────────────────────────────────────────────
+
+# Regenerable build artifacts. Default scope.
+caches=(
+    "elpaca/builds"
+    "eln-cache"
+    "tree-sitter"
+    "elpa"
+    "transient"
+)
+
+# Auto-saved/backup files Emacs keeps around.
+backups=(
+    "backups"
+)
+
+# Author-generated state Emacs rebuilds as you use it. Mildly annoying to lose.
+state_files=(
+    ".mc-lists.el"
+    ".mc-lists.elc"
+    ".org-id-locations"
+    "bookmarks"
+    "history"
+    "ido.last"
+    "ielm-history.eld"
+    "network-security.data"
+    "perspective"
+    "projectile.cache"
+    "projectile-bookmarks.eld"
+    "projects.eld"
+    "rake.cache"
+    "recentf"
+    "session.*"
+    "smex-items"
+    "tramp"
+    "workgroups"
+    "auto-save-list"
+    ".lsp-session-*"
+)
+
+# Full elpaca tree (sources + cache + builds). Forces re-clone on next start.
+purge_paths=(
+    "elpaca"
+)
+
+# ── OS / home (only needed for --uninstall) ────────────────────────────────────
+
+detect_os() {
+    case "$(uname -s)" in
+        Darwin*)  echo "macos" ;;
+        Linux*)   echo "linux" ;;
+        CYGWIN*|MINGW*|MSYS*) echo "windows-msys" ;;
+        *)        echo "unknown" ;;
+    esac
+}
+
+resolve_emacs_home() {
+    local os="$1"
+    case "$os" in
+        windows-msys)
+            if [ -n "${HOME:-}" ]; then echo "$HOME"
+            elif [ -n "${APPDATA:-}" ]; then echo "$APPDATA"
+            else echo "$HOME"; fi
+            ;;
+        *) echo "$HOME" ;;
+    esac
+}
+
+# ── Main ───────────────────────────────────────────────────────────────────────
+
+main() {
+    local dry_run=false do_backups=false do_state=false do_purge=false do_uninstall=false
+    [ "${usage_dry_run:-}"   = "true" ] && dry_run=true
+    [ "${usage_backups:-}"   = "true" ] && do_backups=true
+    [ "${usage_state:-}"     = "true" ] && do_state=true
+    [ "${usage_purge:-}"     = "true" ] && do_purge=true
+    [ "${usage_uninstall:-}" = "true" ] && do_uninstall=true
+
+    local os ehome
+    os="$(detect_os)"
+    ehome="${usage_home:-$(resolve_emacs_home "$os")}"
+
+    echo "    Repo: $REPO_ROOT"
+    [ "$dry_run" = true ] && echo "    Mode: dry-run (no changes will be made)"
+    echo
+
+    [ "$dry_run" = false ] && echo "Purging caches..."
+    for rel in "${caches[@]}"; do
+        remove_path "$dry_run" "$REPO_ROOT/$rel" "$rel"
+    done
+
+    if [ "$do_backups" = true ] || [ "$do_purge" = true ]; then
+        [ "$dry_run" = false ] && echo
+        [ "$dry_run" = false ] && echo "Purging backups..."
+        for rel in "${backups[@]}"; do
+            remove_path "$dry_run" "$REPO_ROOT/$rel" "$rel"
+        done
+    fi
+
+    if [ "$do_state" = true ] || [ "$do_purge" = true ]; then
+        [ "$dry_run" = false ] && echo
+        [ "$dry_run" = false ] && echo "Purging state files..."
+        for rel in "${state_files[@]}"; do
+            for f in "$REPO_ROOT/$rel"; do
+                remove_path "$dry_run" "$f" "${f#$REPO_ROOT/}"
+            done
+        done
+    fi
+
+    if [ "$do_purge" = true ]; then
+        [ "$dry_run" = false ] && echo
+        [ "$dry_run" = false ] && echo "Purging elpaca sources/cache (full re-clone on next start)..."
+        for rel in "${purge_paths[@]}"; do
+            remove_path "$dry_run" "$REPO_ROOT/$rel" "$rel"
+        done
+    fi
+
+    if [ "$do_uninstall" = true ]; then
+        [ "$dry_run" = false ] && echo
+        [ "$dry_run" = false ] && echo "Uninstalling (~/.config/emacs symlink)..."
+        remove_path "$dry_run" "$ehome/.config/emacs" "~/.config/emacs"
+        remove_path "$dry_run" "$ehome/.emacs.d"      "~/.emacs.d"
+        remove_path "$dry_run" "$REPO_ROOT/my-custom-file.el"  "my-custom-file.el"
+        remove_path "$dry_run" "$REPO_ROOT/my-custom-file.elc" "my-custom-file.elc"
+        for legacy in "$ehome/.emacs.el" "$ehome/.emacs" "$ehome/_emacs"; do
+            [ -e "$legacy" ] || [ -L "$legacy" ] || continue
+            remove_path "$dry_run" "$legacy" "${legacy#$ehome/}"
+        done
+    fi
+
+    echo
+    if [ "$dry_run" = true ]; then
+        echo "Dry run complete. Run without -n to apply changes."
+    else
+        echo "Done."
+        [ "$do_purge" = true ] && echo "Next Emacs start will re-clone elpaca; this may take a while."
+    fi
+}
+
+main "$@"
+
+# Local Variables:
+# mode: bash-ts
+# End:
