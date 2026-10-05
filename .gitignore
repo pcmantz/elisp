@@ -9,6 +9,7 @@
 # top-level local config files
 /.mc-lists.el
 /bookmarks
+/bookmarks.eld
 /ido.last
 /lisp/my-custom-file.el
 /my-custom-file.el
