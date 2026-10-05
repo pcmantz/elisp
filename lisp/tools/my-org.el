@@ -98,7 +98,7 @@
     (doct
       '(("Journal"
           :keys "j"
-          :function (lambda () (org-reload) (org-journal-new-entry t) (goto-char (point-min)))
+          :function (lambda () (org-journal-new-entry t) (goto-char (point-min)))
           :children ((:group "Status"
                        :template ("* %(format-time-string org-journal-time-format) %{status-header}"
                                    ":PROPERTIES:"
