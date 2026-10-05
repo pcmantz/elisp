@@ -49,6 +49,10 @@
   (setq magit-diff-arguments (remove "-w" magit-diff-arguments))
   (magit-refresh))
 
+(use-package magit-delta
+  :hook (magit-mode . magit-delta-mode)
+  :custom (magit-delta-hide-plus-minus-markers nil))
+
 (use-package git-modes)
 
 (use-package diff-hl
