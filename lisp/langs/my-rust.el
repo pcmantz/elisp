@@ -7,7 +7,7 @@
 ;;; Code:
 
 (use-package rust-mode
-  :after (treesit-auto)
+  :after (treesit)
   :init
   (setq rust-mode-treesitter-derive t))
 

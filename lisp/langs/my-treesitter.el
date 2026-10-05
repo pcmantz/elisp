@@ -9,15 +9,25 @@
 (use-package treesit
   :ensure nil
   :custom
-  ((treesit-font-lock-level 4)))
-
-(use-package treesit-auto
-  :ensure t
-  :custom
-  (treesit-auto-install 'prompt)
+  ((treesit-font-lock-level 4)
+   (treesit-auto-install-grammar 'ask)
+   (treesit-enabled-modes t))
   :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+  (defun pcm/treesit-sync-mode-remaps (&rest _)
+    "Map registered tree-sitter modes onto `major-mode-remap-alist'.
+
+Built-in `treesit-enabled-modes' only maps the modes that are
+registered when it is set, so re-run this after libraries load to
+pick up tree-sitter modes defined by third-party packages."
+    (when (treesit-available-p)
+      (dolist (remap treesit-major-mode-remap-alist)
+        (if (or (eq treesit-enabled-modes t)
+                (memq (cdr remap) treesit-enabled-modes))
+            (add-to-list 'major-mode-remap-alist remap)
+          (setq major-mode-remap-alist
+                (delete remap major-mode-remap-alist))))))
+  (pcm/treesit-sync-mode-remaps)
+  (add-hook 'after-load-functions #'pcm/treesit-sync-mode-remaps))
 
 (use-package treesit-fold
   :ensure t
