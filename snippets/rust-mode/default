@@ -1,0 +1,13 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: default
+# key: default
+# expand-env: ((yas/indent-line 'fixed))
+# --
+
+impl Default for $1 {
+    fn default() -> Self {
+        Self {
+          $0
+        }
+    }
+}
