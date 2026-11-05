@@ -61,6 +61,7 @@
 (require 'my-treesitter)
 
 (require 'my-elixir)
+(require 'my-javascript)
 (require 'my-ruby)
 (require 'my-rust)
 (require 'my-sql)

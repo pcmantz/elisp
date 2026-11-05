@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: import from
+# key: imp
+# expand-env: ((yas/indent-line 'fixed))
+# --
+
+import { $1 } from '$2';

@@ -37,7 +37,10 @@
     `(rust-mode . ("rust-analyzer" :initializationOptions
                     ( :procMacro (:enable t)
                       :cargo ( :buildScripts (:enable t)
-                               :features "all"))))))
+                               :features "all")))))
+  (add-to-list 'eglot-server-programs
+    '((typescript-ts-mode tsx-ts-mode js-ts-mode typescript-mode)
+       . ("typescript-language-server" "--stdio"))))
 
 (provide 'my-eglot)
 
