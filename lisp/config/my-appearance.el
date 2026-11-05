@@ -66,6 +66,21 @@
          (set-face-attribute 'default nil :font "Consolas-9"))
         (t nil)))
 
+;; Workaround for an Emacs bug on macOS: the NS port sets the `display'
+;; frame parameter to an integer screen number, which
+;; `display-multi-font-p' (and ultimately `get-device-terminal') rejects
+;; with "Invalid argument N in `get-device-terminal'".  This breaks any
+;; transient popup (magit-commit, etc.) because transient calls
+;; `fit-window-to-buffer'.  Cf. Emacs bug#53969 (same class of problem on
+;; pgtk).  Remove once fixed upstream.
+(when (string= window-system "ns")
+  (define-advice display-multi-font-p
+      (:around (fn &optional display) ns-integer-display)
+    "Return t when DISPLAY is an integer (NS screen number)."
+    (if (integerp display)
+        t
+      (funcall fn display))))
+
 ;; all-the-icons
 (use-package all-the-icons
   :ensure t
