@@ -44,6 +44,7 @@
   (vtermux-define claude)
   (vtermux-define opencode
     :directory :project)
+  (vtermux-define cursor-agent)
 
   ;; ops tools
   (vtermux-define btop)
