@@ -140,6 +140,11 @@ KIND is either `active' for the keywords before the \"|\" separator or
   (org-journal-file-format "%Y/%m/%Y-%m-%d.org")
   (org-journal-date-format "%A, %b  %d, %Y")
   :config
+  ;; Emacs 32's `encode-time' returns an integer timestamp, but
+  ;; org-journal 2.2.0 assumes the old list representation in
+  ;; `org-journal--search-build-file-list'.
+  (advice-add 'org-journal--calendar-date->time :filter-return
+              (lambda (time) (time-convert time 'list)))
   (setq org-journal-carryover-items
         (format "TODO={%s}"
                 (mapconcat #'identity (my-org-todo-keywords 'active) "\\|")))
