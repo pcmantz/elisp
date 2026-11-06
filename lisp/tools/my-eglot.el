@@ -26,6 +26,14 @@
 ;;; Code:
 
 (use-package eglot
+  :after eldoc-box
+  ;; Eglot remaps `display-local-help' (C-h .) to `eldoc-doc-buffer',
+  ;; which calls a bare `display-buffer' and so takes over a normal
+  ;; window that then persists, refreshing on every subsequent eldoc
+  ;; update.  Show the same content in an `eldoc-box' childframe
+  ;; instead, dismissed by moving point or with C-g.
+  :bind (:map eglot-mode-map
+          ([remap display-local-help] . eldoc-box-help-at-point))
   :hook
   (rust-mode . eglot-ensure)
   :config
