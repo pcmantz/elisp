@@ -81,6 +81,20 @@
         t
       (funcall fn display))))
 
+;; Workaround for an Emacs 32 bug: `frame-width' and `frame-height' are
+;; now Lisp wrappers around the `width'/`height' frame parameters, but
+;; `frame-parameters' reports the line count as `width' and nil as
+;; `height'.  `eldoc-display-in-echo-area' then does (* nil 0.25) and
+;; signals "eldoc error: (wrong-type-argument number-or-marker-p nil)".
+;; Use the C primitives instead.  Remove once fixed upstream.
+(when (>= emacs-major-version 32)
+  (define-advice frame-width (:override (&optional frame) text-cols)
+    "Return the number of text columns of FRAME."
+    (frame-text-cols frame))
+  (define-advice frame-height (:override (&optional frame) text-lines)
+    "Return the number of text lines of FRAME."
+    (frame-text-lines frame)))
+
 ;; all-the-icons
 (use-package all-the-icons
   :ensure t
