@@ -10,11 +10,6 @@
   (("\\.ya?ml$" . yaml-mode))
   :custom (yaml-indent-offset 2))
 
-(use-package rnc-mode
-  :ensure nil
-  :custom
-  (rnc-indent-level 'tab-width))
-
 (use-package csv-mode
   :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode))
 
